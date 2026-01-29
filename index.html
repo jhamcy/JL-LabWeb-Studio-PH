@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JL LabWeb Studio PH</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+/* BODY – MOBILE SAFE FALLBACK */
+body{
+  background:#f4f6fb; /* fallback so page NEVER goes white */
+  background-image:url("background.jpg");
+  background-repeat:no-repeat;
+  background-position:center center;
+  background-attachment:fixed;
+  background-size:cover;
+  color:#000;
+  min-height:100vh;
+}
+
+/* NAVBAR */
+nav{
+  position:sticky;
+  top:0;
+  z-index:999;
+  background:#0a58ca;
+  padding:14px 24px;
+}
+.nav-inner{
+  max-width:1200px;
+  margin:auto;
+  text-align:center;
+}
+nav h1{
+  color:#fff;
+  font-size:20px;
+}
+
+/* HERO */
+.hero{
+  text-align:center;
+  padding:40px 20px 30px;
+}
+.hero img{
+  width:260px;
+  max-width:90%;
+  margin-bottom:20px;
+}
+.hero h2{
+  font-size:34px;
+  margin-bottom:15px;
+}
+.hero p{
+  max-width:760px;
+  margin:auto;
+  font-size:17px;
+  line-height:1.6;
+}
+
+/* PRICING */
+#pricing{
+  max-width:1200px;
+  margin:20px auto 30px;
+  padding:0 20px;
+}
+#pricing h3{
+  text-align:center;
+  font-size:26px;
+  margin-bottom:15px;
+}
+.pricing-table{
+  width:100%;
+  border-collapse:collapse;
+  background:rgba(255,255,255,0.9);
+  font-size:14px;
+}
+.pricing-table th,
+.pricing-table td{
+  border:1px solid #ccc;
+  padding:12px;
+}
+.pricing-table th{
+  background:#f1f1f1;
+}
+
+/* CLICKABLE ROWS */
+.pricing-table tr.clickable{
+  cursor:pointer;
+}
+.pricing-table tr.clickable:hover{
+  background:rgba(10,88,202,0.12);
+}
+.pricing-table tr.clickable td:last-child::after{
+  content:"  →";
+  color:#0a58ca;
+  font-weight:bold;
+}
+
+/* FAQ */
+.faq{
+  max-width:900px;
+  margin:25px auto 40px;
+  padding:0 20px;
+}
+.faq h3{
+  text-align:center;
+  font-size:24px;
+  margin-bottom:15px;
+}
+.faq-item{
+  background:rgba(255,255,255,0.9);
+  margin-bottom:10px;
+  border-radius:6px;
+}
+.faq-question{
+  padding:14px;
+  font-weight:bold;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+}
+.faq-answer{
+  display:none;
+  padding:14px;
+  line-height:1.6;
+}
+
+/* CONTACT SECTION */
+.contact{
+  background:rgba(255,255,255,0.95);
+  padding:30px 20px;
+  text-align:center;
+}
+.contact p{
+  font-size:18px;
+  margin-bottom:15px;
+}
+.contact-buttons{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  flex-wrap:wrap;
+}
+.contact-buttons a{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 20px;
+  border-radius:6px;
+  color:#fff;
+  text-decoration:none;
+  font-weight:bold;
+}
+.contact-buttons img{
+  width:24px;
+  height:24px;
+}
+.viber{background:#665CAC;}
+.whatsapp{background:#25D366;}
+
+/* MOBILE */
+@media(max-width:768px){
+  .hero h2{font-size:26px;}
+  .contact-buttons{flex-direction:column;}
+  .contact-buttons a{justify-content:center;}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <h1>JL LabWeb Studio PH</h1>
+  </div>
+</nav>
+
+<section class="hero">
+  <img src="logo.png" alt="JL LabWeb Studio PH Logo">
+  <h2>Turn Your Ideas Into a<br>Professional Website</h2>
+  <p>
+    We create fast, mobile-friendly websites for startups and small businesses
+    at prices that make sense.
+  </p>
+</section>
+
+<section id="pricing">
+  <h3>Website Packages</h3>
+  <table class="pricing-table">
+    <tr>
+      <th>Package</th>
+      <th>Price</th>
+      <th>Best For</th>
+      <th>Includes</th>
+    </tr>
+    <tr class="clickable" onclick="location.href='essential-scroll.html'">
+      <td><strong>The Essential Scroll</strong></td>
+      <td>₱8,500</td>
+      <td>Simple presence</td>
+      <td>Single-page website</td>
+    </tr>
+    <tr class="clickable" onclick="location.href='identity-pack.html'">
+      <td><strong>The Identity Pack</strong></td>
+      <td>₱11,500</td>
+      <td>Branding</td>
+      <td>Website + domain</td>
+    </tr>
+    <tr class="clickable" onclick="location.href='growth-suite.html'">
+      <td><strong>The Growth Suite</strong></td>
+      <td>₱20,000+</td>
+      <td>Businesses</td>
+      <td>Multi-page scalable site</td>
+    </tr>
+  </table>
+</section>
+
+<section class="faq">
+  <h3>Frequently Asked Questions</h3>
+
+  <div class="faq-item">
+    <div class="faq-question">How long does it take? <span>+</span></div>
+    <div class="faq-answer">7–14 days depending on content.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">Is it mobile-friendly? <span>+</span></div>
+    <div class="faq-answer">Yes, fully responsive.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">Can I upgrade later? <span>+</span></div>
+    <div class="faq-answer">Yes, anytime.</div>
+  </div>
+</section>
+
+<section class="contact">
+  <p>Contact us for more inquiries</p>
+  <div class="contact-buttons">
+    <a class="viber" href="viber://chat?number=%2B639944846149">
+      <img src="viber.png" alt="Viber"> Viber
+    </a>
+    <a class="whatsapp" href="whatsapp://send?phone=639310410733">
+      <img src="whatsapp.png" alt="WhatsApp"> WhatsApp
+    </a>
+  </div>
+</section>
+
+<script>
+document.querySelectorAll(".faq-question").forEach(function(q){
+  q.addEventListener("click", function(){
+    var a = q.nextElementSibling;
+    var s = q.querySelector("span");
+    if(a.style.display === "block"){
+      a.style.display = "none";
+      s.textContent = "+";
+    } else {
+      a.style.display = "block";
+      s.textContent = "−";
+    }
+  });
+});
+</script>
+
+</body>
+</html>
