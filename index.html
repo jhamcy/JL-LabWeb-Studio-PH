@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JL LabWeb Studio PH</title>
-
 <style>
 *{
   box-sizing:border-box;
@@ -13,9 +12,8 @@
   font-family:Arial, Helvetica, sans-serif;
 }
 
-/* BODY – MOBILE SAFE FALLBACK */
 body{
-  background:#f4f6fb; /* fallback so page NEVER goes white */
+  background:#f4f6fb;
   background-image:url("background.jpg");
   background-repeat:no-repeat;
   background-position:center center;
@@ -31,16 +29,140 @@ nav{
   top:0;
   z-index:999;
   background:#0a58ca;
-  padding:14px 24px;
 }
 .nav-inner{
   max-width:1200px;
   margin:auto;
-  text-align:center;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 24px;
+  position:relative;
 }
 nav h1{
   color:#fff;
   font-size:20px;
+}
+
+/* NAV LINKS */
+.nav-links{
+  list-style:none;
+  display:flex;
+  gap:20px;
+  position:relative;
+}
+.nav-links li{
+  width:100%;
+}
+.nav-links li a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:bold;
+  padding:8px 12px;
+  font-size:14px;
+  display:block;
+  transition:background 0.3s;
+  text-align:right;
+}
+.nav-links li a:hover{
+  background:rgba(255,255,255,0.2);
+  border-radius:4px;
+}
+
+/* DROPDOWN */
+.dropdown{
+  position:relative;
+}
+.dropdown-menu{
+  display:flex;
+  flex-direction:column;
+  list-style:none;
+  padding:0;
+  margin:0;
+  background:#0a58ca;
+  border-radius:4px;
+  overflow:hidden;
+  max-height:0;
+  transition:max-height 0.3s ease, padding 0.3s ease;
+}
+.dropdown-menu li a{
+  padding:8px 12px;
+  font-size:14px;
+  text-align:right;
+}
+.dropdown-menu.show{
+  max-height:500px;
+  padding:5px 0;
+}
+
+/* Arrow rotation */
+.dropdown > a::after{
+  content:" ▼";
+  display:inline-block;
+  transition:transform 0.3s ease;
+}
+.dropdown > a.rotated::after{
+  transform:rotate(180deg);
+}
+
+/* Desktop hover dropdown */
+@media(min-width:769px){
+  .nav-links li a{
+    text-align:left;
+    font-size:15px;
+    padding:10px 12px;
+  }
+  .dropdown-menu{
+    max-height:none;
+    padding:0;
+    display:block !important;
+    position:absolute;
+    top:100%;
+    right:0;
+    width:200px;
+  }
+  .dropdown:hover .dropdown-menu{
+    display:flex;
+    flex-direction:column;
+  }
+  .dropdown-menu li a{
+    padding:10px;
+    text-align:left;
+    font-size:14px;
+  }
+}
+
+/* HAMBURGER */
+.menu-toggle{
+  display:none;
+  font-size:28px;
+  color:#fff;
+  cursor:pointer;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .menu-toggle{
+    display:block;
+  }
+  .nav-links{
+    display:none;
+    flex-direction:column;
+    background:#0a58ca;
+    position:absolute;
+    width:200px;
+    right:24px;
+    top:56px;
+    border-radius:6px;
+    padding:6px 0;
+    text-align:right;
+  }
+  .nav-links.show{
+    display:flex;
+  }
+  .dropdown-menu{
+    width:100%;
+  }
 }
 
 /* HERO */
@@ -81,16 +203,13 @@ nav h1{
   background:rgba(255,255,255,0.9);
   font-size:14px;
 }
-.pricing-table th,
-.pricing-table td{
+.pricing-table th, .pricing-table td{
   border:1px solid #ccc;
   padding:12px;
 }
 .pricing-table th{
   background:#f1f1f1;
 }
-
-/* CLICKABLE ROWS */
 .pricing-table tr.clickable{
   cursor:pointer;
 }
@@ -103,36 +222,7 @@ nav h1{
   font-weight:bold;
 }
 
-/* FAQ */
-.faq{
-  max-width:900px;
-  margin:25px auto 40px;
-  padding:0 20px;
-}
-.faq h3{
-  text-align:center;
-  font-size:24px;
-  margin-bottom:15px;
-}
-.faq-item{
-  background:rgba(255,255,255,0.9);
-  margin-bottom:10px;
-  border-radius:6px;
-}
-.faq-question{
-  padding:14px;
-  font-weight:bold;
-  cursor:pointer;
-  display:flex;
-  justify-content:space-between;
-}
-.faq-answer{
-  display:none;
-  padding:14px;
-  line-height:1.6;
-}
-
-/* CONTACT SECTION */
+/* CONTACT */
 .contact{
   background:rgba(255,255,255,0.95);
   padding:30px 20px;
@@ -165,7 +255,7 @@ nav h1{
 .viber{background:#665CAC;}
 .whatsapp{background:#25D366;}
 
-/* MOBILE */
+/* MOBILE HERO & CONTACT */
 @media(max-width:768px){
   .hero h2{font-size:26px;}
   .contact-buttons{flex-direction:column;}
@@ -173,12 +263,24 @@ nav h1{
 }
 </style>
 </head>
-
 <body>
 
 <nav>
   <div class="nav-inner">
     <h1>JL LabWeb Studio PH</h1>
+    <div class="menu-toggle" id="mobile-menu">&#9776;</div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li class="dropdown">
+        <a href="#" id="packages-toggle">Web Packages</a>
+        <ul class="dropdown-menu" id="packages-menu">
+          <li><a href="essential-scroll.html">The Essential Scroll</a></li>
+          <li><a href="identity-pack.html">The Identity Pack</a></li>
+          <li><a href="growth-suite.html">The Growth Suite</a></li>
+        </ul>
+      </li>
+    </ul>
   </div>
 </nav>
 
@@ -186,8 +288,9 @@ nav h1{
   <img src="logo.png" alt="JL LabWeb Studio PH Logo">
   <h2>Turn Your Ideas Into a<br>Professional Website</h2>
   <p>
-    We create fast, mobile-friendly websites for startups and small businesses
-    at prices that make sense.
+    We provide affordable custom web design specifically for the Filipino market. 
+    Unlike other services, we don't use boring templates. We build custom websites 
+    based on your ideas and designs, ensuring your brand stands out.
   </p>
 </section>
 
@@ -198,46 +301,23 @@ nav h1{
       <th>Package</th>
       <th>Price</th>
       <th>Best For</th>
-      <th>Includes</th>
     </tr>
     <tr class="clickable" onclick="location.href='essential-scroll.html'">
       <td><strong>The Essential Scroll</strong></td>
       <td>₱8,500</td>
       <td>Simple presence</td>
-      <td>Single-page website</td>
     </tr>
     <tr class="clickable" onclick="location.href='identity-pack.html'">
       <td><strong>The Identity Pack</strong></td>
       <td>₱11,500</td>
       <td>Branding</td>
-      <td>Website + domain</td>
     </tr>
     <tr class="clickable" onclick="location.href='growth-suite.html'">
       <td><strong>The Growth Suite</strong></td>
       <td>₱20,000+</td>
       <td>Businesses</td>
-      <td>Multi-page scalable site</td>
     </tr>
   </table>
-</section>
-
-<section class="faq">
-  <h3>Frequently Asked Questions</h3>
-
-  <div class="faq-item">
-    <div class="faq-question">How long does it take? <span>+</span></div>
-    <div class="faq-answer">7–14 days depending on content.</div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-question">Is it mobile-friendly? <span>+</span></div>
-    <div class="faq-answer">Yes, fully responsive.</div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-question">Can I upgrade later? <span>+</span></div>
-    <div class="faq-answer">Yes, anytime.</div>
-  </div>
 </section>
 
 <section class="contact">
@@ -253,18 +333,37 @@ nav h1{
 </section>
 
 <script>
-document.querySelectorAll(".faq-question").forEach(function(q){
-  q.addEventListener("click", function(){
-    var a = q.nextElementSibling;
-    var s = q.querySelector("span");
-    if(a.style.display === "block"){
-      a.style.display = "none";
-      s.textContent = "+";
-    } else {
-      a.style.display = "block";
-      s.textContent = "−";
+// Elements
+const menuToggle = document.getElementById("mobile-menu");
+const navLinks = document.getElementById("nav-links");
+const packagesToggle = document.getElementById("packages-toggle");
+const packagesMenu = document.getElementById("packages-menu");
+
+// Toggle hamburger menu
+menuToggle.addEventListener("click", () => {
+  navLinks.classList.toggle("show");
+});
+
+// Toggle mobile dropdown with arrow rotation
+packagesToggle.addEventListener("click", (e) => {
+  if(window.innerWidth <= 768){
+    e.preventDefault();
+    packagesMenu.classList.toggle("show");
+    packagesToggle.classList.toggle("rotated");
+  }
+});
+
+// Hide menu & dropdown when clicking outside
+document.addEventListener("click", (e) => {
+  if(window.innerWidth <= 768){
+    if(!navLinks.contains(e.target) && !menuToggle.contains(e.target)){
+      navLinks.classList.remove("show");
     }
-  });
+    if(!packagesToggle.contains(e.target) && !packagesMenu.contains(e.target)){
+      packagesMenu.classList.remove("show");
+      packagesToggle.classList.remove("rotated");
+    }
+  }
 });
 </script>
 

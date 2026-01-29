@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Essential Scroll - JL LabWeb Studio PH</title>
+<title>FAQ - JL LabWeb Studio PH</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:Arial, Helvetica, sans-serif;}
 body{background:#f4f6fb;background-image:url("background.jpg");background-repeat:no-repeat;background-position:center center;background-attachment:fixed;background-size:cover;color:#000;min-height:100vh;}
@@ -34,17 +34,12 @@ nav h1{color:#fff;font-size:20px;}
 .nav-links.show{display:flex;}
 .dropdown-menu{width:100%;}
 }
-/* HERO & PACKAGE DETAILS */
-.hero{max-width:900px;margin:40px auto 20px;padding:20px;text-align:center;background:rgba(255,255,255,0.9);border-radius:8px;}
-.hero h2{font-size:28px;margin-bottom:15px;}
-.hero p{font-size:16px;line-height:1.6;margin-bottom:20px;}
-.package-details{max-width:700px;margin:20px auto;background:rgba(255,255,255,0.9);border-radius:8px;overflow:hidden;padding:15px;}
-.package-details table{width:100%;border-collapse:collapse;font-size:16px;}
-.package-details th, .package-details td{padding:12px;border:1px solid #ccc;}
-.package-details th{background:#f1f1f1;text-align:left;}
-.why-choose{max-width:700px;margin:20px auto;padding:20px;background:rgba(255,255,255,0.9);border-radius:8px;}
-.why-choose h3{font-size:22px;margin-bottom:12px;}
-.why-choose ul{list-style:disc;margin-left:20px;line-height:1.6;font-size:16px;}
+/* FAQ */
+.faq{max-width:900px;margin:40px auto;padding:0 20px;}
+.faq h3{text-align:center;font-size:26px;margin-bottom:20px;}
+.faq-item{background:rgba(255,255,255,0.9);margin-bottom:10px;border-radius:6px;}
+.faq-question{padding:14px;font-weight:bold;cursor:pointer;display:flex;justify-content:space-between;}
+.faq-answer{display:none;padding:14px;line-height:1.6;}
 </style>
 </head>
 <body>
@@ -68,28 +63,44 @@ nav h1{color:#fff;font-size:20px;}
   </div>
 </nav>
 
-<section class="hero">
-  <h2>The Essential Scroll</h2>
-  <p>Single-page website perfect for a simple online presence. Affordable and fast to deploy. Ideal for startups or small businesses that need a clean, professional look.</p>
-</section>
+<section class="faq">
+  <h3>Frequently Asked Questions</h3>
+  
+  <div class="faq-item">
+    <div class="faq-question">How long does it take? <span>+</span></div>
+    <div class="faq-answer">7–14 days depending on content and complexity.</div>
+  </div>
 
-<section class="package-details">
-  <table>
-    <tr><th>Package</th><td>The Essential Scroll</td></tr>
-    <tr><th>Price</th><td>₱8,500</td></tr>
-    <tr><th>Best For</th><td>Simple online presence</td></tr>
-    <tr><th>Includes</th><td>Single-page website</td></tr>
-  </table>
-</section>
+  <div class="faq-item">
+    <div class="faq-question">Is it mobile-friendly? <span>+</span></div>
+    <div class="faq-answer">Yes, all our websites are fully responsive and optimized for mobile devices.</div>
+  </div>
 
-<section class="why-choose">
-  <h3>Why Choose The Essential Scroll?</h3>
-  <ul>
-    <li>Fast and affordable solution for a professional website.</li>
-    <li>Perfect for startups or individuals looking for a simple online presence.</li>
-    <li>Custom design based on your ideas, not templates.</li>
-    <li>Optimized for mobile and SEO-friendly.</li>
-  </ul>
+  <div class="faq-item">
+    <div class="faq-question">Can I upgrade later? <span>+</span></div>
+    <div class="faq-answer">Yes, you can upgrade or expand your website anytime as your business grows.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">Do you provide hosting and domain? <span>+</span></div>
+    <div class="faq-answer">Yes, our Identity Pack includes website hosting and domain registration for one year.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">Can I request a custom design? <span>+</span></div>
+    <div class="faq-answer">Absolutely! We design websites based on your ideas and branding, not templates.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">Will I be able to edit my website? <span>+</span></div>
+    <div class="faq-answer">Yes, we provide access to a content management system so you can edit text and images easily.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">What payment options do you accept? <span>+</span></div>
+    <div class="faq-answer">We accept bank transfer, GCash, and PayPal for your convenience.</div>
+  </div>
+
 </section>
 
 <script>
@@ -109,7 +120,11 @@ document.addEventListener("click", e=>{
     if(!packagesToggle.contains(e.target) && !packagesMenu.contains(e.target)){packagesMenu.classList.remove("show");packagesToggle.classList.remove("rotated");}
   }
 });
-</script>
 
+// FAQ toggle
+document.querySelectorAll(".faq-question").forEach(q=>{
+  q.addEventListener("click",()=>{let a=q.nextElementSibling,s=q.querySelector("span");a.style.display==="block"?(a.style.display="none",s.textContent="+"):(a.style.display="block",s.textContent="−");});
+});
+</script>
 </body>
 </html>
