@@ -1,322 +1,345 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>JL LabWeb Studio PH</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JL LabWeb Studio PH</title>
 
-  <style>
-    :root{
-      --blue:#2563eb;
-      --glass:rgba(255,255,255,0.85);
-    }
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial, Helvetica, sans-serif;
+}
 
-    *{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu;
-    }
+/* FULL WEBSITE BACKGROUND */
+body{
+  background:url("background.jpg") no-repeat center center fixed;
+  background-size:cover;
+  color:#000;
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+}
 
-    body{
-      background:url("background.jpg") center / cover no-repeat fixed;
-      color:#111;
-    }
+/* NAVBAR */
+nav{
+  position:sticky;
+  top:0;
+  z-index:999;
+  background:#0a58ca;
+  padding:14px 24px;
+}
 
-    /* NAVBAR */
-    nav{
-      position:sticky;
-      top:0;
-      z-index:1000;
-      background:var(--blue);
-      color:#fff;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:16px 24px;
-    }
+.nav-inner{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  justify-content:center;
+}
 
-    nav h1{
-      font-size:20px;
-      font-weight:600;
-    }
+nav h1{
+  color:#fff;
+  font-size:20px;
+  font-weight:bold;
+}
 
-    .menu-btn{
-      font-size:28px;
-      cursor:pointer;
-      display:none;
-    }
+/* HERO */
+.hero{
+  text-align:center;
+  padding:40px 20px 30px;
+}
 
-    nav ul{
-      display:flex;
-      gap:20px;
-      list-style:none;
-    }
+/* VERY BIG LOGO */
+.hero img{
+  width:280px;
+  max-width:90%;
+  margin-bottom:20px;
+}
 
-    nav ul li a{
-      color:#fff;
-      text-decoration:none;
-      font-size:15px;
-    }
+.hero h2{
+  font-size:38px;
+  margin-bottom:15px;
+}
 
-    /* MOBILE NAV */
-    @media(max-width:768px){
-      .menu-btn{display:block;}
-      nav ul{
-        position:absolute;
-        top:64px;
-        right:0;
-        background:var(--blue);
-        flex-direction:column;
-        width:200px;
-        padding:20px;
-        display:none;
-      }
-      nav ul.show{display:flex;}
-    }
+.hero p{
+  max-width:760px;
+  margin:auto;
+  font-size:18px;
+  line-height:1.6;
+}
 
-    /* HERO + ABOUT */
-    .hero{
-      min-height:90vh;
-      padding:60px 24px 40px;
-      display:flex;
-      align-items:flex-start;
-      justify-content:center;
-      text-align:center;
-    }
+/* PRICING */
+#pricing{
+  max-width:1200px;
+  margin:20px auto 30px;
+  padding:0 20px;
+}
 
-    .hero-box{
-      background:var(--glass);
-      border-radius:24px;
-      padding:40px 24px;
-      max-width:900px;
-      width:100%;
-    }
+#pricing h3{
+  text-align:center;
+  font-size:28px;
+  margin-bottom:15px;
+}
 
-    .hero img{
-      width:120px;
-      margin-bottom:16px;
-    }
+.pricing-table{
+  width:100%;
+  border-collapse:collapse;
+  background:rgba(255,255,255,0.85);
+  font-size:14px;
+}
 
-    .hero h2{
-      font-size:28px;
-      margin-bottom:12px;
-    }
+.pricing-table th,
+.pricing-table td{
+  border:1px solid #ccc;
+  padding:12px;
+  vertical-align:top;
+}
 
-    .hero p{
-      font-size:16px;
-      line-height:1.6;
-      color:#1f2937;
-      margin-bottom:16px;
-    }
+.pricing-table th{
+  background:#f1f1f1;
+  text-align:center;
+}
 
-    .hero .phone{
-      font-size:18px;
-      font-weight:600;
-    }
+/* FAQ */
+.faq{
+  max-width:900px;
+  margin:25px auto 40px;
+  padding:0 20px;
+}
 
-    /* SECTIONS */
-    section{
-      max-width:1100px;
-      margin:auto;
-      padding:40px 24px 60px;
-    }
+.faq h3{
+  text-align:center;
+  font-size:26px;
+  margin-bottom:15px;
+}
 
-    section h2{
-      text-align:center;
-      font-size:28px;
-      margin-bottom:32px;
-    }
+.faq-item{
+  background:rgba(255,255,255,0.85);
+  margin-bottom:10px;
+  border-radius:6px;
+  overflow:hidden;
+}
 
-    /* PRICING */
-    #pricing{
-      margin-top:-40px; /* pull closer to hero */
-    }
+.faq-question{
+  padding:14px;
+  font-weight:bold;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
 
-    #pricing table{
-      width:100%;
-      border-collapse:collapse;
-      background:var(--glass);
-      border-radius:20px;
-      overflow:hidden;
-      font-size:14px;
-    }
+.faq-answer{
+  display:none;
+  padding:14px;
+  line-height:1.6;
+}
 
-    #pricing th,
-    #pricing td{
-      padding:14px;
-      border-bottom:1px solid #e5e7eb;
-      text-align:left;
-      vertical-align:top;
-    }
+.faq-question span{
+  font-size:20px;
+}
 
-    #pricing th{
-      background:rgba(37,99,235,.15);
-      font-weight:600;
-    }
+/* CONTACT SECTION */
+.contact-section{
+  margin-top:auto;
+  text-align:center;
+  padding:30px 20px;
+  background:rgba(255,255,255,0.9);
+}
 
-    #pricing td{
-      font-size:13px;
-      line-height:1.4;
-    }
+.contact-section p{
+  font-size:18px;
+  margin-bottom:15px;
+}
 
-    @media(max-width:768px){
-      #pricing table{
-        font-size:12px;
-      }
-    }
+.contact-buttons{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:15px;
+}
 
-    /* FAQ */
-    .faq{
-      margin-top:48px;
-    }
+.contact-buttons a{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 24px;
+  color:#fff;
+  text-decoration:none;
+  font-weight:bold;
+  border-radius:6px;
+  transition: background 0.2s, transform 0.2s;
+}
 
-    .faq-item{
-      background:var(--glass);
-      border-radius:16px;
-      padding:16px 24px;
-      margin-bottom:16px;
-      cursor:pointer;
-    }
+.contact-buttons img{
+  width:24px;
+  height:24px;
+}
 
-    .faq-item h3{
-      font-size:16px;
-      color:var(--blue);
-    }
+/* Viber button color */
+.contact-buttons a.viber{
+  background:#665CAC;
+}
 
-    .faq-answer{
-      max-height:0;
-      overflow:hidden;
-      transition:max-height .4s ease, padding .4s ease;
-      font-size:14px;
-      line-height:1.6;
-      padding-top:0;
-    }
+.contact-buttons a.viber:hover{
+  background:#573ca5;
+  transform: scale(1.05);
+}
 
-    .faq-answer.open{
-      padding-top:12px;
-    }
+/* WhatsApp button color */
+.contact-buttons a.whatsapp{
+  background:#25D366;
+}
 
-    footer{
-      text-align:center;
-      padding:32px 16px;
-      color:#fff;
-      opacity:.85;
-    }
-  </style>
+.contact-buttons a.whatsapp:hover{
+  background:#1ebe57;
+  transform: scale(1.05);
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .hero img{
+    width:220px;
+  }
+  .hero h2{
+    font-size:28px;
+  }
+  .pricing-table{
+    font-size:13px;
+  }
+  .contact-buttons{
+    flex-direction:column;
+    align-items:center;
+  }
+  .contact-buttons a{
+    width:100%;
+    justify-content:center;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <!-- NAVBAR -->
-  <nav>
+<nav>
+  <div class="nav-inner">
     <h1>JL LabWeb Studio PH</h1>
-    <div class="menu-btn" onclick="toggleMenu()">☰</div>
-    <ul id="navLinks">
-      <li><a href="#pricing">Packages</a></li>
-      <li><a href="#faq">FAQ</a></li>
-    </ul>
-  </nav>
+  </div>
+</nav>
 
-  <!-- HERO + ABOUT -->
-  <div class="hero">
-    <div class="hero-box">
-      <img src="logo.png" alt="JL LabWeb Studio PH">
-      <h2>Turn Your Ideas Into a Professional Website</h2>
-      <p>
-        At JL LabWeb Studio PH, we create websites that grow as fast as your ideas.
-        We help startups and small businesses launch professional, custom-made websites
-        at prices that make sense.
-      </p>
-      <div class="phone">📞 +63 994 484 6149</div>
+<section class="hero">
+  <img src="logo.png" alt="JL LabWeb Studio PH Logo">
+
+  <h2>Turn Your Ideas Into a<br>Professional Website</h2>
+
+  <p>
+    At JL LabWeb Studio PH, we create websites that grow as fast as your ideas.
+    We help startups and small businesses launch professional, custom-made
+    websites at prices that make sense.
+  </p>
+</section>
+
+<section id="pricing">
+  <h3>Website Packages</h3>
+
+  <table class="pricing-table">
+    <tr>
+      <th>Package</th>
+      <th>Price</th>
+      <th>Best For</th>
+      <th>Includes</th>
+    </tr>
+
+    <tr>
+      <td><strong>The Essential Scroll</strong></td>
+      <td>₱8,500</td>
+      <td>Simple online presence</td>
+      <td>Single-page website with smooth scrolling sections</td>
+    </tr>
+
+    <tr>
+      <td><strong>The Identity Pack</strong></td>
+      <td>₱11,500</td>
+      <td>Professional branding</td>
+      <td>Essential Scroll + 1 year domain</td>
+    </tr>
+
+    <tr>
+      <td><strong>The Growth Suite</strong></td>
+      <td>₱20,000+</td>
+      <td>Growing businesses</td>
+      <td>Multi-page website, scalable structure</td>
+    </tr>
+  </table>
+</section>
+
+<section class="faq">
+  <h3>Frequently Asked Questions</h3>
+
+  <div class="faq-item">
+    <div class="faq-question">How long does it take? <span>+</span></div>
+    <div class="faq-answer">
+      Most projects are completed within 7–14 days depending on content.
     </div>
   </div>
 
-  <!-- PRICING -->
-  <section id="pricing">
-    <h2>Website Packages</h2>
-
-    <table>
-      <tr>
-        <th>Package</th>
-        <th>Price</th>
-        <th>Best For</th>
-        <th>Includes</th>
-      </tr>
-      <tr>
-        <td><strong>The Essential Scroll</strong></td>
-        <td>₱8,500</td>
-        <td>Simple online presence</td>
-        <td>Single-page site, smooth scrolling, contact form</td>
-      </tr>
-      <tr>
-        <td><strong>The Identity Pack</strong></td>
-        <td>₱11,500</td>
-        <td>Professional branding</td>
-        <td>Essential package + 1 year domain</td>
-      </tr>
-      <tr>
-        <td><strong>The Growth Suite</strong></td>
-        <td>₱20,000+</td>
-        <td>Growing businesses</td>
-        <td>Multi-page website, scalable structure</td>
-      </tr>
-    </table>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq" class="faq">
-    <h2>Frequently Asked Questions</h2>
-
-    <div class="faq-item">
-      <h3>How long does it take to build a website?</h3>
-      <div class="faq-answer">
-        Most websites are completed within 7–14 days depending on content and revisions.
-      </div>
+  <div class="faq-item">
+    <div class="faq-question">Do you support mobile devices? <span>+</span></div>
+    <div class="faq-answer">
+      Yes. All websites are fully responsive and mobile-friendly.
     </div>
+  </div>
 
-    <div class="faq-item">
-      <h3>Do you offer revisions?</h3>
-      <div class="faq-answer">
-        Yes. We include reasonable revisions to make sure your website matches your vision.
-      </div>
+  <div class="faq-item">
+    <div class="faq-question">Can I upgrade later? <span>+</span></div>
+    <div class="faq-answer">
+      Absolutely. Your website can grow as your business grows.
     </div>
+  </div>
 
-    <div class="faq-item">
-      <h3>Is the website mobile friendly?</h3>
-      <div class="faq-answer">
-        Absolutely. All our websites are fully responsive and optimized for phones, tablets, and desktops.
-      </div>
+  <div class="faq-item">
+    <div class="faq-question">How does the payment process work? <span>+</span></div>
+    <div class="faq-answer">
+      We usually require a down payment before starting the project, with the
+      remaining balance paid upon completion before final deployment.
     </div>
-  </section>
+  </div>
 
-  <footer>
-    © 2026 JL LabWeb Studio PH · Philippines
-  </footer>
+</section>
 
-  <script>
-    function toggleMenu(){
-      document.getElementById("navLinks").classList.toggle("show");
+<!-- CONTACT SECTION -->
+<section class="contact-section">
+  <p>Contact us for more inquiries:</p>
+  <div class="contact-buttons">
+    <!-- Viber Button -->
+    <a class="viber" href="viber://chat?number=%2B63994484614" target="_blank">
+      <img src="viber.png" alt="Viber Icon"> Viber
+    </a>
+
+    <!-- WhatsApp Button -->
+    <a class="whatsapp" href="whatsapp://send?phone=639310410733" target="_blank">
+      <img src="whatsapp.png" alt="WhatsApp Icon"> WhatsApp
+    </a>
+  </div>
+</section>
+
+<script>
+document.querySelectorAll(".faq-question").forEach(q=>{
+  q.addEventListener("click",()=>{
+    const a=q.nextElementSibling;
+    const icon=q.querySelector("span");
+    if(a.style.display==="block"){
+      a.style.display="none";
+      icon.textContent="+";
+    }else{
+      a.style.display="block";
+      icon.textContent="−";
     }
-
-    // FAQ FIXED (no cut text)
-    document.querySelectorAll('.faq-item').forEach(item=>{
-      item.addEventListener('click',()=>{
-        const ans=item.querySelector('.faq-answer');
-        const open=ans.classList.contains('open');
-
-        document.querySelectorAll('.faq-answer').forEach(a=>{
-          a.classList.remove('open');
-          a.style.maxHeight=null;
-        });
-
-        if(!open){
-          ans.classList.add('open');
-          ans.style.maxHeight=(ans.scrollHeight+20)+"px";
-        }
-      });
-    });
-  </script>
+  });
+});
+</script>
 
 </body>
 </html>
