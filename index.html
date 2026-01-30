@@ -5,264 +5,71 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JL LabWeb Studio PH</title>
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:Arial, Helvetica, sans-serif;
-}
-
-body{
-  background:#f4f6fb;
-  background-image:url("background.jpg");
-  background-repeat:no-repeat;
-  background-position:center center;
-  background-attachment:fixed;
-  background-size:cover;
-  color:#000;
-  min-height:100vh;
-}
-
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial, Helvetica, sans-serif;}
+body{background:#f4f6fb;background-image:url("background.jpg");background-repeat:no-repeat;background-position:center center;background-attachment:fixed;background-size:cover;color:#000;min-height:100vh;}
 /* NAVBAR */
-nav{
-  position:sticky;
-  top:0;
-  z-index:999;
-  background:#0a58ca;
-}
-.nav-inner{
-  max-width:1200px;
-  margin:auto;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:12px 24px;
-  position:relative;
-}
-nav h1{
-  color:#fff;
-  font-size:20px;
-}
-
-/* NAV LINKS */
-.nav-links{
-  list-style:none;
-  display:flex;
-  gap:20px;
-  position:relative;
-}
-.nav-links li{
-  width:100%;
-}
-.nav-links li a{
-  color:#fff;
-  text-decoration:none;
-  font-weight:bold;
-  padding:8px 12px;
-  font-size:14px;
-  display:block;
-  transition:background 0.3s;
-  text-align:right;
-}
-.nav-links li a:hover{
-  background:rgba(255,255,255,0.2);
-  border-radius:4px;
-}
-
-/* DROPDOWN */
-.dropdown{
-  position:relative;
-}
-.dropdown-menu{
-  display:flex;
-  flex-direction:column;
-  list-style:none;
-  padding:0;
-  margin:0;
-  background:#0a58ca;
-  border-radius:4px;
-  overflow:hidden;
-  max-height:0;
-  transition:max-height 0.3s ease, padding 0.3s ease;
-}
-.dropdown-menu li a{
-  padding:8px 12px;
-  font-size:14px;
-  text-align:right;
-}
-.dropdown-menu.show{
-  max-height:500px;
-  padding:5px 0;
-}
-
-/* Arrow rotation */
-.dropdown > a::after{
-  content:" ▼";
-  display:inline-block;
-  transition:transform 0.3s ease;
-}
-.dropdown > a.rotated::after{
-  transform:rotate(180deg);
-}
-
-/* Desktop hover dropdown */
-@media(min-width:769px){
-  .nav-links li a{
-    text-align:left;
-    font-size:15px;
-    padding:10px 12px;
-  }
-  .dropdown-menu{
-    max-height:none;
-    padding:0;
-    display:block !important;
-    position:absolute;
-    top:100%;
-    right:0;
-    width:200px;
-  }
-  .dropdown:hover .dropdown-menu{
-    display:flex;
-    flex-direction:column;
-  }
-  .dropdown-menu li a{
-    padding:10px;
-    text-align:left;
-    font-size:14px;
-  }
-}
-
-/* HAMBURGER */
-.menu-toggle{
-  display:none;
-  font-size:28px;
-  color:#fff;
-  cursor:pointer;
-}
-
-/* MOBILE */
+nav{position:sticky;top:0;z-index:999;background:#0a58ca;}
+.nav-inner{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:12px 24px;position:relative;}
+nav h1{color:#fff;font-size:20px;}
+.nav-links{list-style:none;display:flex;gap:20px;position:relative;}
+.nav-links li{width:100%;}
+.nav-links li a{color:#fff;text-decoration:none;font-weight:bold;padding:8px 12px;font-size:14px;display:block;transition:background 0.3s;text-align:right;}
+.nav-links li a:hover{background:rgba(255,255,255,0.2);border-radius:4px;}
+.dropdown{position:relative;}
+.dropdown-menu{display:flex;flex-direction:column;list-style:none;padding:0;margin:0;background:#0a58ca;border-radius:4px;overflow:hidden;max-height:0;transition:max-height 0.3s ease,padding 0.3s ease;}
+.dropdown-menu li a{padding:8px 12px;font-size:14px;text-align:right;}
+.dropdown-menu.show{max-height:500px;padding:5px 0;}
+.dropdown > a::after{content:" ▼";display:inline-block;transition:transform 0.3s ease;}
+.dropdown > a.rotated::after{transform:rotate(180deg);}
+.menu-toggle{display:none;font-size:28px;color:#fff;cursor:pointer;}
 @media(max-width:768px){
-  .menu-toggle{
-    display:block;
-  }
-  .nav-links{
-    display:none;
-    flex-direction:column;
-    background:#0a58ca;
-    position:absolute;
-    width:200px;
-    right:24px;
-    top:56px;
-    border-radius:6px;
-    padding:6px 0;
-    text-align:right;
-  }
-  .nav-links.show{
-    display:flex;
-  }
-  .dropdown-menu{
-    width:100%;
-  }
+  .menu-toggle{display:block;}
+  .nav-links{display:none;flex-direction:column;background:#0a58ca;position:absolute;width:220px;right:24px;top:56px;border-radius:6px;padding:6px 0;text-align:right;z-index:999;}
+  .nav-links.show{display:flex;}
+  .dropdown-menu{width:100%;}
+  .nav-links li a{font-size:16px;}
+}
+@media(min-width:769px){
+.nav-links li a{text-align:left;font-size:15px;padding:10px 12px;}
+.dropdown-menu{max-height:none;padding:0;display:block !important;position:absolute;top:100%;right:0;width:200px;}
+.dropdown:hover .dropdown-menu{display:flex;flex-direction:column;}
+.dropdown-menu li a{padding:10px;text-align:left;font-size:14px;}
 }
 
 /* HERO */
-.hero{
-  text-align:center;
-  padding:40px 20px 30px;
-}
-.hero img{
-  width:260px;
-  max-width:90%;
-  margin-bottom:20px;
-}
-.hero h2{
-  font-size:34px;
-  margin-bottom:15px;
-}
-.hero p{
-  max-width:760px;
-  margin:auto;
-  font-size:17px;
-  line-height:1.6;
-}
+.hero{text-align:center;padding:40px 20px 30px;}
+.hero img{width:260px;max-width:90%;margin-bottom:20px;}
+.hero h2{font-size:34px;margin-bottom:15px;}
+.hero p{max-width:760px;margin:auto;font-size:17px;line-height:1.6;}
 
 /* PRICING */
-#pricing{
-  max-width:1200px;
-  margin:20px auto 30px;
-  padding:0 20px;
-}
-#pricing h3{
-  text-align:center;
-  font-size:26px;
-  margin-bottom:15px;
-}
-.pricing-table{
-  width:100%;
-  border-collapse:collapse;
-  background:rgba(255,255,255,0.9);
-  font-size:14px;
-}
-.pricing-table th, .pricing-table td{
-  border:1px solid #ccc;
-  padding:12px;
-}
-.pricing-table th{
-  background:#f1f1f1;
-}
-.pricing-table tr.clickable{
-  cursor:pointer;
-}
-.pricing-table tr.clickable:hover{
-  background:rgba(10,88,202,0.12);
-}
-.pricing-table tr.clickable td:last-child::after{
-  content:"  →";
-  color:#0a58ca;
-  font-weight:bold;
-}
+#pricing{max-width:1200px;margin:20px auto 30px;padding:0 20px;}
+#pricing h3{text-align:center;font-size:26px;margin-bottom:15px;}
+.pricing-table{width:100%;border-collapse:collapse;background:rgba(255,255,255,0.9);font-size:14px;}
+.pricing-table th, .pricing-table td{border:1px solid #ccc;padding:12px;}
+.pricing-table th{background:#f1f1f1;}
+.pricing-table tr.clickable{cursor:pointer;}
+.pricing-table tr.clickable:hover{background:rgba(10,88,202,0.12);}
+.pricing-table tr.clickable td:last-child::after{content:"  →";color:#0a58ca;font-weight:bold;}
 
 /* CONTACT */
-.contact{
-  background:rgba(255,255,255,0.95);
-  padding:30px 20px;
-  text-align:center;
-}
-.contact p{
-  font-size:18px;
-  margin-bottom:15px;
-}
-.contact-buttons{
-  display:flex;
-  justify-content:center;
-  gap:15px;
-  flex-wrap:wrap;
-}
-.contact-buttons a{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:12px 20px;
-  border-radius:6px;
-  color:#fff;
-  text-decoration:none;
-  font-weight:bold;
-}
-.contact-buttons img{
-  width:24px;
-  height:24px;
-}
+.contact{background:rgba(255,255,255,0.95);padding:30px 20px;text-align:center;}
+.contact p{font-size:18px;margin-bottom:15px;}
+.contact-buttons{display:flex;justify-content:center;gap:15px;flex-wrap:wrap;}
+.contact-buttons a{display:flex;align-items:center;gap:10px;padding:12px 20px;border-radius:6px;color:#fff;text-decoration:none;font-weight:bold;}
+.contact-buttons img{width:24px;height:24px;}
 .viber{background:#665CAC;}
 .whatsapp{background:#25D366;}
 
-/* MOBILE HERO & CONTACT */
+/* MOBILE */
 @media(max-width:768px){
-  .hero h2{font-size:26px;}
-  .contact-buttons{flex-direction:column;}
-  .contact-buttons a{justify-content:center;}
+.hero h2{font-size:26px;}
+.contact-buttons{flex-direction:column;}
+.contact-buttons a{justify-content:center;}
 }
 </style>
 </head>
+
 <body>
 
 <nav>
@@ -287,11 +94,7 @@ nav h1{
 <section class="hero">
   <img src="logo.png" alt="JL LabWeb Studio PH Logo">
   <h2>Turn Your Ideas Into a<br>Professional Website</h2>
-  <p>
-    We provide affordable custom web design specifically for the Filipino market. 
-    Unlike other services, we don't use boring templates. We build custom websites 
-    based on your ideas and designs, ensuring your brand stands out.
-  </p>
+  <p>We provide affordable custom web design specifically for the Filipino market. Unlike other services, we don't use boring templates. We build custom websites based on your ideas and designs, ensuring your brand stands out.</p>
 </section>
 
 <section id="pricing">
@@ -304,12 +107,12 @@ nav h1{
     </tr>
     <tr class="clickable" onclick="location.href='essential-scroll.html'">
       <td><strong>The Essential Scroll</strong></td>
-      <td>₱8,500</td>
+      <td>₱8,500+</td>
       <td>Simple presence</td>
     </tr>
     <tr class="clickable" onclick="location.href='identity-pack.html'">
       <td><strong>The Identity Pack</strong></td>
-      <td>₱11,500</td>
+      <td>₱11,500+</td>
       <td>Branding</td>
     </tr>
     <tr class="clickable" onclick="location.href='growth-suite.html'">
@@ -333,19 +136,17 @@ nav h1{
 </section>
 
 <script>
-// Elements
+// Hamburger menu
 const menuToggle = document.getElementById("mobile-menu");
 const navLinks = document.getElementById("nav-links");
 const packagesToggle = document.getElementById("packages-toggle");
 const packagesMenu = document.getElementById("packages-menu");
 
-// Toggle hamburger menu
-menuToggle.addEventListener("click", () => {
-  navLinks.classList.toggle("show");
-});
+// Toggle main menu
+menuToggle.addEventListener("click", () => navLinks.classList.toggle("show"));
 
-// Toggle mobile dropdown with arrow rotation
-packagesToggle.addEventListener("click", (e) => {
+// Toggle dropdown menu
+packagesToggle.addEventListener("click", e => {
   if(window.innerWidth <= 768){
     e.preventDefault();
     packagesMenu.classList.toggle("show");
@@ -353,8 +154,8 @@ packagesToggle.addEventListener("click", (e) => {
   }
 });
 
-// Hide menu & dropdown when clicking outside
-document.addEventListener("click", (e) => {
+// Hide menus if clicked outside
+document.addEventListener("click", e=>{
   if(window.innerWidth <= 768){
     if(!navLinks.contains(e.target) && !menuToggle.contains(e.target)){
       navLinks.classList.remove("show");

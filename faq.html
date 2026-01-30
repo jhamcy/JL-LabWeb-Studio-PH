@@ -5,41 +5,117 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FAQ - JL LabWeb Studio PH</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial, Helvetica, sans-serif;}
-body{background:#f4f6fb;background-image:url("background.jpg");background-repeat:no-repeat;background-position:center center;background-attachment:fixed;background-size:cover;color:#000;min-height:100vh;}
+* { box-sizing:border-box; margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; }
+body {
+  background:#f4f6fb;
+  background-image:url("background.jpg");
+  background-repeat:no-repeat;
+  background-position:center center;
+  background-attachment:fixed;
+  background-size:cover;
+  color:#000;
+  min-height:100vh;
+}
+
 /* NAVBAR */
-nav{position:sticky;top:0;z-index:999;background:#0a58ca;}
-.nav-inner{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:12px 24px;position:relative;}
-nav h1{color:#fff;font-size:20px;}
-.nav-links{list-style:none;display:flex;gap:20px;position:relative;}
-.nav-links li{width:100%;}
-.nav-links li a{color:#fff;text-decoration:none;font-weight:bold;padding:8px 12px;font-size:14px;display:block;transition:background 0.3s;text-align:right;}
-.nav-links li a:hover{background:rgba(255,255,255,0.2);border-radius:4px;}
-.dropdown{position:relative;}
-.dropdown-menu{display:flex;flex-direction:column;list-style:none;padding:0;margin:0;background:#0a58ca;border-radius:4px;overflow:hidden;max-height:0;transition:max-height 0.3s ease,padding 0.3s ease;}
-.dropdown-menu li a{padding:8px 12px;font-size:14px;text-align:right;}
-.dropdown-menu.show{max-height:500px;padding:5px 0;}
-.dropdown > a::after{content:" ▼";display:inline-block;transition:transform 0.3s ease;}
-.dropdown > a.rotated::after{transform:rotate(180deg);}
-@media(min-width:769px){
-.nav-links li a{text-align:left;font-size:15px;padding:10px 12px;}
-.dropdown-menu{max-height:none;padding:0;display:block !important;position:absolute;top:100%;right:0;width:200px;}
-.dropdown:hover .dropdown-menu{display:flex;flex-direction:column;}
-.dropdown-menu li a{padding:10px;text-align:left;font-size:14px;}
+nav { position:sticky; top:0; z-index:999; background:#0a58ca; }
+.nav-inner { max-width:1200px; margin:auto; display:flex; justify-content:space-between; align-items:center; padding:12px 24px; position:relative; }
+nav h1 { color:#fff; font-size:20px; }
+.nav-links { list-style:none; display:flex; gap:20px; position:relative; }
+.nav-links li { width:100%; }
+.nav-links li a {
+  color:#fff;
+  text-decoration:none;
+  font-weight:bold;
+  padding:10px 12px;
+  display:block;
+  transition:background 0.3s;
+  text-align:right;
+  font-size:1.2vw;
 }
-.menu-toggle{display:none;font-size:28px;color:#fff;cursor:pointer;}
+.nav-links li a:hover { background:rgba(255,255,255,0.2); border-radius:4px; }
+.dropdown { position:relative; }
+.dropdown-menu {
+  display:flex;
+  flex-direction:column;
+  list-style:none;
+  padding:0;
+  margin:0;
+  background:#0a58ca;
+  border-radius:4px;
+  overflow:hidden;
+  max-height:0;
+  transition:max-height 0.3s ease,padding 0.3s ease;
+}
+.dropdown-menu li a { padding:8px 12px; font-size:14px; text-align:right; }
+.dropdown-menu.show { max-height:500px; padding:5px 0; }
+.dropdown > a::after { content:" ▼"; display:inline-block; transition:transform 0.3s ease; }
+.dropdown > a.rotated::after { transform:rotate(180deg); }
+.menu-toggle {
+  display:none;
+  font-size:2.5vw;
+  color:#fff;
+  cursor:pointer;
+  padding:8px;
+}
+
 @media(max-width:768px){
-.menu-toggle{display:block;}
-.nav-links{display:none;flex-direction:column;background:#0a58ca;position:absolute;width:200px;right:24px;top:56px;border-radius:6px;padding:6px 0;text-align:right;}
-.nav-links.show{display:flex;}
-.dropdown-menu{width:100%;}
+  .menu-toggle { display:block; font-size:8vw; padding:8px; }
+  .nav-links {
+    display:none;
+    flex-direction:column;
+    background:#0a58ca;
+    position:absolute;
+    width:200px;
+    right:24px;
+    top:56px;
+    border-radius:6px;
+    padding:6px 0;
+    text-align:right;
+  }
+  .nav-links.show { display:flex; }
+  .dropdown-menu { width:100%; }
+  .nav-links li a { font-size:16px; }
 }
+
+@media(min-width:769px){
+  .nav-links li a { text-align:left; font-size:1.2vw; padding:10px 12px; }
+  .dropdown-menu {
+    max-height:none;
+    padding:0;
+    display:block !important;
+    position:absolute;
+    top:100%;
+    right:0;
+    width:200px;
+  }
+  .dropdown:hover .dropdown-menu { display:flex; flex-direction:column; }
+  .dropdown-menu li a { padding:10px; text-align:left; font-size:14px; }
+}
+
 /* FAQ */
-.faq{max-width:900px;margin:40px auto;padding:0 20px;}
-.faq h3{text-align:center;font-size:26px;margin-bottom:20px;}
-.faq-item{background:rgba(255,255,255,0.9);margin-bottom:10px;border-radius:6px;}
-.faq-question{padding:14px;font-weight:bold;cursor:pointer;display:flex;justify-content:space-between;}
-.faq-answer{display:none;padding:14px;line-height:1.6;}
+.faq { max-width:900px; margin:40px auto 40px; padding:0 20px; }
+.faq h3 { text-align:center; font-size:28px; margin-bottom:20px; }
+.faq-item { background:rgba(255,255,255,0.9); margin-bottom:10px; border-radius:6px; }
+.faq-question { padding:14px; font-weight:bold; cursor:pointer; display:flex; justify-content:space-between; }
+.faq-answer {
+  max-height:0;
+  overflow:hidden;
+  padding:0 14px;
+  line-height:1.8;
+  font-size:16px;
+  transition:max-height 0.4s ease, padding 0.4s ease;
+}
+.faq-answer.show { max-height:1000px; padding:14px; }
+.faq-question span {
+  display:inline-block;
+  transition:transform 0.3s ease;
+}
+.faq-question span.rotated { transform:rotate(45deg); }
+
+@media(max-width:768px){
+  .faq-answer { font-size:15px; line-height:1.7; }
+}
 </style>
 </head>
 <body>
@@ -65,42 +141,88 @@ nav h1{color:#fff;font-size:20px;}
 
 <section class="faq">
   <h3>Frequently Asked Questions</h3>
-  
+
   <div class="faq-item">
     <div class="faq-question">How long does it take? <span>+</span></div>
-    <div class="faq-answer">7–14 days depending on content and complexity.</div>
+    <div class="faq-answer">
+      7–14 days depending on content.
+    </div>
   </div>
 
   <div class="faq-item">
     <div class="faq-question">Is it mobile-friendly? <span>+</span></div>
-    <div class="faq-answer">Yes, all our websites are fully responsive and optimized for mobile devices.</div>
+    <div class="faq-answer">
+      Yes, fully responsive.
+    </div>
   </div>
 
   <div class="faq-item">
     <div class="faq-question">Can I upgrade later? <span>+</span></div>
-    <div class="faq-answer">Yes, you can upgrade or expand your website anytime as your business grows.</div>
+    <div class="faq-answer">
+      Yes, anytime.
+    </div>
   </div>
 
   <div class="faq-item">
-    <div class="faq-question">Do you provide hosting and domain? <span>+</span></div>
-    <div class="faq-answer">Yes, our Identity Pack includes website hosting and domain registration for one year.</div>
+    <div class="faq-question">Do you provide hosting? <span>+</span></div>
+    <div class="faq-answer">
+      Yes! Our Identity Pack includes one year of free hosting.  
+      To ensure your site stays secure and runs smoothly, we manage the hosting environment for you during this period.
+
+      <br><br>
+      <strong>Regarding Ownership:</strong> While we manage the server for technical stability, you always own your website’s content and design.  
+      If you prefer to manage your own hosting from the start, or wish to move to your own server later, we provide a full account turnover and assist with the migration.
+    </div>
   </div>
 
   <div class="faq-item">
-    <div class="faq-question">Can I request a custom design? <span>+</span></div>
-    <div class="faq-answer">Absolutely! We design websites based on your ideas and branding, not templates.</div>
+    <div class="faq-question">Can I request custom designs? <span>+</span></div>
+    <div class="faq-answer">
+      Absolutely! We tailor websites to your brand and ideas.
+    </div>
   </div>
 
   <div class="faq-item">
-    <div class="faq-question">Will I be able to edit my website? <span>+</span></div>
-    <div class="faq-answer">Yes, we provide access to a content management system so you can edit text and images easily.</div>
+    <div class="faq-question">Do you offer domain registration? <span>+</span></div>
+    <div class="faq-answer">
+      Yes! A custom domain name registration is included for the first year in our Identity Pack and higher tiers.
+
+      <br><br>
+      Please note: While standard domain extensions (like .com or .ph) are included, the final availability and price may vary depending on your preferred name.  
+      If you choose a premium domain that carries a higher registration cost, we will settle the price difference with you before proceeding.
+    </div>
   </div>
 
   <div class="faq-item">
-    <div class="faq-question">What payment options do you accept? <span>+</span></div>
-    <div class="faq-answer">We accept bank transfer, GCash, and PayPal for your convenience.</div>
+    <div class="faq-question">What payment methods do you accept? <span>+</span></div>
+    <div class="faq-answer">
+      We aim to make the process as convenient as possible for local business owners. We currently accept:  
+
+      <ul>
+        <li>GCash (Digital Wallet)</li>
+        <li>Cash (Payable upon project turnover)</li>
+      </ul>
+
+      To begin your custom project, we typically require a 50% down payment, with the remaining balance due once the website is completed and ready for turnover.
+    </div>
   </div>
 
+  <div class="faq-item">
+    <div class="faq-question">Can I provide my own content? <span>+</span></div>
+    <div class="faq-answer">
+      Yes, we can use your images, text, and brand assets.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">Do you offer ongoing support? <span>+</span></div>
+    <div class="faq-answer">
+      Yes! We don’t just build your site and leave. We offer flexible maintenance and support packages at a very low service rate.
+
+      <br><br>
+      Whether you need small content updates, security checks, or technical troubleshooting, we are available to ensure your website continues to run perfectly as your business grows.
+    </div>
+  </div>
 </section>
 
 <script>
@@ -112,19 +234,42 @@ const packagesMenu = document.getElementById("packages-menu");
 
 menuToggle.addEventListener("click", () => navLinks.classList.toggle("show"));
 packagesToggle.addEventListener("click", e => {
-  if(window.innerWidth<=768){e.preventDefault();packagesMenu.classList.toggle("show");packagesToggle.classList.toggle("rotated");}
+  if(window.innerWidth <= 768){
+    e.preventDefault();
+    packagesMenu.classList.toggle("show");
+    packagesToggle.classList.toggle("rotated");
+  }
 });
-document.addEventListener("click", e=>{
-  if(window.innerWidth<=768){
-    if(!navLinks.contains(e.target) && !menuToggle.contains(e.target)){navLinks.classList.remove("show");}
-    if(!packagesToggle.contains(e.target) && !packagesMenu.contains(e.target)){packagesMenu.classList.remove("show");packagesToggle.classList.remove("rotated");}
+document.addEventListener("click", e => {
+  if(window.innerWidth <= 768){
+    if(!navLinks.contains(e.target) && !menuToggle.contains(e.target)){
+      navLinks.classList.remove("show");
+    }
+    if(!packagesToggle.contains(e.target) && !packagesMenu.contains(e.target)){
+      packagesMenu.classList.remove("show");
+      packagesToggle.classList.remove("rotated");
+    }
   }
 });
 
-// FAQ toggle
-document.querySelectorAll(".faq-question").forEach(q=>{
-  q.addEventListener("click",()=>{let a=q.nextElementSibling,s=q.querySelector("span");a.style.display==="block"?(a.style.display="none",s.textContent="+"):(a.style.display="block",s.textContent="−");});
+// FAQ toggle with smooth slide and rotating icon
+document.querySelectorAll(".faq-question").forEach(q => {
+  q.addEventListener("click", () => {
+    const a = q.nextElementSibling;
+    const s = q.querySelector("span");
+
+    if(a.classList.contains("show")){
+      a.classList.remove("show");
+      s.classList.remove("rotated");
+      s.textContent = "+";
+    } else {
+      a.classList.add("show");
+      s.classList.add("rotated");
+      s.textContent = "−";
+    }
+  });
 });
 </script>
+
 </body>
 </html>

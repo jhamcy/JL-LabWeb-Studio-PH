@@ -7,6 +7,7 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:Arial, Helvetica, sans-serif;}
 body{background:#f4f6fb;background-image:url("background.jpg");background-repeat:no-repeat;background-position:center center;background-attachment:fixed;background-size:cover;color:#000;min-height:100vh;}
+/* NAVBAR */
 nav{position:sticky;top:0;z-index:999;background:#0a58ca;}
 .nav-inner{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:12px 24px;position:relative;}
 nav h1{color:#fff;font-size:20px;}
@@ -20,19 +21,21 @@ nav h1{color:#fff;font-size:20px;}
 .dropdown-menu.show{max-height:500px;padding:5px 0;}
 .dropdown > a::after{content:" ▼";display:inline-block;transition:transform 0.3s ease;}
 .dropdown > a.rotated::after{transform:rotate(180deg);}
+.menu-toggle{display:none;font-size:28px;color:#fff;cursor:pointer;}
+@media(max-width:768px){
+  .menu-toggle{display:block;}
+  .nav-links{display:none;flex-direction:column;background:#0a58ca;position:absolute;width:220px;right:24px;top:56px;border-radius:6px;padding:6px 0;text-align:right;z-index:999;}
+  .nav-links.show{display:flex;}
+  .dropdown-menu{width:100%;}
+  .nav-links li a{font-size:16px;}
+}
 @media(min-width:769px){
 .nav-links li a{text-align:left;font-size:15px;padding:10px 12px;}
 .dropdown-menu{max-height:none;padding:0;display:block !important;position:absolute;top:100%;right:0;width:200px;}
 .dropdown:hover .dropdown-menu{display:flex;flex-direction:column;}
 .dropdown-menu li a{padding:10px;text-align:left;font-size:14px;}
 }
-.menu-toggle{display:none;font-size:28px;color:#fff;cursor:pointer;}
-@media(max-width:768px){
-.menu-toggle{display:block;}
-.nav-links{display:none;flex-direction:column;background:#0a58ca;position:absolute;width:200px;right:24px;top:56px;border-radius:6px;padding:6px 0;text-align:right;}
-.nav-links.show{display:flex;}
-.dropdown-menu{width:100%;}
-}
+/* HERO & PACKAGE DETAILS */
 .hero{max-width:900px;margin:40px auto 20px;padding:20px;text-align:center;background:rgba(255,255,255,0.9);border-radius:8px;}
 .hero h2{font-size:28px;margin-bottom:15px;}
 .hero p{font-size:16px;line-height:1.6;margin-bottom:20px;}
@@ -68,25 +71,25 @@ nav h1{color:#fff;font-size:20px;}
 
 <section class="hero">
   <h2>The Identity Pack</h2>
-  <p>Website + domain + hosting included. Perfect for businesses that want a branded, professional online presence. Fully customizable and scalable.</p>
+  <p>Website + domain for startups or small businesses that want a complete online presence. Affordable and custom-designed to stand out.</p>
 </section>
 
 <section class="package-details">
   <table>
     <tr><th>Package</th><td>The Identity Pack</td></tr>
-    <tr><th>Price</th><td>₱11,500</td></tr>
-    <tr><th>Best For</th><td>Branding and business presence</td></tr>
-    <tr><th>Includes</th><td>Website + domain + 1 year hosting</td></tr>
+    <tr><th>Price</th><td>₱11,500 to 17,000</td></tr>
+    <tr><th>Best For</th><td>Branding and small business websites</td></tr>
+    <tr><th>Includes</th><td>Website + domain</td></tr>
   </table>
 </section>
 
 <section class="why-choose">
   <h3>Why Choose The Identity Pack?</h3>
   <ul>
-    <li>Professional branding with website and domain included.</li>
-    <li>Perfect for businesses or startups aiming for a polished online identity.</li>
-    <li>Customizable design tailored to your brand.</li>
-    <li>Responsive and SEO-ready for better online visibility.</li>
+    <li>Includes domain registration for one year.</li>
+    <li>Custom website design to match your brand.</li>
+    <li>Perfect for small businesses that need a professional online identity.</li>
+    <li>Mobile-optimized and SEO-friendly.</li>
   </ul>
 </section>
 

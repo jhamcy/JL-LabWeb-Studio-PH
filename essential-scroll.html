@@ -21,18 +21,19 @@ nav h1{color:#fff;font-size:20px;}
 .dropdown-menu.show{max-height:500px;padding:5px 0;}
 .dropdown > a::after{content:" ▼";display:inline-block;transition:transform 0.3s ease;}
 .dropdown > a.rotated::after{transform:rotate(180deg);}
+.menu-toggle{display:none;font-size:28px;color:#fff;cursor:pointer;}
+@media(max-width:768px){
+  .menu-toggle{display:block;}
+  .nav-links{display:none;flex-direction:column;background:#0a58ca;position:absolute;width:220px;right:24px;top:56px;border-radius:6px;padding:6px 0;text-align:right;z-index:999;}
+  .nav-links.show{display:flex;}
+  .dropdown-menu{width:100%;}
+  .nav-links li a{font-size:16px;}
+}
 @media(min-width:769px){
 .nav-links li a{text-align:left;font-size:15px;padding:10px 12px;}
 .dropdown-menu{max-height:none;padding:0;display:block !important;position:absolute;top:100%;right:0;width:200px;}
 .dropdown:hover .dropdown-menu{display:flex;flex-direction:column;}
 .dropdown-menu li a{padding:10px;text-align:left;font-size:14px;}
-}
-.menu-toggle{display:none;font-size:28px;color:#fff;cursor:pointer;}
-@media(max-width:768px){
-.menu-toggle{display:block;}
-.nav-links{display:none;flex-direction:column;background:#0a58ca;position:absolute;width:200px;right:24px;top:56px;border-radius:6px;padding:6px 0;text-align:right;}
-.nav-links.show{display:flex;}
-.dropdown-menu{width:100%;}
 }
 /* HERO & PACKAGE DETAILS */
 .hero{max-width:900px;margin:40px auto 20px;padding:20px;text-align:center;background:rgba(255,255,255,0.9);border-radius:8px;}
@@ -76,7 +77,7 @@ nav h1{color:#fff;font-size:20px;}
 <section class="package-details">
   <table>
     <tr><th>Package</th><td>The Essential Scroll</td></tr>
-    <tr><th>Price</th><td>₱8,500</td></tr>
+    <tr><th>Price</th><td>₱8,500 to 10,000</td></tr>
     <tr><th>Best For</th><td>Simple online presence</td></tr>
     <tr><th>Includes</th><td>Single-page website</td></tr>
   </table>
@@ -99,14 +100,28 @@ const navLinks = document.getElementById("nav-links");
 const packagesToggle = document.getElementById("packages-toggle");
 const packagesMenu = document.getElementById("packages-menu");
 
+// Toggle main menu
 menuToggle.addEventListener("click", () => navLinks.classList.toggle("show"));
+
+// Toggle dropdown menu
 packagesToggle.addEventListener("click", e => {
-  if(window.innerWidth<=768){e.preventDefault();packagesMenu.classList.toggle("show");packagesToggle.classList.toggle("rotated");}
+  if(window.innerWidth<=768){
+    e.preventDefault();
+    packagesMenu.classList.toggle("show");
+    packagesToggle.classList.toggle("rotated");
+  }
 });
+
+// Hide menus if clicked outside
 document.addEventListener("click", e=>{
   if(window.innerWidth<=768){
-    if(!navLinks.contains(e.target) && !menuToggle.contains(e.target)){navLinks.classList.remove("show");}
-    if(!packagesToggle.contains(e.target) && !packagesMenu.contains(e.target)){packagesMenu.classList.remove("show");packagesToggle.classList.remove("rotated");}
+    if(!navLinks.contains(e.target) && !menuToggle.contains(e.target)){
+      navLinks.classList.remove("show");
+    }
+    if(!packagesToggle.contains(e.target) && !packagesMenu.contains(e.target)){
+      packagesMenu.classList.remove("show");
+      packagesToggle.classList.remove("rotated");
+    }
   }
 });
 </script>
