@@ -4,68 +4,338 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JL LabWeb Studio PH</title>
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:Arial, Helvetica, sans-serif;}
-body{background:#f4f6fb;background-image:url("background.jpg");background-repeat:no-repeat;background-position:center center;background-attachment:fixed;background-size:cover;color:#000;min-height:100vh;}
+
+body{
+  background:#f4f6fb;
+  background-image:url("background.jpg");
+  background-repeat:no-repeat;
+  background-position:center center;
+  background-attachment:fixed;
+  background-size:cover;
+  color:#000;
+  min-height:100vh;
+}
+
 /* NAVBAR */
 nav{position:sticky;top:0;z-index:999;background:#0a58ca;}
-.nav-inner{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:12px 24px;position:relative;}
+.nav-inner{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 24px;
+  position:relative;
+}
 nav h1{color:#fff;font-size:20px;}
-.nav-links{list-style:none;display:flex;gap:20px;position:relative;}
+
+.menu-toggle{
+  display:none;
+  font-size:2.5vw;
+  min-font-size:28px;
+  max-font-size:50px;
+  color:#fff;
+  cursor:pointer;
+  padding:8px;
+}
+
+.nav-links{
+  list-style:none;
+  display:flex;
+  gap:20px;
+}
 .nav-links li{width:100%;}
-.nav-links li a{color:#fff;text-decoration:none;font-weight:bold;padding:8px 12px;font-size:14px;display:block;transition:background 0.3s;text-align:right;}
-.nav-links li a:hover{background:rgba(255,255,255,0.2);border-radius:4px;}
+.nav-links li a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:bold;
+  padding:10px 12px;
+  display:block;
+  transition:background 0.3s;
+  text-align:right;
+  font-size:1.2vw;
+}
+.nav-links li a:hover{
+  background:rgba(255,255,255,0.2);
+  border-radius:4px;
+}
+
+/* DROPDOWN */
 .dropdown{position:relative;}
-.dropdown-menu{display:flex;flex-direction:column;list-style:none;padding:0;margin:0;background:#0a58ca;border-radius:4px;overflow:hidden;max-height:0;transition:max-height 0.3s ease,padding 0.3s ease;}
-.dropdown-menu li a{padding:8px 12px;font-size:14px;text-align:right;}
-.dropdown-menu.show{max-height:500px;padding:5px 0;}
-.dropdown > a::after{content:" ▼";display:inline-block;transition:transform 0.3s ease;}
+.dropdown-menu{
+  display:flex;
+  flex-direction:column;
+  list-style:none;
+  padding:0;
+  margin:0;
+  background:#0a58ca;
+  border-radius:4px;
+  overflow:hidden;
+  max-height:0;
+  transition:max-height 0.3s ease,padding 0.3s ease;
+}
+.dropdown-menu li a{
+  padding:8px 12px;
+  font-size:14px;
+  text-align:right;
+}
+.dropdown-menu.show{
+  max-height:500px;
+  padding:5px 0;
+}
+.dropdown > a::after{
+  content:" ▼";
+  display:inline-block;
+  transition:transform 0.3s ease;
+}
 .dropdown > a.rotated::after{transform:rotate(180deg);}
-.menu-toggle{display:none;font-size:28px;color:#fff;cursor:pointer;}
-@media(max-width:768px){
-  .menu-toggle{display:block;}
-  .nav-links{display:none;flex-direction:column;background:#0a58ca;position:absolute;width:220px;right:24px;top:56px;border-radius:6px;padding:6px 0;text-align:right;z-index:999;}
-  .nav-links.show{display:flex;}
-  .dropdown-menu{width:100%;}
-  .nav-links li a{font-size:16px;}
-}
-@media(min-width:769px){
-.nav-links li a{text-align:left;font-size:15px;padding:10px 12px;}
-.dropdown-menu{max-height:none;padding:0;display:block !important;position:absolute;top:100%;right:0;width:200px;}
-.dropdown:hover .dropdown-menu{display:flex;flex-direction:column;}
-.dropdown-menu li a{padding:10px;text-align:left;font-size:14px;}
-}
-
-/* HERO */
-.hero{text-align:center;padding:40px 20px 30px;}
-.hero img{width:260px;max-width:90%;margin-bottom:20px;}
-.hero h2{font-size:34px;margin-bottom:15px;}
-.hero p{max-width:760px;margin:auto;font-size:17px;line-height:1.6;}
-
-/* PRICING */
-#pricing{max-width:1200px;margin:20px auto 30px;padding:0 20px;}
-#pricing h3{text-align:center;font-size:26px;margin-bottom:15px;}
-.pricing-table{width:100%;border-collapse:collapse;background:rgba(255,255,255,0.9);font-size:14px;}
-.pricing-table th, .pricing-table td{border:1px solid #ccc;padding:12px;}
-.pricing-table th{background:#f1f1f1;}
-.pricing-table tr.clickable{cursor:pointer;}
-.pricing-table tr.clickable:hover{background:rgba(10,88,202,0.12);}
-.pricing-table tr.clickable td:last-child::after{content:"  →";color:#0a58ca;font-weight:bold;}
-
-/* CONTACT */
-.contact{background:rgba(255,255,255,0.95);padding:30px 20px;text-align:center;}
-.contact p{font-size:18px;margin-bottom:15px;}
-.contact-buttons{display:flex;justify-content:center;gap:15px;flex-wrap:wrap;}
-.contact-buttons a{display:flex;align-items:center;gap:10px;padding:12px 20px;border-radius:6px;color:#fff;text-decoration:none;font-weight:bold;}
-.contact-buttons img{width:24px;height:24px;}
-.viber{background:#665CAC;}
-.whatsapp{background:#25D366;}
 
 /* MOBILE */
 @media(max-width:768px){
-.hero h2{font-size:26px;}
-.contact-buttons{flex-direction:column;}
-.contact-buttons a{justify-content:center;}
+  .menu-toggle{display:block;font-size:8vw;}
+  .nav-links{
+    display:none;
+    flex-direction:column;
+    background:#0a58ca;
+    position:absolute;
+    width:200px;
+    right:24px;
+    top:56px;
+    border-radius:6px;
+    padding:6px 0;
+    text-align:right;
+  }
+  .nav-links.show{display:flex;}
+  .nav-links li a{font-size:16px;}
+}
+
+/* DESKTOP */
+@media(min-width:769px){
+  .nav-links li a{text-align:left;font-size:1.2vw;}
+  .dropdown-menu{
+    max-height:none;
+    padding:0;
+    display:block !important;
+    position:absolute;
+    top:100%;
+    right:0;
+    width:200px;
+  }
+  .dropdown:hover .dropdown-menu{
+    display:flex;
+    flex-direction:column;
+  }
+  .dropdown-menu li a{
+    padding:10px;
+    text-align:left;
+    font-size:14px;
+  }
+}
+
+/* HERO */
+.hero{text-align:center;padding:50px 20px 30px;}
+.hero img{width:260px;max-width:90%;margin-bottom:20px;}
+.hero h2{
+  font-size:28px;
+  font-weight:700;
+  letter-spacing:1px;
+  margin-bottom:15px;
+}
+.hero p{
+  max-width:760px;
+  margin:auto;
+  font-size:17px;
+  line-height:1.6;
+}
+@media(max-width:768px){
+  .hero h2{font-size:22px;letter-spacing:0.5px;}
+}
+
+/* TECH SECTION TEXT */
+.tech-wallpaper{
+  max-width:1100px;
+  margin:50px auto;
+  padding:0 20px;
+  text-align:center;
+}
+.tech-headline{
+  font-size:24px;
+  font-weight:600;
+  letter-spacing:0.8px;
+  margin-bottom:10px;
+}
+.tech-subtext{
+  font-size:16px;
+  line-height:1.6;
+  max-width:800px;
+  margin:0 auto 15px;
+}
+@media(max-width:768px){
+  .tech-headline{font-size:20px;letter-spacing:0.5px;}
+}
+
+/* SLIDESHOW */
+.slideshow-container{
+  max-width:900px;
+  width:100%;
+  position:relative;
+  margin:20px auto 40px;
+  border-radius:12px;
+  overflow:hidden;
+}
+.slide{
+  display:none;
+  position:relative;
+}
+.slide img{
+  width:100%;
+  height:auto;
+  display:block;
+}
+.fade{
+  animation:fadeEffect 1s ease-in-out;
+}
+@keyframes fadeEffect{
+  from{opacity:0.4;}
+  to{opacity:1;}
+}
+
+/* SLIDE CAPTIONS */
+.caption{
+  text-align:center;
+  background:rgba(0,0,0,0.6);
+  color:#fff;
+  font-size:16px;
+  padding:8px 12px;
+  position:relative;
+  bottom:0;
+  width:100%;
+  box-sizing:border-box;
+  word-wrap:break-word;
+}
+
+/* DOTS */
+.dots-container{
+  text-align:center;
+  margin-top:15px;
+}
+.dot{
+  height:12px;
+  width:12px;
+  margin:0 5px;
+  display:inline-block;
+  border-radius:50%;
+  background-color:rgba(0,0,0,0.3);
+  cursor:pointer;
+  transition:background 0.3s;
+}
+.active-dot{
+  background-color:#0a58ca;
+}
+
+/* RESPONSIVE MOBILE SLIDES */
+@media(max-width:768px){
+  .caption{
+    font-size:14px;
+    padding:6px 10px;
+  }
+  .dots-container{
+    margin-top:10px;
+  }
+  .dot{
+    height:10px;
+    width:10px;
+    margin:0 4px;
+  }
+}
+
+/* PRICING */
+#pricing{
+  max-width:1200px;
+  margin:20px auto 40px;
+  padding:0 20px;
+}
+#pricing h3{text-align:center;font-size:26px;margin-bottom:15px;}
+.pricing-table{
+  width:100%;
+  border-collapse:collapse;
+  background:rgba(255,255,255,0.9);
+  font-size:14px;
+}
+.pricing-table th,
+.pricing-table td{
+  border:1px solid #ccc;
+  padding:12px;
+}
+.pricing-table th{background:#f1f1f1;}
+.pricing-table tr.clickable{cursor:pointer;}
+.pricing-table tr.clickable:hover{background:rgba(10,88,202,0.12);}
+
+/* FLOATING VIBER & WHATSAPP BUTTONS - BIGGER & PULSING */
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0,0,0,0.2);}
+  50% { transform: scale(1.1); box-shadow: 0 0 20px 8px rgba(0,0,0,0.3);}
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0,0,0,0.2);}
+}
+
+.floating-buttons{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  display:flex;
+  flex-direction:column; /* vertical */
+  gap:15px;
+  z-index:9999;
+}
+
+.floating-buttons a{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  box-shadow:0 4px 6px rgba(0,0,0,0.2);
+  animation: pulse 2s infinite;
+  transition:transform 0.2s;
+}
+
+.floating-buttons a img{
+  width:36px;
+  height:36px;
+}
+
+.floating-buttons a:hover{
+  transform:scale(1.15);
+}
+
+.viber-floating{
+  background:#665CAC;
+}
+
+.whatsapp-floating{
+  background:#25D366;
+}
+
+/* KEEP VERTICAL ON MOBILE */
+@media(max-width:480px){
+  .floating-buttons{
+    flex-direction:column;
+    bottom:15px;
+    right:15px;
+    gap:12px;
+  }
+  .floating-buttons a{
+    width:60px;
+    height:60px;
+  }
+  .floating-buttons a img{
+    width:32px;
+    height:32px;
+  }
 }
 </style>
 </head>
@@ -92,9 +362,37 @@ nav h1{color:#fff;font-size:20px;}
 </nav>
 
 <section class="hero">
-  <img src="logo.png" alt="JL LabWeb Studio PH Logo">
+  <img src="logo.png" alt="JL LabWeb Studio PH">
   <h2>Turn Your Ideas Into a<br>Professional Website</h2>
-  <p>We provide affordable custom web design specifically for the Filipino market. Unlike other services, we don't use boring templates. We build custom websites based on your ideas and designs, ensuring your brand stands out.</p>
+  <p>
+    We provide affordable custom web design specifically for the Filipino market.
+    Unlike other services, we don't use boring templates.
+    We build custom websites based on your ideas and designs, ensuring your brand stands out.
+  </p>
+</section>
+
+<!-- TECH SECTION TEXT -->
+<section class="tech-wallpaper">
+  <p class="tech-headline">Powered by trusted web platforms</p>
+  <p class="tech-subtext">
+    We develop and deploy websites using GoDaddy, Web.com.ph, GitHub, Netlify, and other professional tools to ensure security, performance, and scalability.
+  </p>
+</section>
+
+<!-- SLIDESHOW WITH CAPTIONS -->
+<section class="slideshow-container">
+  <div class="slide fade">
+    <img src="image1.png" alt="Slide 1">
+    <div class="caption">Custom Web Designs Tailored to Your Brand</div>
+  </div>
+  <div class="slide fade">
+    <img src="image2.png" alt="Slide 2">
+    <div class="caption">Responsive and Mobile-Friendly Websites</div>
+  </div>
+  <div class="dots-container">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+  </div>
 </section>
 
 <section id="pricing">
@@ -113,59 +411,70 @@ nav h1{color:#fff;font-size:20px;}
     <tr class="clickable" onclick="location.href='identity-pack.html'">
       <td><strong>The Identity Pack</strong></td>
       <td>₱11,500+</td>
-      <td>Branding</td>
+      <td>Branding & credibility</td>
     </tr>
     <tr class="clickable" onclick="location.href='growth-suite.html'">
       <td><strong>The Growth Suite</strong></td>
       <td>₱20,000+</td>
-      <td>Businesses</td>
+      <td>Growing businesses</td>
     </tr>
   </table>
 </section>
 
-<section class="contact">
-  <p>Contact us for more inquiries</p>
-  <div class="contact-buttons">
-    <a class="viber" href="viber://chat?number=%2B639944846149">
-      <img src="viber.png" alt="Viber"> Viber
-    </a>
-    <a class="whatsapp" href="whatsapp://send?phone=639310410733">
-      <img src="whatsapp.png" alt="WhatsApp"> WhatsApp
-    </a>
-  </div>
-</section>
+<!-- FLOATING BUTTONS -->
+<div class="floating-buttons">
+  <a href="viber://chat?number=%2B639944846149" class="viber-floating" target="_blank">
+    <img src="viber.png" alt="Viber">
+  </a>
+  <a href="whatsapp://send?phone=639310410733" class="whatsapp-floating" target="_blank">
+    <img src="whatsapp.png" alt="WhatsApp">
+  </a>
+</div>
 
 <script>
-// Hamburger menu
-const menuToggle = document.getElementById("mobile-menu");
-const navLinks = document.getElementById("nav-links");
-const packagesToggle = document.getElementById("packages-toggle");
-const packagesMenu = document.getElementById("packages-menu");
+const menuToggle=document.getElementById("mobile-menu");
+const navLinks=document.getElementById("nav-links");
+const packagesToggle=document.getElementById("packages-toggle");
+const packagesMenu=document.getElementById("packages-menu");
 
-// Toggle main menu
-menuToggle.addEventListener("click", () => navLinks.classList.toggle("show"));
-
-// Toggle dropdown menu
-packagesToggle.addEventListener("click", e => {
-  if(window.innerWidth <= 768){
+menuToggle.addEventListener("click",()=>navLinks.classList.toggle("show"));
+packagesToggle.addEventListener("click",e=>{
+  if(window.innerWidth<=768){
     e.preventDefault();
     packagesMenu.classList.toggle("show");
     packagesToggle.classList.toggle("rotated");
   }
 });
-
-// Hide menus if clicked outside
-document.addEventListener("click", e=>{
-  if(window.innerWidth <= 768){
-    if(!navLinks.contains(e.target) && !menuToggle.contains(e.target)){
+document.addEventListener("click",e=>{
+  if(window.innerWidth<=768){
+    if(!navLinks.contains(e.target)&&!menuToggle.contains(e.target)){
       navLinks.classList.remove("show");
-    }
-    if(!packagesToggle.contains(e.target) && !packagesMenu.contains(e.target)){
       packagesMenu.classList.remove("show");
       packagesToggle.classList.remove("rotated");
     }
   }
 });
+
+/* SLIDESHOW SCRIPT */
+let slideIndex=0;
+let slides=document.getElementsByClassName("slide");
+let dots=document.getElementsByClassName("dot");
+
+function showSlides(){
+  for(let i=0;i<slides.length;i++){slides[i].style.display="none";}
+  slideIndex++;
+  if(slideIndex>slides.length){slideIndex=1;}
+  for(let i=0;i<dots.length;i++){dots[i].className=dots[i].className.replace(" active-dot","");}
+  slides[slideIndex-1].style.display="block";
+  dots[slideIndex-1].className+=" active-dot";
+  setTimeout(showSlides,4000);
+}
+showSlides();
+
+function currentSlide(n){
+  slideIndex=n-1;
+  showSlides();
+}
 </script>
 
 </body>
