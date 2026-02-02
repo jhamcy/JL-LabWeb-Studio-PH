@@ -6,21 +6,23 @@
 <title>JL LabWeb Studio PH</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial, Helvetica, sans-serif;}
+/* --- 1. RESET & BASE STYLES --- */
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI', Roboto, Helvetica, Arial, sans-serif;}
 
 body{
-  background:#f4f6fb;
-  background-image:url("background.jpg");
-  background-repeat:no-repeat;
-  background-position:center center;
-  background-attachment:fixed;
-  background-size:cover;
-  color:#000;
-  min-height:100vh;
+  background-color: #f4f6fb;
+  background-image: url("background.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  color: #333;
+  min-height: 100vh;
+  line-height: 1.6;
 }
 
-/* NAVBAR */
-nav{position:sticky;top:0;z-index:999;background:#0a58ca;}
+/* --- 2. NAVIGATION --- */
+nav{position:sticky;top:0;z-index:999;background:#0a58ca;box-shadow: 0 2px 10px rgba(0,0,0,0.1);}
 .nav-inner{
   max-width:1200px;
   margin:auto;
@@ -28,315 +30,125 @@ nav{position:sticky;top:0;z-index:999;background:#0a58ca;}
   justify-content:space-between;
   align-items:center;
   padding:12px 24px;
-  position:relative;
 }
-nav h1{color:#fff;font-size:20px;}
+nav h1{color:#fff;font-size:22px; font-weight: 800;}
+.menu-toggle{ display:none; font-size:30px; color:#fff; cursor:pointer; }
+.nav-links{ list-style:none; display:flex; gap:10px; }
+.nav-links li a{ color:#fff; text-decoration:none; font-weight:600; padding:10px 15px; display:block; transition: 0.3s; border-radius: 4px; }
+.nav-links li a:hover{ background:rgba(255,255,255,0.2); }
 
-.menu-toggle{
-  display:none;
-  font-size:2.5vw;
-  min-font-size:28px;
-  max-font-size:50px;
-  color:#fff;
-  cursor:pointer;
-  padding:8px;
-}
-
-.nav-links{
-  list-style:none;
-  display:flex;
-  gap:20px;
-}
-.nav-links li{width:100%;}
-.nav-links li a{
-  color:#fff;
-  text-decoration:none;
-  font-weight:bold;
-  padding:10px 12px;
-  display:block;
-  transition:background 0.3s;
-  text-align:right;
-  font-size:1.2vw;
-}
-.nav-links li a:hover{
-  background:rgba(255,255,255,0.2);
-  border-radius:4px;
-}
-
-/* DROPDOWN */
 .dropdown{position:relative;}
 .dropdown-menu{
-  display:flex;
-  flex-direction:column;
-  list-style:none;
-  padding:0;
-  margin:0;
-  background:#0a58ca;
-  border-radius:4px;
-  overflow:hidden;
-  max-height:0;
-  transition:max-height 0.3s ease,padding 0.3s ease;
+  list-style:none; background:#fff; border-radius:4px; overflow:hidden;
+  display: none; flex-direction:column; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
-.dropdown-menu li a{
-  padding:8px 12px;
-  font-size:14px;
-  text-align:right;
-}
-.dropdown-menu.show{
-  max-height:500px;
-  padding:5px 0;
-}
-.dropdown > a::after{
-  content:" ▼";
-  display:inline-block;
-  transition:transform 0.3s ease;
-}
-.dropdown > a.rotated::after{transform:rotate(180deg);}
+.dropdown-menu li a{ color: #333; padding:10px 20px; font-size:14px; border-bottom: 1px solid #eee; }
 
-/* MOBILE */
+@media(min-width:769px){
+  .dropdown:hover .dropdown-menu{ display:flex; position:absolute; top:100%; right:0; width:220px; }
+}
+
 @media(max-width:768px){
-  .menu-toggle{display:block;font-size:8vw;}
+  .menu-toggle{display:block;}
   .nav-links{
-    display:none;
-    flex-direction:column;
-    background:#0a58ca;
-    position:absolute;
-    width:200px;
-    right:24px;
-    top:56px;
-    border-radius:6px;
-    padding:6px 0;
-    text-align:right;
+    display:none; flex-direction:column; background:#0a58ca; position:absolute;
+    width:100%; left:0; top:100%; padding:10px 0; border-top: 1px solid rgba(255,255,255,0.1);
   }
   .nav-links.show{display:flex;}
-  .nav-links li a{font-size:16px;}
+  .dropdown-menu.show{display:flex; position:static; width:100%; background:rgba(0,0,0,0.1); box-shadow:none;}
+  .nav-links li a{ text-align: center; font-size: 18px; }
+  .dropdown-menu li a { color: #fff; background: transparent; border-bottom: none; }
 }
 
-/* DESKTOP */
-@media(min-width:769px){
-  .nav-links li a{text-align:left;font-size:1.2vw;}
-  .dropdown-menu{
-    max-height:none;
-    padding:0;
-    display:block !important;
-    position:absolute;
-    top:100%;
-    right:0;
-    width:200px;
-  }
-  .dropdown:hover .dropdown-menu{
-    display:flex;
-    flex-direction:column;
-  }
-  .dropdown-menu li a{
-    padding:10px;
-    text-align:left;
-    font-size:14px;
-  }
-}
+/* --- 3. HERO & TECH SECTION --- */
+.hero{text-align:center; padding:20px 20px 10px;}
+.hero img{width:260px; max-width:90%; margin-bottom:10px; transition: transform 0.3s ease;}
+.hero img:hover { transform: scale(1.05); }
 
-/* HERO */
-.hero{text-align:center;padding:50px 20px 30px;}
-.hero img{width:260px;max-width:90%;margin-bottom:20px;}
 .hero h2{
-  font-size:28px;
-  font-weight:700;
-  letter-spacing:1px;
-  margin-bottom:15px;
+  font-size: 32px; 
+  white-space: nowrap; 
+  margin-bottom: 8px; 
+  color: #0a58ca; 
+  text-shadow: 0 1px 2px rgba(255,255,255,0.8); 
+  font-weight: 800;
 }
-.hero p{
-  max-width:760px;
-  margin:auto;
-  font-size:17px;
-  line-height:1.6;
-}
-@media(max-width:768px){
-  .hero h2{font-size:22px;letter-spacing:0.5px;}
+.hero p{max-width:750px; margin:0 auto 15px; font-size:17px; font-weight: 500; color: #333;}
+
+@media(max-width:600px){
+  .hero h2 { font-size: 20px; white-space: normal; }
 }
 
-/* TECH SECTION TEXT */
-.tech-wallpaper{
-  max-width:1100px;
-  margin:50px auto;
-  padding:0 20px;
-  text-align:center;
-}
-.tech-headline{
-  font-size:24px;
-  font-weight:600;
-  letter-spacing:0.8px;
-  margin-bottom:10px;
-}
-.tech-subtext{
-  font-size:16px;
-  line-height:1.6;
-  max-width:800px;
-  margin:0 auto 15px;
-}
-@media(max-width:768px){
-  .tech-headline{font-size:20px;letter-spacing:0.5px;}
-}
+.tech-wallpaper{max-width:1100px; margin:0 auto 20px; padding:0 20px; text-align:center;}
+.tech-headline{font-size:20px; font-weight:700; margin-bottom:5px; color:#0a58ca;}
+.tech-subtext{font-size:15px; color: #444; font-weight: 600;}
 
-/* SLIDESHOW */
+/* --- 4. SLIDESHOW --- */
 .slideshow-container{
-  max-width:900px;
-  width:100%;
-  position:relative;
-  margin:20px auto 40px;
-  border-radius:12px;
-  overflow:hidden;
+  max-width:900px; margin:10px auto 30px; border-radius:12px; overflow:hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
-.slide{
-  display:none;
-  position:relative;
-}
-.slide img{
-  width:100%;
-  height:auto;
-  display:block;
-}
-.fade{
-  animation:fadeEffect 1s ease-in-out;
-}
-@keyframes fadeEffect{
-  from{opacity:0.4;}
-  to{opacity:1;}
+.slide{display:none;}
+.slide img{width:100%; height:auto;}
+.caption{ background:rgba(10, 88, 202, 0.9); color:#fff; padding:15px; text-align:center; }
+.dots-container{text-align:center; margin:15px 0;}
+.dot{height:12px; width:12px; margin:0 5px; display:inline-block; border-radius:50%; background:#ccc; cursor:pointer;}
+.active-dot{background:#0a58ca;}
+
+/* --- 5. PACKAGE CARDS (WITH ANIMATION) --- */
+#pricing { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+#pricing h3 { text-align: center; margin-bottom: 30px; font-size: 24px; color: #333; }
+
+.package-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
+
+.package-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  padding: 40px; 
+  width: 100%;
+  max-width: 450px; 
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  cursor: pointer;
+  border: 1px solid rgba(10, 88, 202, 0.1);
+  /* Animation Start */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
 }
 
-/* SLIDE CAPTIONS */
-.caption{
-  text-align:center;
-  background:rgba(0,0,0,0.6);
-  color:#fff;
-  font-size:16px;
-  padding:8px 12px;
-  position:relative;
-  bottom:0;
-  width:100%;
-  box-sizing:border-box;
-  word-wrap:break-word;
+.package-card.reveal { opacity: 1; transform: translateY(0); }
+
+.package-card:hover { 
+  transform: translateY(-10px) scale(1.02); 
+  border-color: #0a58ca; 
+  box-shadow: 0 15px 35px rgba(10, 88, 202, 0.2);
 }
 
-/* DOTS */
-.dots-container{
-  text-align:center;
-  margin-top:15px;
-}
-.dot{
-  height:12px;
-  width:12px;
-  margin:0 5px;
-  display:inline-block;
-  border-radius:50%;
-  background-color:rgba(0,0,0,0.3);
-  cursor:pointer;
-  transition:background 0.3s;
-}
-.active-dot{
-  background-color:#0a58ca;
+.package-card h4 { color: #0a58ca; font-size: 22px; margin-bottom: 15px; }
+.package-card p { font-size: 16px; color: #555; margin-bottom: 25px; }
+
+.view-btn { 
+  display: inline-block; 
+  padding: 12px 30px; 
+  background: #0a58ca; 
+  color: #fff; 
+  text-decoration: none; 
+  border-radius: 5px; 
+  font-weight: 600; 
+  font-size: 15px; 
 }
 
-/* RESPONSIVE MOBILE SLIDES */
-@media(max-width:768px){
-  .caption{
-    font-size:14px;
-    padding:6px 10px;
-  }
-  .dots-container{
-    margin-top:10px;
-  }
-  .dot{
-    height:10px;
-    width:10px;
-    margin:0 4px;
-  }
-}
-
-/* PRICING */
-#pricing{
-  max-width:1200px;
-  margin:20px auto 40px;
-  padding:0 20px;
-}
-#pricing h3{text-align:center;font-size:26px;margin-bottom:15px;}
-.pricing-table{
-  width:100%;
-  border-collapse:collapse;
-  background:rgba(255,255,255,0.9);
-  font-size:14px;
-}
-.pricing-table th,
-.pricing-table td{
-  border:1px solid #ccc;
-  padding:12px;
-}
-.pricing-table th{background:#f1f1f1;}
-.pricing-table tr.clickable{cursor:pointer;}
-.pricing-table tr.clickable:hover{background:rgba(10,88,202,0.12);}
-
-/* FLOATING VIBER & WHATSAPP BUTTONS - BIGGER & PULSING */
-@keyframes pulse {
-  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0,0,0,0.2);}
-  50% { transform: scale(1.1); box-shadow: 0 0 20px 8px rgba(0,0,0,0.3);}
-  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0,0,0,0.2);}
-}
-
-.floating-buttons{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  display:flex;
-  flex-direction:column; /* vertical */
-  gap:15px;
-  z-index:9999;
-}
-
+/* --- 6. FLOATING BUTTONS --- */
+.floating-buttons{position:fixed; bottom:25px; right:20px; display:flex; flex-direction:column; gap:15px; z-index:9999;}
 .floating-buttons a{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  width:70px;
-  height:70px;
-  border-radius:50%;
-  box-shadow:0 4px 6px rgba(0,0,0,0.2);
-  animation: pulse 2s infinite;
-  transition:transform 0.2s;
+  width:55px; height:55px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  box-shadow:0 5px 15px rgba(0,0,0,0.3); transition:0.3s; animation: pulse 2s infinite;
 }
-
-.floating-buttons a img{
-  width:36px;
-  height:36px;
-}
-
-.floating-buttons a:hover{
-  transform:scale(1.15);
-}
-
-.viber-floating{
-  background:#665CAC;
-}
-
-.whatsapp-floating{
-  background:#25D366;
-}
-
-/* KEEP VERTICAL ON MOBILE */
-@media(max-width:480px){
-  .floating-buttons{
-    flex-direction:column;
-    bottom:15px;
-    right:15px;
-    gap:12px;
-  }
-  .floating-buttons a{
-    width:60px;
-    height:60px;
-  }
-  .floating-buttons a img{
-    width:32px;
-    height:32px;
-  }
-}
+.floating-buttons a img{width:28px; height:28px;}
+.viber-floating{background:#665CAC;}
+.whatsapp-floating{background:#25D366;}
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.08); } 100% { transform: scale(1); } }
 </style>
 </head>
 
@@ -344,49 +156,43 @@ nav h1{color:#fff;font-size:20px;}
 
 <nav>
   <div class="nav-inner">
-    <h1>JL LabWeb Studio PH</h1>
+    <h1>JL LabWeb</h1>
     <div class="menu-toggle" id="mobile-menu">&#9776;</div>
     <ul class="nav-links" id="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="faq.html">FAQ</a></li>
       <li class="dropdown">
-        <a href="#" id="packages-toggle">Web Packages</a>
+        <a href="#" id="packages-toggle">Web Packages ▼</a>
         <ul class="dropdown-menu" id="packages-menu">
           <li><a href="essential-scroll.html">The Essential Scroll</a></li>
           <li><a href="identity-pack.html">The Identity Pack</a></li>
           <li><a href="growth-suite.html">The Growth Suite</a></li>
         </ul>
       </li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="faq.html">FAQ</a></li>
     </ul>
   </div>
 </nav>
 
 <section class="hero">
   <img src="logo.png" alt="JL LabWeb Studio PH">
-  <h2>Turn Your Ideas Into a<br>Professional Website</h2>
-  <p>
-    We provide affordable custom web design specifically for the Filipino market.
-    Unlike other services, we don't use boring templates.
-    We build custom websites based on your ideas and designs, ensuring your brand stands out.
-  </p>
+  <h2>Turn Your Ideas Into a Professional Website</h2>
+  <p>At the JL LabWeb Studio, we turn your ideas into a custom website built specifically for your brand.</p>
 </section>
 
-<!-- TECH SECTION TEXT -->
 <section class="tech-wallpaper">
   <p class="tech-headline">Powered by trusted web platforms</p>
-  <p class="tech-subtext">
-    We develop and deploy websites using GoDaddy, Web.com.ph, GitHub, Netlify, and other professional tools to ensure security, performance, and scalability.
-  </p>
+  <p class="tech-subtext">Developing with GoDaddy, GitHub, Netlify, and professional tools for peak performance.</p>
 </section>
 
-<!-- SLIDESHOW WITH CAPTIONS -->
 <section class="slideshow-container">
-  <div class="slide fade">
-    <img src="image1.png" alt="Slide 1">
+  <div class="slide">
+    <img src="image1.png" alt="Custom Design">
     <div class="caption">Custom Web Designs Tailored to Your Brand</div>
   </div>
-  <div class="slide fade">
-    <img src="image2.png" alt="Slide 2">
+  <div class="slide">
+    <img src="image2.png" alt="Mobile Friendly">
     <div class="caption">Responsive and Mobile-Friendly Websites</div>
   </div>
   <div class="dots-container">
@@ -397,31 +203,25 @@ nav h1{color:#fff;font-size:20px;}
 
 <section id="pricing">
   <h3>Website Packages</h3>
-  <table class="pricing-table">
-    <tr>
-      <th>Package</th>
-      <th>Price</th>
-      <th>Best For</th>
-    </tr>
-    <tr class="clickable" onclick="location.href='essential-scroll.html'">
-      <td><strong>The Essential Scroll</strong></td>
-      <td>₱8,500+</td>
-      <td>Simple presence</td>
-    </tr>
-    <tr class="clickable" onclick="location.href='identity-pack.html'">
-      <td><strong>The Identity Pack</strong></td>
-      <td>₱11,500+</td>
-      <td>Branding & credibility</td>
-    </tr>
-    <tr class="clickable" onclick="location.href='growth-suite.html'">
-      <td><strong>The Growth Suite</strong></td>
-      <td>₱20,000+</td>
-      <td>Growing businesses</td>
-    </tr>
-  </table>
+  <div class="package-container">
+    <div class="package-card" onclick="location.href='essential-scroll.html'">
+      <h4>The Essential Scroll</h4>
+      <p>Best for a simple online presence.</p>
+      <span class="view-btn">View Details</span>
+    </div>
+    <div class="package-card" onclick="location.href='identity-pack.html'">
+      <h4>The Identity Pack</h4>
+      <p>Best for branding and credibility.</p>
+      <span class="view-btn">View Details</span>
+    </div>
+    <div class="package-card" onclick="location.href='growth-suite.html'">
+      <h4>The Growth Suite</h4>
+      <p>Best for growing businesses.</p>
+      <span class="view-btn">View Details</span>
+    </div>
+  </div>
 </section>
 
-<!-- FLOATING BUTTONS -->
 <div class="floating-buttons">
   <a href="viber://chat?number=%2B639944846149" class="viber-floating" target="_blank">
     <img src="viber.png" alt="Viber">
@@ -432,49 +232,50 @@ nav h1{color:#fff;font-size:20px;}
 </div>
 
 <script>
-const menuToggle=document.getElementById("mobile-menu");
-const navLinks=document.getElementById("nav-links");
-const packagesToggle=document.getElementById("packages-toggle");
-const packagesMenu=document.getElementById("packages-menu");
+// Mobile Menu & Dropdown
+const menuToggle = document.getElementById("mobile-menu");
+const navLinks = document.getElementById("nav-links");
+const packagesToggle = document.getElementById("packages-toggle");
+const packagesMenu = document.getElementById("packages-menu");
 
-menuToggle.addEventListener("click",()=>navLinks.classList.toggle("show"));
-packagesToggle.addEventListener("click",e=>{
-  if(window.innerWidth<=768){
-    e.preventDefault();
-    packagesMenu.classList.toggle("show");
-    packagesToggle.classList.toggle("rotated");
-  }
+menuToggle.addEventListener("click", (e) => { e.stopPropagation(); navLinks.classList.toggle("show"); });
+packagesToggle.addEventListener("click", (e) => {
+    if (window.innerWidth <= 768) { e.preventDefault(); e.stopPropagation(); packagesMenu.classList.toggle("show"); }
 });
-document.addEventListener("click",e=>{
-  if(window.innerWidth<=768){
-    if(!navLinks.contains(e.target)&&!menuToggle.contains(e.target)){
-      navLinks.classList.remove("show");
-      packagesMenu.classList.remove("show");
-      packagesToggle.classList.remove("rotated");
+document.addEventListener("click", (e) => {
+    if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+        navLinks.classList.remove("show");
+        packagesMenu.classList.remove("show");
     }
-  }
 });
 
-/* SLIDESHOW SCRIPT */
-let slideIndex=0;
-let slides=document.getElementsByClassName("slide");
-let dots=document.getElementsByClassName("dot");
+// Scroll Reveal Observer
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+            setTimeout(() => { entry.target.classList.add('reveal'); }, index * 150); 
+        }
+    });
+}, { threshold: 0.2 });
+document.querySelectorAll('.package-card').forEach(card => { observer.observe(card); });
 
-function showSlides(){
-  for(let i=0;i<slides.length;i++){slides[i].style.display="none";}
-  slideIndex++;
-  if(slideIndex>slides.length){slideIndex=1;}
-  for(let i=0;i<dots.length;i++){dots[i].className=dots[i].className.replace(" active-dot","");}
-  slides[slideIndex-1].style.display="block";
-  dots[slideIndex-1].className+=" active-dot";
-  setTimeout(showSlides,4000);
+// Slideshow
+let slideIndex = 0;
+let slides = document.getElementsByClassName("slide");
+let dots = document.getElementsByClassName("dot");
+
+function showSlides() {
+    for (let i = 0; i < slides.length; i++) { slides[i].style.display = "none"; }
+    slideIndex++;
+    if (slideIndex > slides.length) { slideIndex = 1; }
+    for (let i = 0; i < dots.length; i++) { dots[i].className = dots[i].className.replace(" active-dot", ""); }
+    if(slides[slideIndex-1]){
+      slides[slideIndex-1].style.display = "block";
+      dots[slideIndex-1].className += " active-dot";
+    }
+    setTimeout(showSlides, 4500);
 }
 showSlides();
-
-function currentSlide(n){
-  slideIndex=n-1;
-  showSlides();
-}
 </script>
 
 </body>

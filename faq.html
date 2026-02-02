@@ -5,136 +5,128 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FAQ - JL LabWeb Studio PH</title>
 <style>
-* { box-sizing:border-box; margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; }
+/* --- GLOBAL STYLES --- */
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI', Roboto, Helvetica, Arial, sans-serif;}
+
 body {
   background:#f4f6fb;
-  background-image:url("background.jpg");
+  background-image: linear-gradient(rgba(244, 246, 251, 0.9), rgba(244, 246, 251, 0.9)), url("background.jpg");
   background-repeat:no-repeat;
   background-position:center center;
   background-attachment:fixed;
   background-size:cover;
-  color:#000;
+  color:#333;
   min-height:100vh;
+  line-height: 1.6;
 }
 
-/* NAVBAR */
-nav { position:sticky; top:0; z-index:999; background:#0a58ca; }
-.nav-inner { max-width:1200px; margin:auto; display:flex; justify-content:space-between; align-items:center; padding:12px 24px; position:relative; }
-nav h1 { color:#fff; font-size:20px; }
-.nav-links { list-style:none; display:flex; gap:20px; position:relative; }
-.nav-links li { width:100%; }
-.nav-links li a {
-  color:#fff;
-  text-decoration:none;
-  font-weight:bold;
-  padding:10px 12px;
-  display:block;
-  transition:background 0.3s;
-  text-align:right;
-  font-size:1.2vw;
-}
-.nav-links li a:hover { background:rgba(255,255,255,0.2); border-radius:4px; }
-.dropdown { position:relative; }
-.dropdown-menu {
+/* --- UNIFIED NAVIGATION --- */
+nav{position:sticky;top:0;z-index:999;background:#0a58ca;box-shadow: 0 2px 10px rgba(0,0,0,0.1);}
+.nav-inner{
+  max-width:1200px;
+  margin:auto;
   display:flex;
-  flex-direction:column;
-  list-style:none;
-  padding:0;
-  margin:0;
-  background:#0a58ca;
-  border-radius:4px;
-  overflow:hidden;
-  max-height:0;
-  transition:max-height 0.3s ease,padding 0.3s ease;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 24px;
 }
-.dropdown-menu li a { padding:8px 12px; font-size:14px; text-align:right; }
-.dropdown-menu.show { max-height:500px; padding:5px 0; }
-.dropdown > a::after { content:" ▼"; display:inline-block; transition:transform 0.3s ease; }
-.dropdown > a.rotated::after { transform:rotate(180deg); }
-.menu-toggle {
-  display:none;
-  font-size:2.5vw;
-  color:#fff;
-  cursor:pointer;
-  padding:8px;
+nav h1{color:#fff;font-size:22px; font-weight: 800;}
+.menu-toggle{ display:none; font-size:30px; color:#fff; cursor:pointer; user-select: none; }
+
+.nav-links{ list-style:none; display:flex; gap:10px; align-items: center; }
+.nav-links li a{ color:#fff; text-decoration:none; font-weight:600; padding:10px 15px; display:block; transition: 0.3s; border-radius: 4px; }
+.nav-links li a:hover{ background:rgba(255,255,255,0.2); }
+
+.dropdown{position:relative;}
+.dropdown-menu{
+  list-style:none; background:#fff; border-radius:4px; overflow:hidden;
+  display: none; flex-direction:column; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  position: absolute; top: 100%; right: 0; width: 220px;
+}
+.dropdown-menu li a{ color: #333 !important; padding:12px 20px; font-size:14px; border-bottom: 1px solid #eee; }
+
+@media(min-width:769px){
+  .dropdown:hover .dropdown-menu{ display:flex; }
 }
 
 @media(max-width:768px){
-  .menu-toggle { display:block; font-size:8vw; padding:8px; }
-  .nav-links {
-    display:none;
-    flex-direction:column;
-    background:#0a58ca;
-    position:absolute;
-    width:200px;
-    right:24px;
-    top:56px;
-    border-radius:6px;
-    padding:6px 0;
-    text-align:right;
+  .menu-toggle{display:block;}
+  .nav-links{
+    display:none; flex-direction:column; background:#0a58ca; position:absolute;
+    width:100%; left:0; top:100%; padding:10px 0; border-top: 1px solid rgba(255,255,255,0.1);
   }
-  .nav-links.show { display:flex; }
-  .dropdown-menu { width:100%; }
-  .nav-links li a { font-size:16px; }
+  .nav-links.active{display:flex;}
+  .dropdown-menu { position:static; width:100%; box-shadow:none; background: rgba(0,0,0,0.1); }
+  .dropdown-menu.active { display:flex; }
+  .dropdown-menu li a { color: #fff !important; text-align: center; border-bottom: none; background: transparent; }
+  .nav-links li a { text-align: center; width: 100%; padding: 15px; }
 }
 
-@media(min-width:769px){
-  .nav-links li a { text-align:left; font-size:1.2vw; padding:10px 12px; }
-  .dropdown-menu {
-    max-height:none;
-    padding:0;
-    display:block !important;
-    position:absolute;
-    top:100%;
-    right:0;
-    width:200px;
-  }
-  .dropdown:hover .dropdown-menu { display:flex; flex-direction:column; }
-  .dropdown-menu li a { padding:10px; text-align:left; font-size:14px; }
+/* --- FAQ SECTION --- */
+.faq { max-width:850px; margin:60px auto; padding:0 20px; }
+.faq h3 { text-align:center; font-size:32px; margin-bottom:30px; color: #0a58ca; font-weight: 800; }
+
+.faq-item { 
+  background:#fff; 
+  margin-bottom:15px; 
+  border-radius:8px; 
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  overflow: hidden;
+  border: 1px solid #e1e4e8;
 }
 
-/* FAQ */
-.faq { max-width:900px; margin:40px auto 40px; padding:0 20px; }
-.faq h3 { text-align:center; font-size:28px; margin-bottom:20px; }
-.faq-item { background:rgba(255,255,255,0.9); margin-bottom:10px; border-radius:6px; }
-.faq-question { padding:14px; font-weight:bold; cursor:pointer; display:flex; justify-content:space-between; }
+.faq-question { 
+  padding:18px 24px; 
+  font-weight:700; 
+  cursor:pointer; 
+  display:flex; 
+  justify-content:space-between; 
+  align-items: center;
+  transition: background 0.3s;
+}
+.faq-question:hover { background: #f0f4ff; }
+
 .faq-answer {
   max-height:0;
   overflow:hidden;
-  padding:0 14px;
-  line-height:1.8;
-  font-size:16px;
-  transition:max-height 0.4s ease, padding 0.4s ease;
+  padding:0 24px;
+  color: #555;
+  transition: all 0.4s ease;
+  background: #fff;
 }
-.faq-answer.show { max-height:1000px; padding:14px; }
-.faq-question span {
-  display:inline-block;
-  transition:transform 0.3s ease;
+.faq-answer.show { 
+  max-height:1500px; 
+  padding: 10px 24px 24px 24px; 
+  border-top: 1px solid #eee;
 }
-.faq-question span.rotated { transform:rotate(45deg); }
 
-@media(max-width:768px){
-  .faq-answer { font-size:15px; line-height:1.7; }
+.faq-question span {
+  font-size: 22px;
+  color: #0a58ca;
+  transition: transform 0.3s ease;
 }
+.rotated { transform: rotate(45deg); }
 </style>
 </head>
 <body>
 
 <nav>
   <div class="nav-inner">
-    <h1>JL LabWeb Studio PH</h1>
+    <h1>JL LabWeb</h1>
     <div class="menu-toggle" id="mobile-menu">&#9776;</div>
     <ul class="nav-links" id="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="faq.html">FAQ</a></li>
       <li class="dropdown">
-        <a href="#" id="packages-toggle">Web Packages</a>
-        <ul class="dropdown-menu" id="packages-menu">
+        <a href="#" id="package-link">Web Packages ▼</a>
+        <ul class="dropdown-menu" id="package-dropdown">
           <li><a href="essential-scroll.html">The Essential Scroll</a></li>
           <li><a href="identity-pack.html">The Identity Pack</a></li>
           <li><a href="growth-suite.html">The Growth Suite</a></li>
         </ul>
       </li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="faq.html">FAQ</a></li>
     </ul>
   </div>
 </nav>
@@ -144,52 +136,39 @@ nav h1 { color:#fff; font-size:20px; }
 
   <div class="faq-item">
     <div class="faq-question">How long does it take? <span>+</span></div>
-    <div class="faq-answer">
-      7–14 days depending on content.
-    </div>
+    <div class="faq-answer">7–14 days depending on content.</div>
   </div>
 
   <div class="faq-item">
     <div class="faq-question">Is it mobile-friendly? <span>+</span></div>
-    <div class="faq-answer">
-      Yes, fully responsive.
-    </div>
+    <div class="faq-answer">Yes, fully responsive.</div>
   </div>
 
   <div class="faq-item">
     <div class="faq-question">Can I upgrade later? <span>+</span></div>
-    <div class="faq-answer">
-      Yes, anytime.
-    </div>
+    <div class="faq-answer">Yes, anytime.</div>
   </div>
 
   <div class="faq-item">
     <div class="faq-question">Do you provide hosting? <span>+</span></div>
     <div class="faq-answer">
-      Yes! Our Identity Pack includes one year of free hosting.  
-      To ensure your site stays secure and runs smoothly, we manage the hosting environment for you during this period.
-
+      Yes! Our Identity Pack includes one year of free hosting. To ensure your site stays secure and runs smoothly, we manage the hosting environment for you during this period.
       <br><br>
-      <strong>Regarding Ownership:</strong> While we manage the server for technical stability, you always own your website’s content and design.  
-      If you prefer to manage your own hosting from the start, or wish to move to your own server later, we provide a full account turnover and assist with the migration.
+      <strong>Regarding Ownership:</strong> While we manage the server for technical stability, you always own your website’s content and design. If you prefer to manage your own hosting from the start, or wish to move to your own server later, we provide a full account turnover and assist with the migration.
     </div>
   </div>
 
   <div class="faq-item">
     <div class="faq-question">Can I request custom designs? <span>+</span></div>
-    <div class="faq-answer">
-      Absolutely! We tailor websites to your brand and ideas.
-    </div>
+    <div class="faq-answer">Absolutely! We tailor websites to your brand and ideas.</div>
   </div>
 
   <div class="faq-item">
     <div class="faq-question">Do you offer domain registration? <span>+</span></div>
     <div class="faq-answer">
       Yes! A custom domain name registration is included for the first year in our Identity Pack and higher tiers.
-
       <br><br>
-      Please note: While standard domain extensions (like .com or .ph) are included, the final availability and price may vary depending on your preferred name.  
-      If you choose a premium domain that carries a higher registration cost, we will settle the price difference with you before proceeding.
+      Please note: While standard domain extensions (like .com or .ph) are included, the final availability and price may vary depending on your preferred name. If you choose a premium domain that carries a higher registration cost, we will settle the price difference with you before proceeding.
     </div>
   </div>
 
@@ -197,28 +176,23 @@ nav h1 { color:#fff; font-size:20px; }
     <div class="faq-question">What payment methods do you accept? <span>+</span></div>
     <div class="faq-answer">
       We aim to make the process as convenient as possible for local business owners. We currently accept:  
-
       <ul>
         <li>GCash (Digital Wallet)</li>
         <li>Cash (Payable upon project turnover)</li>
       </ul>
-
       To begin your custom project, we typically require a 50% down payment, with the remaining balance due once the website is completed and ready for turnover.
     </div>
   </div>
 
   <div class="faq-item">
     <div class="faq-question">Can I provide my own content? <span>+</span></div>
-    <div class="faq-answer">
-      Yes, we can use your images, text, and brand assets.
-    </div>
+    <div class="faq-answer">Yes, we can use your images, text, and brand assets.</div>
   </div>
 
   <div class="faq-item">
     <div class="faq-question">Do you offer ongoing support? <span>+</span></div>
     <div class="faq-answer">
       Yes! We don’t just build your site and leave. We offer flexible maintenance and support packages at a very low service rate.
-
       <br><br>
       Whether you need small content updates, security checks, or technical troubleshooting, we are available to ensure your website continues to run perfectly as your business grows.
     </div>
@@ -226,49 +200,47 @@ nav h1 { color:#fff; font-size:20px; }
 </section>
 
 <script>
-// Hamburger menu
-const menuToggle = document.getElementById("mobile-menu");
-const navLinks = document.getElementById("nav-links");
-const packagesToggle = document.getElementById("packages-toggle");
-const packagesMenu = document.getElementById("packages-menu");
+  // Unified Navigation Logic
+  const menuToggle = document.getElementById('mobile-menu');
+  const navLinks = document.getElementById('nav-links');
+  const packageLink = document.getElementById('package-link');
+  const packageDropdown = document.getElementById('package-dropdown');
 
-menuToggle.addEventListener("click", () => navLinks.classList.toggle("show"));
-packagesToggle.addEventListener("click", e => {
-  if(window.innerWidth <= 768){
-    e.preventDefault();
-    packagesMenu.classList.toggle("show");
-    packagesToggle.classList.toggle("rotated");
-  }
-});
-document.addEventListener("click", e => {
-  if(window.innerWidth <= 768){
-    if(!navLinks.contains(e.target) && !menuToggle.contains(e.target)){
-      navLinks.classList.remove("show");
-    }
-    if(!packagesToggle.contains(e.target) && !packagesMenu.contains(e.target)){
-      packagesMenu.classList.remove("show");
-      packagesToggle.classList.remove("rotated");
-    }
-  }
-});
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
 
-// FAQ toggle with smooth slide and rotating icon
-document.querySelectorAll(".faq-question").forEach(q => {
-  q.addEventListener("click", () => {
-    const a = q.nextElementSibling;
-    const s = q.querySelector("span");
-
-    if(a.classList.contains("show")){
-      a.classList.remove("show");
-      s.classList.remove("rotated");
-      s.textContent = "+";
-    } else {
-      a.classList.add("show");
-      s.classList.add("rotated");
-      s.textContent = "−";
+  packageLink.addEventListener('click', (e) => {
+    if (window.innerWidth <= 768) {
+      e.preventDefault();
+      packageDropdown.classList.toggle('active');
     }
   });
-});
+
+  document.addEventListener('click', (e) => {
+    if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+      navLinks.classList.remove('active');
+      packageDropdown.classList.remove('active');
+    }
+  });
+
+  // FAQ Accordion
+  document.querySelectorAll(".faq-question").forEach(q => {
+    q.addEventListener("click", () => {
+      const a = q.nextElementSibling;
+      const s = q.querySelector("span");
+
+      document.querySelectorAll(".faq-answer").forEach(other => {
+        if (other !== a && other.classList.contains("show")) {
+          other.classList.remove("show");
+          other.previousElementSibling.querySelector("span").classList.remove("rotated");
+        }
+      });
+
+      a.classList.toggle("show");
+      s.classList.toggle("rotated");
+    });
+  });
 </script>
 
 </body>

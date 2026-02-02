@@ -5,111 +5,241 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Growth Suite - JL LabWeb Studio PH</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial, Helvetica, sans-serif;}
-body{background:#f4f6fb;background-image:url("background.jpg");background-repeat:no-repeat;background-position:center center;background-attachment:fixed;background-size:cover;color:#000;min-height:100vh;}
-/* NAVBAR */
-nav{position:sticky;top:0;z-index:999;background:#0a58ca;}
-.nav-inner{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:12px 24px;position:relative;}
-nav h1{color:#fff;font-size:20px;}
-.nav-links{list-style:none;display:flex;gap:20px;position:relative;}
-.nav-links li{width:100%;}
-.nav-links li a{color:#fff;text-decoration:none;font-weight:bold;padding:8px 12px;font-size:14px;display:block;transition:background 0.3s;text-align:right;}
-.nav-links li a:hover{background:rgba(255,255,255,0.2);border-radius:4px;}
+/* --- GLOBAL STYLES --- */
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI', Roboto, Helvetica, Arial, sans-serif;}
+
+body {
+  background:#f4f6fb;
+  background-image: linear-gradient(rgba(244, 246, 251, 0.9), rgba(244, 246, 251, 0.9)), url("background.jpg");
+  background-repeat:no-repeat;
+  background-position:center center;
+  background-attachment:fixed;
+  background-size:cover;
+  color:#333;
+  min-height:100vh;
+  line-height: 1.6;
+}
+
+/* --- UNIFIED NAVIGATION --- */
+nav{position:sticky;top:0;z-index:999;background:#0a58ca;box-shadow: 0 2px 10px rgba(0,0,0,0.1);}
+.nav-inner{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 24px;
+}
+nav h1{color:#fff;font-size:22px; font-weight: 800;}
+.menu-toggle{ display:none; font-size:30px; color:#fff; cursor:pointer; user-select: none; }
+
+.nav-links{ list-style:none; display:flex; gap:10px; align-items: center; }
+.nav-links li a{ color:#fff; text-decoration:none; font-weight:600; padding:10px 15px; display:block; transition: 0.3s; border-radius: 4px; }
+.nav-links li a:hover{ background:rgba(255,255,255,0.2); }
+
+/* Dropdown Desktop */
 .dropdown{position:relative;}
-.dropdown-menu{display:flex;flex-direction:column;list-style:none;padding:0;margin:0;background:#0a58ca;border-radius:4px;overflow:hidden;max-height:0;transition:max-height 0.3s ease,padding 0.3s ease;}
-.dropdown-menu li a{padding:8px 12px;font-size:14px;text-align:right;}
-.dropdown-menu.show{max-height:500px;padding:5px 0;}
-.dropdown > a::after{content:" ▼";display:inline-block;transition:transform 0.3s ease;}
-.dropdown > a.rotated::after{transform:rotate(180deg);}
-.menu-toggle{display:none;font-size:28px;color:#fff;cursor:pointer;}
+.dropdown-menu{
+  list-style:none; background:#fff; border-radius:4px; overflow:hidden;
+  display: none; flex-direction:column; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  position: absolute; top: 100%; right: 0; width: 220px;
+}
+.dropdown-menu li a{ color: #333 !important; padding:12px 20px; font-size:14px; border-bottom: 1px solid #eee; }
+.dropdown-menu li a:hover{ background: #f4f6fb; }
+
+@media(min-width:769px){
+  .dropdown:hover .dropdown-menu{ display:flex; }
+}
+
+/* Unified Mobile Styling */
 @media(max-width:768px){
   .menu-toggle{display:block;}
-  .nav-links{display:none;flex-direction:column;background:#0a58ca;position:absolute;width:220px;right:24px;top:56px;border-radius:6px;padding:6px 0;text-align:right;z-index:999;}
-  .nav-links.show{display:flex;}
-  .dropdown-menu{width:100%;}
-  .nav-links li a{font-size:16px;}
+  .nav-links{
+    display:none; flex-direction:column; background:#0a58ca; position:absolute;
+    width:100%; left:0; top:100%; padding:10px 0; border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .nav-links.active{display:flex;}
+  
+  .dropdown-menu { position:static; width:100%; box-shadow:none; background: rgba(0,0,0,0.1); }
+  .dropdown-menu.active { display:flex; }
+  .dropdown-menu li a { color: #fff !important; text-align: center; border-bottom: none; background: transparent; }
+  .nav-links li a { text-align: center; width: 100%; padding: 15px; }
 }
-@media(min-width:769px){
-.nav-links li a{text-align:left;font-size:15px;padding:10px 12px;}
-.dropdown-menu{max-height:none;padding:0;display:block !important;position:absolute;top:100%;right:0;width:200px;}
-.dropdown:hover .dropdown-menu{display:flex;flex-direction:column;}
-.dropdown-menu li a{padding:10px;text-align:left;font-size:14px;}
+
+/* --- PAGE CONTENT --- */
+.container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+
+.package-hero {
+  text-align: center;
+  background: #fff;
+  padding: 50px 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  margin-bottom: 40px;
 }
-/* HERO & PACKAGE DETAILS */
-.hero{max-width:900px;margin:40px auto 20px;padding:20px;text-align:center;background:rgba(255,255,255,0.9);border-radius:8px;}
-.hero h2{font-size:28px;margin-bottom:15px;}
-.hero p{font-size:16px;line-height:1.6;margin-bottom:20px;}
-.package-details{max-width:700px;margin:20px auto;background:rgba(255,255,255,0.9);border-radius:8px;overflow:hidden;padding:15px;}
-.package-details table{width:100%;border-collapse:collapse;font-size:16px;}
-.package-details th, .package-details td{padding:12px;border:1px solid #ccc;}
-.package-details th{background:#f1f1f1;text-align:left;}
-.why-choose{max-width:700px;margin:20px auto;padding:20px;background:rgba(255,255,255,0.9);border-radius:8px;}
-.why-choose h3{font-size:22px;margin-bottom:12px;}
-.why-choose ul{list-style:disc;margin-left:20px;line-height:1.6;font-size:16px;}
+.package-hero h2 { font-size: 36px; color: #0a58ca; margin-bottom: 10px; }
+.package-hero .price-tag { 
+  display: inline-block; background: #0a58ca; color: #fff; 
+  padding: 8px 25px; border-radius: 30px; font-weight: 800; font-size: 22px; margin-bottom: 20px;
+}
+.package-hero p { font-size: 18px; color: #555; max-width: 800px; margin: 0 auto; }
+
+.section-title { color: #0a58ca; font-size: 24px; margin: 40px 0 20px; text-align: center; font-weight: 800; }
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+.info-card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  border-left: 5px solid #0a58ca;
+}
+.info-card h3 { color: #333; margin-bottom: 20px; font-size: 20px; border-bottom: 2px solid #f4f6fb; padding-bottom: 10px; }
+.info-card ul { list-style: none; }
+.info-card ul li { margin-bottom: 15px; padding-left: 30px; position: relative; font-size: 15px; }
+.info-card ul li::before {
+  content: "✦"; position: absolute; left: 0; color: #0a58ca; font-weight: bold;
+}
+.info-card ul li strong { color: #0a58ca; display: block; font-size: 16px; }
+
+/* --- CTA SECTION --- */
+.cta-section { text-align: center; margin: 60px 0; background: #fff; padding: 40px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+.cta-headline { font-size: 22px; font-weight: 800; margin-bottom: 10px; color: #0a58ca;}
+.cta-sub { color: #666; margin-bottom: 30px; }
+.btn-group { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+.btn-cta {
+  display: flex; align-items: center; justify-content: center; padding: 16px 35px;
+  text-decoration: none; font-weight: 700; font-size: 17px; border-radius: 50px;
+  transition: 0.3s; color: #fff; min-width: 240px;
+}
+.btn-viber { background: #665CAC; box-shadow: 0 4px 15px rgba(102, 92, 172, 0.3); }
+.btn-whatsapp { background: #25D366; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
+.btn-cta:hover { transform: translateY(-3px); opacity: 0.95; box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+
+@media(max-width: 768px) {
+  .details-grid { grid-template-columns: 1fr; }
+  .btn-group { flex-direction: column; align-items: center; }
+  .btn-cta { width: 100%; }
+}
 </style>
 </head>
 <body>
 
 <nav>
   <div class="nav-inner">
-    <h1>JL LabWeb Studio PH</h1>
+    <h1>JL LabWeb</h1>
     <div class="menu-toggle" id="mobile-menu">&#9776;</div>
     <ul class="nav-links" id="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="faq.html">FAQ</a></li>
       <li class="dropdown">
-        <a href="#" id="packages-toggle">Web Packages</a>
-        <ul class="dropdown-menu" id="packages-menu">
+        <a href="#" id="package-link">Web Packages ▼</a>
+        <ul class="dropdown-menu" id="package-dropdown">
           <li><a href="essential-scroll.html">The Essential Scroll</a></li>
           <li><a href="identity-pack.html">The Identity Pack</a></li>
           <li><a href="growth-suite.html">The Growth Suite</a></li>
         </ul>
       </li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="faq.html">FAQ</a></li>
     </ul>
   </div>
 </nav>
 
-<section class="hero">
-  <h2>The Growth Suite</h2>
-  <p>Multi-page, scalable website for growing businesses. Custom design and features to expand as your business grows. Ideal for medium to large businesses.</p>
-</section>
+<div class="container">
+  <section class="package-hero">
+    <div class="price-tag">₱20,000+</div>
+    <h2>The Growth Suite</h2>
+    <p>The ultimate solution for scaling businesses. A comprehensive, multi-page website built with performance, high-tier SEO, and custom functionality to drive significant growth.</p>
+  </section>
 
-<section class="package-details">
-  <table>
-    <tr><th>Package</th><td>The Growth Suite</td></tr>
-    <tr><th>Price</th><td>₱20,000+</td></tr>
-    <tr><th>Best For</th><td>Businesses that need scalable websites</td></tr>
-    <tr><th>Includes</th><td>Multi-page website with custom features</td></tr>
-  </table>
-</section>
+  <h2 class="section-title">High-Performance Business Features</h2>
+  
+  <div class="details-grid">
+    <section class="info-card">
+      <h3>Advanced Functionality</h3>
+      <ul>
+        <li><strong>Scalable Architecture</strong> Built on a foundation that allows for unlimited pages and future e-commerce integration.</li>
+        <li><strong>Blog/News Integration</strong> A custom-designed blog system to help you share updates and improve Google rankings.</li>
+        <li><strong>Enhanced Speed Optimization</strong> Advanced caching and image compression for lighting-fast performance.</li>
+        <li><strong>Premium CMS Access</strong> Easy-to-use backend so your team can update content effortlessly.</li>
+      </ul>
+    </section>
 
-<section class="why-choose">
-  <h3>Why Choose The Growth Suite?</h3>
-  <ul>
-    <li>Scalable design to grow with your business.</li>
-    <li>Custom multi-page layout for full business needs.</li>
-    <li>Optimized for performance, mobile, and SEO.</li>
-    <li>Perfect for medium to large companies wanting a professional web presence.</li>
-  </ul>
-</section>
+    <section class="info-card">
+      <h3>Marketing Powerhouse</h3>
+      <ul>
+        <li><strong>Elite SEO Strategy</strong> Deep keyword research and on-page optimization to outrank competitors.</li>
+        <li><strong>Google Analytics Setup</strong> Full integration to track exactly where your visitors are coming from.</li>
+        <li><strong>Facebook Pixel Integration</strong> Track conversions and run highly targeted social media ads.</li>
+        <li><strong>Custom Landing Pages</strong> Designed specifically for high-conversion marketing campaigns.</li>
+      </ul>
+    </section>
+
+    <section class="info-card">
+      <h3>Priority Management</h3>
+      <ul>
+        <li><strong>Premium Hosting Setup</strong> Dedicated resources to ensure your site stays live even during traffic spikes.</li>
+        <li><strong>Daily Backups</strong> Peace of mind with automated backups to ensure your data is always safe.</li>
+        <li><strong>Priority Support</strong> 90 Days of post-launch technical management and staff training sessions.</li>
+        <li><strong>Enterprise Security</strong> Hardened security layers to prevent spam and malicious attacks.</li>
+      </ul>
+    </section>
+
+    <section class="info-card" style="border-left-color: #25D366;">
+      <h3>Ideal For</h3>
+      <ul>
+        <li><strong>Established Corporations</strong> needing a digital upgrade.</li>
+        <li><strong>E-commerce Ventures</strong> looking to start professional sales.</li>
+        <li><strong>Real Estate & Agencies</strong> with large portfolios.</li>
+        <li><strong>Companies</strong> focused on content marketing and lead generation.</li>
+      </ul>
+    </section>
+  </div>
+
+  <section class="cta-section">
+    <p class="cta-headline">Scale your business to the next level.</p>
+    <p class="cta-sub">Let's build a powerful digital engine tailored to your long-term goals.</p>
+    <div class="btn-group">
+      <a href="viber://chat?number=%2B639944846149" class="btn-cta btn-viber">
+        Consult via Viber
+      </a>
+      <a href="whatsapp://send?phone=639310410733" class="btn-cta btn-whatsapp">
+        Message on WhatsApp
+      </a>
+    </div>
+  </section>
+</div>
 
 <script>
-// Hamburger menu
-const menuToggle = document.getElementById("mobile-menu");
-const navLinks = document.getElementById("nav-links");
-const packagesToggle = document.getElementById("packages-toggle");
-const packagesMenu = document.getElementById("packages-menu");
+  // Unified Navigation Logic
+  const menuToggle = document.getElementById('mobile-menu');
+  const navLinks = document.getElementById('nav-links');
+  const packageLink = document.getElementById('package-link');
+  const packageDropdown = document.getElementById('package-dropdown');
 
-menuToggle.addEventListener("click", () => navLinks.classList.toggle("show"));
-packagesToggle.addEventListener("click", e => {
-  if(window.innerWidth<=768){e.preventDefault();packagesMenu.classList.toggle("show");packagesToggle.classList.toggle("rotated");}
-});
-document.addEventListener("click", e=>{
-  if(window.innerWidth<=768){
-    if(!navLinks.contains(e.target) && !menuToggle.contains(e.target)){navLinks.classList.remove("show");}
-    if(!packagesToggle.contains(e.target) && !packagesMenu.contains(e.target)){packagesMenu.classList.remove("show");packagesToggle.classList.remove("rotated");}
-  }
-});
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+
+  packageLink.addEventListener('click', (e) => {
+    if (window.innerWidth <= 768) {
+      e.preventDefault();
+      packageDropdown.classList.toggle('active');
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+      navLinks.classList.remove('active');
+      packageDropdown.classList.remove('active');
+    }
+  });
 </script>
 
 </body>
