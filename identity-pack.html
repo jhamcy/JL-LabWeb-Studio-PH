@@ -1,246 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Identity Pack - JL LabWeb Studio PH</title>
-<style>
-/* --- GLOBAL STYLES --- */
-*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI', Roboto, Helvetica, Arial, sans-serif;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Identity Pack - JL LabWeb Studio PH</title>
+    <style>
+        /* --- GLOBAL STYLES --- */
+        *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI', Roboto, Helvetica, Arial, sans-serif;}
+        
+        body {
+            background-image: url("background.jpg");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            background-size: cover;
+            color: #333;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
 
-body {
-  background:#f4f6fb;
-  background-image: linear-gradient(rgba(244, 246, 251, 0.9), rgba(244, 246, 251, 0.9)), url("background.jpg");
-  background-repeat:no-repeat;
-  background-position:center center;
-  background-attachment:fixed;
-  background-size:cover;
-  color:#333;
-  min-height:100vh;
-  line-height: 1.6;
-}
+        /* --- UNIFIED NAVIGATION --- */
+        nav{position:sticky;top:0;z-index:999;background:#0a58ca;box-shadow: 0 2px 10px rgba(0,0,0,0.1);}
+        .nav-inner{
+            max-width:1200px;
+            margin:auto;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:12px 24px;
+        }
+        nav h1{color:#fff;font-size:22px; font-weight: 800;}
+        .menu-toggle{ display:none; font-size:30px; color:#fff; cursor:pointer; user-select: none; }
+        .nav-links{ list-style:none; display:flex; gap:10px; align-items: center; }
+        .nav-links li a{ color:#fff; text-decoration:none; font-weight:600; padding:10px 15px; display:block; transition: 0.3s; border-radius: 4px; }
+        .nav-links li a:hover{ background:rgba(255,255,255,0.2); }
 
-/* --- UNIFIED NAVIGATION --- */
-nav{position:sticky;top:0;z-index:999;background:#0a58ca;box-shadow: 0 2px 10px rgba(0,0,0,0.1);}
-.nav-inner{
-  max-width:1200px;
-  margin:auto;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:12px 24px;
-}
-nav h1{color:#fff;font-size:22px; font-weight: 800;}
-.menu-toggle{ display:none; font-size:30px; color:#fff; cursor:pointer; user-select: none; }
+        /* Dropdown Desktop */
+        .dropdown{position:relative;}
+        .dropdown-menu{
+            list-style:none; background:#fff; border-radius:4px; overflow:hidden;
+            display: none; flex-direction:column; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: absolute; top: 100%; right: 0; width: 220px;
+        }
+        .dropdown-menu li a{ color: #333 !important; padding:12px 20px; font-size:14px; border-bottom: 1px solid #eee; }
+        .dropdown-menu li a:hover{ background: #f4f6fb; }
+        @media(min-width:769px){
+            .dropdown:hover .dropdown-menu{ display:flex; }
+        }
 
-.nav-links{ list-style:none; display:flex; gap:10px; align-items: center; }
-.nav-links li a{ color:#fff; text-decoration:none; font-weight:600; padding:10px 15px; display:block; transition: 0.3s; border-radius: 4px; }
-.nav-links li a:hover{ background:rgba(255,255,255,0.2); }
+        /* Unified Mobile Styling */
+        @media(max-width:768px){
+            .menu-toggle{display:block;}
+            .nav-links{
+                display:none; flex-direction:column; background:#0a58ca; position:absolute;
+                width:100%; left:0; top:100%; padding:10px 0; border-top: 1px solid rgba(255,255,255,0.1);
+            }
+            .nav-links.active{display:flex;}
+            .dropdown-menu { position:static; width:100%; box-shadow:none; background: rgba(0,0,0,0.1); }
+            .dropdown-menu.active { display:flex; }
+            .dropdown-menu li a { color: #fff !important; text-align: center; border-bottom: none; background: transparent; }
+            .nav-links li a { text-align: center; width: 100%; padding: 15px; }
+        }
 
-/* Dropdown Desktop */
-.dropdown{position:relative;}
-.dropdown-menu{
-  list-style:none; background:#fff; border-radius:4px; overflow:hidden;
-  display: none; flex-direction:column; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  position: absolute; top: 100%; right: 0; width: 220px;
-}
-.dropdown-menu li a{ color: #333 !important; padding:12px 20px; font-size:14px; border-bottom: 1px solid #eee; }
-.dropdown-menu li a:hover{ background: #f4f6fb; }
+        /* --- PAGE CONTENT --- */
+        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+        
+        .package-hero {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9); 
+            padding: 50px 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+        
+        .package-hero h2 { font-size: 36px; color: #0a58ca; margin-bottom: 10px; }
+        .package-hero .price-tag { 
+            display: inline-block; background: #0a58ca; color: #fff; 
+            padding: 8px 25px; border-radius: 30px; font-weight: 800; font-size: 22px; margin-bottom: 20px;
+        }
+        .package-hero p { font-size: 18px; color: #555; max-width: 800px; margin: 0 auto; }
+        .package-hero .note { font-size: 14px; color: #888; margin-top: 15px; }
+        
+        .section-title { color: #0a58ca; font-size: 24px; margin: 40px 0 20px; text-align: center; font-weight: 800; }
+        
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+        .info-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #0a58ca;
+        }
+        .info-card h3 { color: #333; margin-bottom: 20px; font-size: 20px; border-bottom: 2px solid #f4f6fb; padding-bottom: 10px; }
+        .info-card ul { list-style: none; }
+        .info-card ul li { margin-bottom: 15px; padding-left: 30px; position: relative; font-size: 15px; }
+        .info-card ul li::before {
+            content: "✦"; position: absolute; left: 0; color: #0a58ca; font-weight: bold;
+        }
+        .info-card ul li strong { color: #0a58ca; display: block; font-size: 16px; }
 
-@media(min-width:769px){
-  .dropdown:hover .dropdown-menu{ display:flex; }
-}
+        /* --- PORTFOLIO SECTION --- */
+        .portfolio-title { color: #0a58ca; font-size: 24px; margin: 60px 0 20px; text-align: center; font-weight: 800; }
+        .portfolio-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        .portfolio-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid #eee;
+            width: 100%;
+            max-width: 380px;
+        }
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(10, 88, 202, 0.15);
+        }
+        .portfolio-thumb {
+            width: 100%; height: 220px; background: #e9ecef; overflow: hidden;
+        }
+        .portfolio-thumb img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+        .portfolio-info { padding: 20px; text-align: center; }
+        .portfolio-info h4 { color: #333; margin-bottom: 8px; font-size: 18px; }
+        .portfolio-info p { font-size: 14px; color: #666; margin-bottom: 15px; }
+        
+        .feature-tags {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 20px;
+        }
+        .feature-tags span {
+            background: #f0f4f8; color: #0a58ca; font-size: 11px; font-weight: 700;
+            padding: 4px 10px; border-radius: 4px; text-transform: uppercase;
+        }
+        .btn-demo {
+            display: inline-block; padding: 10px 25px; background: #0a58ca; color: #fff;
+            text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 14px; transition: 0.3s;
+        }
+        .btn-demo:hover { background: #333; color: #fff; }
 
-/* Unified Mobile Styling */
-@media(max-width:768px){
-  .menu-toggle{display:block;}
-  .nav-links{
-    display:none; flex-direction:column; background:#0a58ca; position:absolute;
-    width:100%; left:0; top:100%; padding:10px 0; border-top: 1px solid rgba(255,255,255,0.1);
-  }
-  .nav-links.active{display:flex;}
-  
-  .dropdown-menu { position:static; width:100%; box-shadow:none; background: rgba(0,0,0,0.1); }
-  .dropdown-menu.active { display:flex; }
-  .dropdown-menu li a { color: #fff !important; text-align: center; border-bottom: none; background: transparent; }
-  .nav-links li a { text-align: center; width: 100%; padding: 15px; }
-}
+        /* --- CTA SECTION --- */
+        .cta-section { text-align: center; margin: 60px 0; background: rgba(255, 255, 255, 0.9); padding: 40px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .cta-headline { font-size: 22px; font-weight: 800; margin-bottom: 10px; color: #0a58ca;}
+        .cta-sub { color: #666; margin-bottom: 30px; }
+        .btn-group { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .btn-cta {
+            display: flex; align-items: center; justify-content: center; padding: 16px 35px;
+            text-decoration: none; font-weight: 700; font-size: 17px; border-radius: 50px;
+            transition: 0.3s; color: #fff; min-width: 240px;
+        }
+        .btn-viber { background: #665CAC; box-shadow: 0 4px 15px rgba(102, 92, 172, 0.3); }
+        .btn-whatsapp { background: #25D366; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
+        .btn-cta:hover { transform: translateY(-3px); opacity: 0.95; box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
 
-/* --- PAGE CONTENT --- */
-.container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
-
-.package-hero {
-  text-align: center;
-  background: #fff;
-  padding: 50px 20px;
-  border-radius: 15px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-  margin-bottom: 40px;
-}
-.package-hero h2 { font-size: 36px; color: #0a58ca; margin-bottom: 10px; }
-.package-hero .price-tag { 
-  display: inline-block; background: #0a58ca; color: #fff; 
-  padding: 8px 25px; border-radius: 30px; font-weight: 800; font-size: 22px; margin-bottom: 20px;
-}
-.package-hero p { font-size: 18px; color: #555; max-width: 800px; margin: 0 auto; }
-
-.section-title { color: #0a58ca; font-size: 24px; margin: 40px 0 20px; text-align: center; font-weight: 800; }
-
-.details-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 25px;
-}
-
-.info-card {
-  background: #fff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-  border-left: 5px solid #0a58ca;
-}
-.info-card h3 { color: #333; margin-bottom: 20px; font-size: 20px; border-bottom: 2px solid #f4f6fb; padding-bottom: 10px; }
-.info-card ul { list-style: none; }
-.info-card ul li { margin-bottom: 15px; padding-left: 30px; position: relative; font-size: 15px; }
-.info-card ul li::before {
-  content: "✦"; position: absolute; left: 0; color: #0a58ca; font-weight: bold;
-}
-.info-card ul li strong { color: #0a58ca; display: block; font-size: 16px; }
-
-/* --- CTA SECTION --- */
-.cta-section { text-align: center; margin: 60px 0; background: #fff; padding: 40px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
-.cta-headline { font-size: 22px; font-weight: 800; margin-bottom: 10px; color: #0a58ca;}
-.cta-sub { color: #666; margin-bottom: 30px; }
-.btn-group { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-.btn-cta {
-  display: flex; align-items: center; justify-content: center; padding: 16px 35px;
-  text-decoration: none; font-weight: 700; font-size: 17px; border-radius: 50px;
-  transition: 0.3s; color: #fff; min-width: 240px;
-}
-.btn-viber { background: #665CAC; box-shadow: 0 4px 15px rgba(102, 92, 172, 0.3); }
-.btn-whatsapp { background: #25D366; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
-.btn-cta:hover { transform: translateY(-3px); opacity: 0.95; box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
-
-@media(max-width: 768px) {
-  .details-grid { grid-template-columns: 1fr; }
-  .btn-group { flex-direction: column; align-items: center; }
-  .btn-cta { width: 100%; }
-}
-</style>
+        @media(max-width: 768px) {
+            .details-grid { grid-template-columns: 1fr; }
+            .btn-group { flex-direction: column; align-items: center; }
+            .btn-cta { width: 100%; }
+        }
+    </style>
 </head>
 <body>
 
 <nav>
-  <div class="nav-inner">
-    <h1>JL LabWeb</h1>
-    <div class="menu-toggle" id="mobile-menu">&#9776;</div>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li class="dropdown">
-        <a href="#" id="package-link">Web Packages ▼</a>
-        <ul class="dropdown-menu" id="package-dropdown">
-          <li><a href="essential-scroll.html">The Essential Scroll</a></li>
-          <li><a href="identity-pack.html">The Identity Pack</a></li>
-          <li><a href="growth-suite.html">The Growth Suite</a></li>
+    <div class="nav-inner">
+        <h1>JL LabWeb</h1>
+        <div class="menu-toggle" id="mobile-menu">&#9776;</div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown">
+                <a href="#" id="package-link">Web Packages ▼</a>
+                <ul class="dropdown-menu" id="package-dropdown">
+                    <li><a href="essential-scroll.html">The Essential Pack</a></li>
+                    <li><a href="identity-pack.html">The Identity Pack</a></li>
+                    <li><a href="growth-suite.html">The Growth Suite</a></li>
+                </ul>
+            </li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="faq.html">FAQ</a></li>
         </ul>
-      </li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="faq.html">FAQ</a></li>
-    </ul>
-  </div>
+    </div>
 </nav>
 
 <div class="container">
-  <section class="package-hero">
-    <div class="price-tag">₱11,500 – ₱17,000</div>
-    <h2>The Identity Pack</h2>
-    <p>Establish authority and credibility with a complete brand-focused website. This package is designed for businesses that need a multi-page site to showcase their story and services.</p>
-  </section>
-
-  <h2 class="section-title">Everything You Need to Succeed</h2>
-  
-  <div class="details-grid">
-    <section class="info-card">
-      <h3>Business Identity</h3>
-      <ul>
-        <li><strong>Multi-Page Structure</strong> Includes separate pages for Home, About Us, Services, and Contact.</li>
-        <li><strong>Brand Alignment</strong> Custom design that reflects your professional brand and reputation.</li>
-        <li><strong>Custom Domain (.com/.ph)</strong> Includes 1-Year Domain registration for a professional web address.</li>
-        <li><strong>Professional Content Layout</strong> Strategic placement of your text and images to build trust.</li>
-      </ul>
+    <section class="package-hero">
+        <div class="price-tag">₱18,000 – ₱25,000</div>
+        <h2>The Identity Pack</h2>
+        <p>Go beyond just a website. Establish your professional footprint with a custom domain and high-speed hosting, built into one complete package.</p>
+        <p class="note">*Full ownership and setup included in the price.*</p>
     </section>
 
-    <section class="info-card">
-      <h3>Technical Foundations</h3>
-      <ul>
-        <li><strong>1-Year Free Hosting</strong> High-performance server hosting managed by us for peak uptime.</li>
-        <li><strong>Advanced SEO Setup</strong> Deeper keyword optimization to help customers find you on Google.</li>
-        <li><strong>Dynamic Contact System</strong> Customized inquiry forms to gather specific business leads.</li>
-        <li><strong>Mobile First Design</strong> Hand-crafted responsiveness for a premium mobile experience.</li>
-      </ul>
-    </section>
-
-    <section class="info-card">
-      <h3>Growth & Support</h3>
-      <ul>
-        <li><strong>Social Media Synergy</strong> Integration with Facebook Page, Instagram, and TikTok feeds.</li>
-        <li><strong>Security Standard</strong> SSL Certificate installation included for data protection.</li>
-        <li><strong>Extended Support</strong> 60 Days of post-launch technical support for peace of mind.</li>
-        <li><strong>Email Forwarding</strong> Setup of professional email forwarding for centralized communication.</li>
-      </ul>
-    </section>
-
-    <section class="info-card" style="border-left-color: #25D366;">
-      <h3>Ideal For</h3>
-      <ul>
-        <li><strong>Local Service Businesses</strong> (Plumbers, Tutors, Salons)</li>
-        <li><strong>Professional Consultants</strong> (Architects, Accountants, Lawyers)</li>
-        <li><strong>Retail Shops</strong> looking for a professional catalog appearance.</li>
-        <li><strong>Startups</strong> looking to build long-term credibility.</li>
-      </ul>
-    </section>
-  </div>
-
-  <section class="cta-section">
-    <p class="cta-headline">Ready to give your brand a professional home?</p>
-    <p class="cta-sub">Launch your professional identity with a custom-built website today.</p>
-    <div class="btn-group">
-      <a href="viber://chat?number=%2B639944846149" class="btn-cta btn-viber">
-        Chat via Viber
-      </a>
-      <a href="whatsapp://send?phone=639310410733" class="btn-cta btn-whatsapp">
-        Message on WhatsApp
-      </a>
+    <h2 class="section-title">Exclusive Features</h2>
+    <div class="details-grid">
+        <section class="info-card">
+            <h3>Domain & Hosting</h3>
+            <ul>
+                <li><strong>Registered Domain</strong> Your own professional web address (e.g., .com, .ph, .net).</li>
+                <li><strong>Premium Hosting</strong> Fast, secure, and reliable hosting server provided by us.</li>
+                <li><strong>Business Emails</strong> Look professional with your-name@yourdomain.com.</li>
+            </ul>
+        </section>
+        <section class="info-card">
+            <h3>Advanced Structure</h3>
+            <ul>
+                <li><strong>Full Multi-Page Site</strong> Home, About, Services, Gallery, and Contact pages.</li>
+                <li><strong>SEO Optimization</strong> Enhanced search engine setup to get you found faster.</li>
+                <li><strong>SSL Security</strong> Secure your site with a locked padlock in the browser bar.</li>
+            </ul>
+        </section>
     </div>
-  </section>
+
+    <h2 class="portfolio-title">Available Demo Models</h2>
+    <div class="portfolio-grid">
+        <div class="portfolio-card">
+            <div class="portfolio-thumb"><img src="coffee-demo.jpg" alt="Coffee Shop Demo"></div>
+            <div class="portfolio-info">
+                <h4>Coffee Shop Model</h4>
+                <p>A multi-page layout featuring a digital menu, gallery, and location integration.</p>
+                <div class="feature-tags"><span>Custom Domain</span><span>SSL Secured</span><span>Multi-Page</span></div>
+                <a href="https://jhamcy.github.io/Coffee-Shop-Demo/" target="_blank" class="btn-demo">View Live Demo</a>
+            </div>
+        </div>
+
+        <div class="portfolio-card">
+            <div class="portfolio-thumb"><img src="spa-demo.jpg" alt="Ataraxy Wellness Spa Demo"></div>
+            <div class="portfolio-info">
+                <h4>Wellness & Spa Model</h4>
+                <p>Professional service-based design with dedicated pages for treatment details.</p>
+                <div class="feature-tags"><span>High-Speed Hosting</span><span>Service Catalog</span><span>SEO Ready</span></div>
+                <a href="https://jhamcy.github.io/Ataraxy-Wellness-Spa-Demo/" target="_blank" class="btn-demo">View Live Demo</a>
+            </div>
+        </div>
+    </div>
+
+    <section class="cta-section">
+        <p class="cta-headline">Ready for a professional home on the web?</p>
+        <p class="cta-sub">We handle the domain registration and hosting so you can focus on your business.</p>
+        <div class="btn-group">
+            <a href="viber://chat?number=%2B639944846149" class="btn-cta btn-viber">Chat via Viber</a>
+            <a href="https://wa.me/639310410733?text=Hi!%20I'm%20interested%20in%20The%20Identity%20Pack%20(Domain%20+%20Hosting)." class="btn-cta btn-whatsapp">Message on WhatsApp</a>
+        </div>
+    </section>
 </div>
 
 <script>
-  // Unified Navigation Logic
-  const menuToggle = document.getElementById('mobile-menu');
-  const navLinks = document.getElementById('nav-links');
-  const packageLink = document.getElementById('package-link');
-  const packageDropdown = document.getElementById('package-dropdown');
+    const menuToggle = document.getElementById('mobile-menu');
+    const navLinks = document.getElementById('nav-links');
+    const packageLink = document.getElementById('package-link');
+    const packageDropdown = document.getElementById('package-dropdown');
 
-  menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-  });
+    menuToggle.addEventListener('click', () => { navLinks.classList.toggle('active'); });
 
-  packageLink.addEventListener('click', (e) => {
-    if (window.innerWidth <= 768) {
-      e.preventDefault();
-      packageDropdown.classList.toggle('active');
-    }
-  });
+    packageLink.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+            e.preventDefault();
+            packageDropdown.classList.toggle('active');
+        }
+    });
 
-  document.addEventListener('click', (e) => {
-    if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
-      navLinks.classList.remove('active');
-      packageDropdown.classList.remove('active');
-    }
-  });
+    document.addEventListener('click', (e) => {
+        if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+            navLinks.classList.remove('active');
+            packageDropdown.classList.remove('active');
+        }
+    });
 </script>
-
 </body>
 </html>
