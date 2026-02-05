@@ -7,15 +7,17 @@
     <style>
         /* --- GLOBAL STYLES --- */
         *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI', Roboto, Helvetica, Arial, sans-serif;}
+        
         body {
-            background:#f4f6fb;
-            background-image: linear-gradient(rgba(244, 246, 251, 0.9), rgba(244, 246, 251, 0.9)), url("background.jpg");
-            background-repeat:no-repeat;
-            background-position:center center;
-            background-attachment:fixed;
-            background-size:cover;
-            color:#333;
-            min-height:100vh;
+            /* REMOVED ALL GRADIENTS AND TINTS - VIEWING ORIGINAL COLOR OF JPG */
+            background-image: url("background.jpg");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            background-size: cover;
+            
+            color: #333;
+            min-height: 100vh;
             line-height: 1.6;
         }
 
@@ -64,14 +66,18 @@
 
         /* --- PAGE CONTENT --- */
         .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+        
+        /* I kept a very light semi-transparent white on the cards so they are readable 
+           over your background, while still letting the background show through. */
         .package-hero {
             text-align: center;
-            background: #fff;
+            background: rgba(255, 255, 255, 0.9); 
             padding: 50px 20px;
             border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             margin-bottom: 40px;
         }
+        
         .package-hero h2 { font-size: 36px; color: #0a58ca; margin-bottom: 10px; }
         .package-hero .price-tag { 
             display: inline-block; background: #0a58ca; color: #fff; 
@@ -88,10 +94,10 @@
             gap: 25px;
         }
         .info-card {
-            background: #fff;
+            background: rgba(255, 255, 255, 0.9);
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             border-left: 5px solid #0a58ca;
         }
         .info-card h3 { color: #333; margin-bottom: 20px; font-size: 20px; border-bottom: 2px solid #f4f6fb; padding-bottom: 10px; }
@@ -115,7 +121,7 @@
             background: #fff;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
             border: 1px solid #eee;
             width: 100%;
@@ -149,7 +155,7 @@
         .btn-demo:hover { background: #333; color: #fff; }
 
         /* --- CTA SECTION --- */
-        .cta-section { text-align: center; margin: 60px 0; background: #fff; padding: 40px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        .cta-section { text-align: center; margin: 60px 0; background: rgba(255, 255, 255, 0.9); padding: 40px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
         .cta-headline { font-size: 22px; font-weight: 800; margin-bottom: 10px; color: #0a58ca;}
         .cta-sub { color: #666; margin-bottom: 30px; }
         .btn-group { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
@@ -221,39 +227,23 @@
     </div>
 
     <h2 class="portfolio-title">Available Demo Models</h2>
-    <p style="text-align: center; margin-top: -15px; margin-bottom: 30px; color: #666; padding: 0 20px;">
-        Request these exact structures or use them as inspiration for your project.
-    </p>
-
     <div class="portfolio-grid">
         <div class="portfolio-card">
-            <div class="portfolio-thumb">
-                <img src="coffee-demo.jpg" alt="Coffee Shop Demo">
-            </div>
+            <div class="portfolio-thumb"><img src="coffee-demo.jpg" alt="Coffee Shop Demo"></div>
             <div class="portfolio-info">
                 <h4>Coffee Shop Model</h4>
                 <p>A multi-page layout featuring a digital menu, gallery, and location integration.</p>
-                <div class="feature-tags">
-                    <span>Multi-Page</span>
-                    <span>Product Menu</span>
-                    <span>Google Maps</span>
-                </div>
+                <div class="feature-tags"><span>Multi-Page</span><span>Product Menu</span><span>Google Maps</span></div>
                 <a href="https://jhamcy.github.io/Coffee-Shop-Demo/" target="_blank" class="btn-demo">View Live Demo</a>
             </div>
         </div>
 
         <div class="portfolio-card">
-            <div class="portfolio-thumb">
-                <img src="spa-demo.jpg" alt="Ataraxy Wellness Spa Demo">
-            </div>
+            <div class="portfolio-thumb"><img src="spa-demo.jpg" alt="Ataraxy Wellness Spa Demo"></div>
             <div class="portfolio-info">
                 <h4>Wellness & Spa Model</h4>
                 <p>Professional service-based design with dedicated pages for treatment details.</p>
-                <div class="feature-tags">
-                    <span>Clean UI</span>
-                    <span>Service Catalog</span>
-                    <span>Booking CTA</span>
-                </div>
+                <div class="feature-tags"><span>Clean UI</span><span>Service Catalog</span><span>Booking CTA</span></div>
                 <a href="https://jhamcy.github.io/Ataraxy-Wellness-Spa-Demo/" target="_blank" class="btn-demo">View Live Demo</a>
             </div>
         </div>
