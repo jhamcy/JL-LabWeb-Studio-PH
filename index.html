@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JL LabWeb Studio PH | Custom Business Websites</title>
 
+<meta name="description" content="JL LabWeb Studio PH: Custom, high-performance websites for Filipino businesses. 50% down payment with daily progress updates and 100% code ownership.">
+<meta property="og:title" content="JL LabWeb Studio PH | Custom Business Websites">
+<meta property="og:description" content="Transparent web development with daily GitHub/Netlify updates. Watch your site grow in real-time.">
+<meta property="og:image" content="logo.png">
+
 <style>
 /* --- 1. RESET & BASE STYLES --- */
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI', Roboto, Helvetica, Arial, sans-serif;}
@@ -19,17 +24,14 @@ body{
   color: #333;
   min-height: 100vh;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 /* --- 2. NAVIGATION --- */
 nav{position:sticky;top:0;z-index:999;background:#0a58ca;box-shadow: 0 2px 10px rgba(0,0,0,0.1);}
 .nav-inner{
-  max-width:1200px;
-  margin:auto;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:12px 24px;
+  max-width:1200px; margin:auto; display:flex; 
+  justify-content:space-between; align-items:center; padding:12px 24px;
 }
 nav h1{color:#fff;font-size:22px; font-weight: 800;}
 .menu-toggle{ display:none; font-size:30px; color:#fff; cursor:pointer; user-select: none; }
@@ -44,45 +46,38 @@ nav h1{color:#fff;font-size:22px; font-weight: 800;}
   position: absolute; top: 100%; right: 0; width: 220px;
 }
 .dropdown-menu li a{ color: #333 !important; padding:12px 20px; font-size:14px; border-bottom: 1px solid #eee; }
-.dropdown-menu li a:hover{ background: #f4f6fb; }
-
-@media(min-width:769px){
-  .dropdown:hover .dropdown-menu{ display:flex; }
-}
 
 @media(max-width:768px){
   .menu-toggle{display:block;}
-  .nav-links{
-    display:none; flex-direction:column; background:#0a58ca; position:absolute;
-    width:100%; left:0; top:100%; padding:10px 0; border-top: 1px solid rgba(255,255,255,0.1);
-  }
+  .nav-links{ display:none; flex-direction:column; background:#0a58ca; position:absolute; width:100%; left:0; top:100%; padding:10px 0; }
   .nav-links.active{display:flex;}
-  .dropdown-menu { position:static; width:100%; box-shadow:none; background: rgba(0,0,0,0.1); }
+  .dropdown-menu { position:static; width:100%; background: rgba(0,0,0,0.1); }
   .dropdown-menu.active { display:flex; }
-  .dropdown-menu li a { color: #fff !important; text-align: center; border-bottom: none; background: transparent; }
-  .nav-links li a { text-align: center; width: 100%; padding: 15px; }
 }
 
-/* --- 3. HERO & TRUST BANNER --- */
-.hero{text-align:center; padding:40px 20px 10px;}
-.hero img{width:260px; max-width:90%; margin-bottom:10px; transition: transform 0.3s ease;}
-.hero h2{font-size: 32px; margin-bottom: 8px; color: #0a58ca; font-weight: 800;}
-.hero p{max-width:750px; margin:0 auto 15px; font-size:17px; font-weight: 500;}
+/* --- 3. ANIMATIONS --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- 4. HERO & TRUST BANNER --- */
+.hero{text-align:center; padding:60px 20px 20px;}
+.hero img{width:260px; max-width:90%; margin-bottom:10px;}
+.hero h2{font-size: 36px; color: #0a58ca; font-weight: 800;}
 
 .trust-banner {
   background: rgba(10, 88, 202, 0.9);
-  color: white;
-  padding: 30px 20px;
-  text-align: center;
-  margin: 30px auto;
-  max-width: 900px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  color: white; padding: 30px 20px; text-align: center;
+  margin: 30px auto; max-width: 900px; border-radius: 12px;
 }
-.trust-banner h3 { font-size: 24px; margin-bottom: 10px; }
-.trust-banner p { font-size: 16px; opacity: 0.9; line-height: 1.4; }
 
-/* --- 4. SLIDESHOW --- */
+/* --- 5. SLIDESHOW --- */
 .slideshow-container{
   max-width:900px; margin:20px auto 40px; border-radius:12px; overflow:hidden;
   box-shadow: 0 10px 30px rgba(0,0,0,0.15);
@@ -94,29 +89,21 @@ nav h1{color:#fff;font-size:22px; font-weight: 800;}
 .dot{height:12px; width:12px; margin:0 5px; display:inline-block; border-radius:50%; background:#ccc; cursor:pointer;}
 .active-dot{background:#0a58ca;}
 
-/* --- 5. PACKAGE CARDS --- */
+/* --- 6. PACKAGE CARDS --- */
 #pricing { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
 #pricing h3 { text-align: center; margin-bottom: 30px; font-size: 28px; color: #0a58ca; font-weight: 800; }
 .package-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
 
 .package-card {
   background: rgba(255, 255, 255, 0.95);
-  border-radius: 12px;
-  padding: 40px; 
-  width: 100%;
-  max-width: 420px; 
-  text-align: center;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-  cursor: pointer;
-  border: 1px solid rgba(10, 88, 202, 0.1);
-  transition: all 0.4s ease;
+  border-radius: 12px; padding: 40px; width: 100%; max-width: 420px; 
+  text-align: center; box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  cursor: pointer; transition: all 0.4s ease;
 }
-.package-card:hover { transform: translateY(-10px); border-color: #0a58ca; }
-.package-card h4 { color: #0a58ca; font-size: 22px; margin-bottom: 15px; font-weight: 800; }
-.package-card p { font-size: 15px; color: #555; margin-bottom: 25px; min-height: 60px; }
+.package-card:hover { transform: translateY(-10px); }
 .view-btn { display: inline-block; padding: 12px 30px; background: #0a58ca; color: #fff; border-radius: 50px; font-weight: 700; }
 
-/* --- 6. FLOATING BUTTONS --- */
+/* --- 7. FLOATING BUTTONS --- */
 .floating-buttons{position:fixed; bottom:25px; right:20px; display:flex; flex-direction:column; gap:15px; z-index:9999;}
 .floating-buttons a{width:55px; height:55px; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 5px 15px rgba(0,0,0,0.3); transition:0.3s;}
 .viber-floating{background:#665CAC;}
@@ -146,18 +133,18 @@ nav h1{color:#fff;font-size:22px; font-weight: 800;}
   </div>
 </nav>
 
-<section class="hero">
-  <img src="logo.png" alt="JL LabWeb Studio PH Logo">
+<section class="hero reveal">
+  <img src="logo.png" alt="JL LabWeb Logo">
   <h2>Turn Your Ideas Into a Professional Website</h2>
   <p>Custom, high-performance websites built with transparency and daily progress updates.</p>
 </section>
 
-<div class="trust-banner">
+<div class="trust-banner reveal">
   <h3>100% Transparent Development</h3>
-  <p>Secure your slot with a <strong>50% down payment</strong>. In return, you receive <strong>daily updates</strong> and a live preview link to watch your site grow. We build until you are 100% satisfied.</p>
+  <p>Secure your slot with a <strong>50% down payment</strong>. In return, you receive <strong>daily updates</strong> and a live preview link to watch your site grow.</p>
 </div>
 
-<section class="slideshow-container">
+<section class="slideshow-container reveal">
   <div class="slide">
     <img src="image1.png" alt="Custom Design">
     <div class="caption">Custom Web Designs Tailored to Your Brand</div>
@@ -172,27 +159,36 @@ nav h1{color:#fff;font-size:22px; font-weight: 800;}
   </div>
 </section>
 
-<section id="pricing">
+<section id="pricing" class="reveal">
   <h3>Choose Your Custom Web Solution</h3>
   <div class="package-container">
     <div class="package-card" onclick="location.href='essential-scroll.html'">
       <h4>The Essential Pack</h4>
-      <p>3-5 Page Custom Build. We provide the full account and password upon completion. Best for clients who want direct control over their domain.</p>
+      <p>3-5 Page Custom Build. Full account handover upon completion. Best for clients who want direct control over their domain.</p>
       <span class="view-btn">View Details</span>
     </div>
 
     <div class="package-card" onclick="location.href='identity-pack.html'">
       <h4>The Identity Pack</h4>
-      <p>Premium Multi-page Experience. Includes managed domain registration and hosting. We handle the technical setup while you focus on your brand.</p>
+      <p>Premium Multi-page Experience. Includes managed domain registration and hosting. We handle the technical setup.</p>
       <span class="view-btn">View Details</span>
     </div>
   </div>
 </section>
 
 <div class="floating-buttons">
-  <a href="viber://chat?number=%2B639944846149" class="viber-floating"><img src="viber.png" alt="Viber" style="width:28px;"></a>
-  <a href="https://wa.me/639944846149" class="whatsapp-floating"><img src="whatsapp.png" alt="WhatsApp" style="width:28px;"></a>
+  <a href="viber://chat?number=%2B639944846149" class="viber-floating">
+    <img src="viber.png" alt="Viber" style="width:28px;">
+  </a>
+  
+  <a href="https://wa.me/639310410733?text=Hi!%20I'm%20interested%20in%20a%20website%20project." class="whatsapp-floating">
+    <img src="whatsapp.png" alt="WhatsApp" style="width:28px;">
+  </a>
 </div>
+
+<p style="text-align: center; padding: 40px 20px; font-size: 13px; color: #7f8c8d; opacity: 0.8;">
+    &copy; 2026 JL LabWeb Studio PH. 100% Code Ownership Guaranteed.
+</p>
 
 <script>
 /* Navigation Logic */
@@ -202,7 +198,6 @@ const packageLink = document.getElementById('package-link');
 const packageDropdown = document.getElementById('package-dropdown');
 
 menuToggle.addEventListener('click', () => { navLinks.classList.toggle('active'); });
-
 packageLink.addEventListener('click', (e) => {
     if (window.innerWidth <= 768) {
         e.preventDefault();
@@ -210,17 +205,25 @@ packageLink.addEventListener('click', (e) => {
     }
 });
 
-document.addEventListener('click', (e) => {
-    if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
-        navLinks.classList.remove('active');
-        packageDropdown.classList.remove('active');
-    }
-});
+/* Scroll Reveal Logic */
+const scrollReveal = () => {
+    const reveals = document.querySelectorAll('.reveal');
+    reveals.forEach(el => {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < windowHeight - 100) {
+            el.classList.add('active');
+        }
+    });
+};
+window.addEventListener('scroll', scrollReveal);
+window.addEventListener('load', scrollReveal);
 
-/* RESTORED Slideshow Logic */
+/* Slideshow Logic */
 let slideIndex = 0;
 let slides = document.getElementsByClassName("slide");
 let dots = document.getElementsByClassName("dot");
+let slideTimer;
 
 function showSlides() {
     for (let i = 0; i < slides.length; i++) { slides[i].style.display = "none"; }
@@ -233,13 +236,14 @@ function showSlides() {
       slides[slideIndex-1].style.display = "block";
       dots[slideIndex-1].className += " active-dot";
     }
-    setTimeout(showSlides, 4500); // Change image every 4.5 seconds
+    clearTimeout(slideTimer);
+    slideTimer = setTimeout(showSlides, 4500);
 }
 showSlides();
 
 function currentSlide(n) {
     slideIndex = n - 1;
-    // Resets timer-based slide show logic manually
+    showSlides();
 }
 </script>
 

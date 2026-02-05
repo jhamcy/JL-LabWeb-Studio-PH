@@ -17,9 +17,10 @@
             color: #333;
             min-height: 100vh;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* --- UNIFIED NAVIGATION --- */
+        /* --- NAVIGATION --- */
         nav{position:sticky;top:0;z-index:999;background:#0a58ca;box-shadow: 0 2px 10px rgba(0,0,0,0.1);}
         .nav-inner{
             max-width:1200px; margin:auto; display:flex; 
@@ -31,7 +32,6 @@
         .nav-links li a{ color:#fff; text-decoration:none; font-weight:600; padding:10px 15px; display:block; transition: 0.3s; border-radius: 4px; }
         .nav-links li a:hover{ background:rgba(255,255,255,0.2); }
 
-        /* Dropdown */
         .dropdown{position:relative;}
         .dropdown-menu{
             list-style:none; background:#fff; border-radius:4px; overflow:hidden;
@@ -39,28 +39,24 @@
             position: absolute; top: 100%; right: 0; width: 220px;
         }
         .dropdown-menu li a{ color: #333 !important; padding:12px 20px; font-size:14px; border-bottom: 1px solid #eee; }
-        .dropdown-menu li a:hover{ background: #f4f6fb; }
-        @media(min-width:769px){ .dropdown:hover .dropdown-menu{ display:flex; } }
 
         @media(max-width:768px){
             .menu-toggle{display:block;}
-            .nav-links{
-                display:none; flex-direction:column; background:#0a58ca; position:absolute;
-                width:100%; left:0; top:100%; padding:10px 0; border-top: 1px solid rgba(255,255,255,0.1);
-            }
+            .nav-links{ display:none; flex-direction:column; background:#0a58ca; position:absolute; width:100%; left:0; top:100%; padding:10px 0; }
             .nav-links.active{display:flex;}
-            .dropdown-menu { position:static; width:100%; box-shadow:none; background: rgba(0,0,0,0.1); }
+            .dropdown-menu { position:static; width:100%; background: rgba(0,0,0,0.1); }
             .dropdown-menu.active { display:flex; }
-            .dropdown-menu li a { color: #fff !important; text-align: center; border-bottom: none; background: transparent; }
-            .nav-links li a { text-align: center; width: 100%; padding: 15px; }
         }
+
+        /* --- ANIMATIONS --- */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
         /* --- PAGE CONTENT --- */
         .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
         
         .package-hero {
-            text-align: center;
-            background: rgba(255, 255, 255, 0.9); 
+            text-align: center; background: rgba(255, 255, 255, 0.9); 
             padding: 50px 20px; border-radius: 15px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1); margin-bottom: 40px;
         }
@@ -68,8 +64,7 @@
         .price-tag { display: inline-block; background: #0a58ca; color: #fff; padding: 8px 25px; border-radius: 30px; font-weight: 800; font-size: 24px; }
         .price-disclaimer { display: block; font-size: 13px; color: #777; margin: 5px 0 20px; font-style: italic; }
 
-        .tech-stack { display: flex; justify-content: center; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
-        .tech-badge { background: #eef4ff; color: #0a58ca; font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 5px; border: 1px solid #0a58ca; text-transform: uppercase; }
+        .tech-badge { background: #eef4ff; color: #0a58ca; font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 5px; border: 1px solid #0a58ca; text-transform: uppercase; margin: 5px; display: inline-block; }
 
         .section-title { color: #0a58ca; font-size: 24px; margin: 40px 0 20px; text-align: center; font-weight: 800; }
         
@@ -78,32 +73,26 @@
             background: rgba(255, 255, 255, 0.9); padding: 30px; border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-left: 5px solid #0a58ca;
         }
-        .info-card h3 { color: #333; margin-bottom: 15px; font-size: 20px; border-bottom: 2px solid #f4f6fb; padding-bottom: 10px; }
-        .info-card ul { list-style: none; }
+        .info-card ul { list-style: none; margin-top: 15px; }
         .info-card ul li { margin-bottom: 12px; padding-left: 25px; position: relative; font-size: 15px; }
         .info-card ul li::before { content: "✦"; position: absolute; left: 0; color: #0a58ca; font-weight: bold; }
 
-        /* --- SIMPLIFIED GOOGLE EXPLAINER BOX --- */
         .explainer-box {
             background: #fff8e1; border: 1px solid #ffe082; padding: 25px;
             border-radius: 12px; margin: 40px 0; display: flex; gap: 20px; align-items: center;
         }
-        .explainer-icon { font-size: 40px; }
-        .explainer-text h4 { color: #856404; margin-bottom: 5px; }
-        .explainer-text p { font-size: 14px; color: #6d4c41; line-height: 1.5; }
 
-        /* --- PORTFOLIO --- */
         .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-bottom: 40px; }
         .portfolio-card {
             background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             transition: 0.3s; border: 1px solid #eee;
         }
         .portfolio-thumb { width: 100%; height: 220px; background: #e9ecef; overflow: hidden; }
-        .portfolio-thumb img { width: 100%; height: 100%; object-fit: cover; }
+        .portfolio-thumb img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .portfolio-card:hover .portfolio-thumb img { transform: scale(1.1); }
         .portfolio-info { padding: 20px; text-align: center; }
         .btn-demo { display: inline-block; padding: 10px 25px; background: #0a58ca; color: #fff; text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 14px; }
 
-        /* --- CTA --- */
         .cta-section { text-align: center; margin: 60px 0; background: rgba(255, 255, 255, 0.9); padding: 40px; border-radius: 15px; }
         .btn-group { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 25px;}
         .btn-cta {
@@ -114,7 +103,7 @@
         .btn-viber { background: #665CAC; }
         .btn-whatsapp { background: #25D366; }
 
-        @media(max-width: 768px) { .details-grid { grid-template-columns: 1fr; } .explainer-box { flex-direction: column; text-align: center; } }
+        @media(max-width: 768px) { .details-grid { grid-template-columns: 1fr; } .explainer-box { flex-direction: column; text-align: center; } .btn-cta { width: 100%; } }
     </style>
 </head>
 <body>
@@ -140,11 +129,11 @@
 </nav>
 
 <div class="container">
-    <section class="package-hero">
+    <section class="package-hero reveal">
         <div class="price-tag">Starts at ₱18,000</div>
-        <span class="price-disclaimer">*Final price depends on domain registration fees and custom feature complexity.*</span>
+        <span class="price-disclaimer">*Final price depends on domain registration fees and custom complexity.*</span>
         <h2>The Identity Pack</h2>
-        <p>A premium collaboration where your ideas meet professional craft. We manage the technical heavy lifting while building a custom digital identity that fits your brand vision.</p>
+        <p>A premium collaboration where your ideas meet professional craft. We manage the technical heavy lifting while building a custom digital identity.</p>
         <div class="tech-stack">
             <span class="tech-badge">Custom Architecture</span>
             <span class="tech-badge">Managed Domain</span>
@@ -153,49 +142,47 @@
         </div>
     </section>
 
-    <h2 class="section-title">Your Vision, Fully Realized</h2>
+    <h2 class="section-title reveal">Your Vision, Fully Realized</h2>
     <div class="details-grid">
-        <section class="info-card">
+        <section class="info-card reveal">
             <h3>Creative Partnership</h3>
             <ul>
-                <li><strong>Custom Concepts:</strong> We take your unique business ideas and build a custom multi-page flow from scratch.</li>
-                <li><strong>Bespoke Branding:</strong> Full integration of your specific colors, logo, and personality into every pixel.</li>
-                <li><strong>Unique UX:</strong> User experiences designed for your niche to ensure your visitors stay engaged.</li>
+                <li><strong>Custom Concepts:</strong> We build a custom multi-page flow from scratch based on your business niche.</li>
+                <li><strong>Bespoke Branding:</strong> Full integration of your specific colors and logo into every pixel.</li>
+                <li><strong>Unique UX:</strong> User experiences designed to keep your Filipino customers engaged.</li>
             </ul>
         </section>
-        <section class="info-card">
+        <section class="info-card reveal">
             <h3>Managed Performance</h3>
             <ul>
-                <li><strong>Domain & DNS:</strong> We handle the registration and technical setup of your professional .com or .ph name.</li>
-                <li><strong>Secure Hosting:</strong> Premium server space with high-speed performance and SSL encryption available.</li>
-                <li><strong>Search Registration:</strong> We manually submit your site to Google Search Console to ensure you appear in search results.</li>
+                <li><strong>Domain & DNS:</strong> We handle the technical setup of your professional .com or .ph name.</li>
+                <li><strong>Secure Hosting:</strong> Premium speed with high-performance SSL encryption available.</li>
+                <li><strong>Search Registration:</strong> Official submission to Google Search Console for visibility.</li>
             </ul>
         </section>
     </div>
 
-    <div class="explainer-box">
-        <div class="explainer-icon">💡</div>
+    <div class="explainer-box reveal">
+        <div style="font-size: 40px;">💡</div>
         <div class="explainer-text">
             <h4>How Google Works for You</h4>
             <p>
                 This package ensures your website is officially registered on Google for organic search visibility. 
-                Please note that <strong>Google Ads (Paid Sponsorships)</strong> requires a separate monthly budget paid directly to Google. 
-                Our job is to build the professional "home" that makes those ads or search results actually convert into customers.
+                Our job is to build the professional "home" that makes your brand stand out from the competition.
             </p>
         </div>
     </div>
 
-    <h2 class="section-title">Inspiration References</h2>
-    <p style="text-align:center; color:#666; margin-bottom:30px;">These live models act as a reference to help spark your ideas. Your final project will be fully customized to your specific business goals.</p>
+    <h2 class="section-title reveal">Inspiration References</h2>
     <div class="portfolio-grid">
-        <div class="portfolio-card">
+        <div class="portfolio-card reveal">
             <div class="portfolio-thumb"><img src="coffee-demo.jpg" alt="Coffee Shop"></div>
             <div class="portfolio-info">
                 <h4>Coffee Shop Reference</h4>
                 <a href="https://jhamcy.github.io/Coffee-Shop-Demo/" target="_blank" class="btn-demo">View Reference</a>
             </div>
         </div>
-        <div class="portfolio-card">
+        <div class="portfolio-card reveal">
             <div class="portfolio-thumb"><img src="spa-demo.jpg" alt="Wellness Spa"></div>
             <div class="portfolio-info">
                 <h4>Wellness & Spa Reference</h4>
@@ -204,12 +191,11 @@
         </div>
     </div>
 
-    <section class="cta-section">
-        <p class="section-title">Have a unique idea for your brand?</p>
-        <p>Let's discuss your concept and check domain availability today.</p>
+    <section class="cta-section reveal">
+        <p class="section-title">Ready to build your digital identity?</p>
         <div class="btn-group">
             <a href="viber://chat?number=%2B639944846149" class="btn-cta btn-viber">Discuss on Viber</a>
-            <a href="https://wa.me/639944846149?text=Hi!%20I'm%20interested%20in%20The%20Identity%20Package.%20I%20have%20an%20idea%20for%20my%20website!" class="btn-cta btn-whatsapp">Message on WhatsApp</a>
+            <a href="https://wa.me/639310410733?text=Hi!%20I'm%20interested%20in%20The%20Identity%20Package." class="btn-cta btn-whatsapp">Message on WhatsApp</a>
         </div>
     </section>
 </div>
@@ -221,7 +207,6 @@
     const packageDropdown = document.getElementById('package-dropdown');
 
     menuToggle.addEventListener('click', () => { navLinks.classList.toggle('active'); });
-
     packageLink.addEventListener('click', (e) => {
         if (window.innerWidth <= 768) {
             e.preventDefault();
@@ -229,12 +214,19 @@
         }
     });
 
-    document.addEventListener('click', (e) => {
-        if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
-            navLinks.classList.remove('active');
-            packageDropdown.classList.remove('active');
-        }
-    });
+    // Scroll Reveal
+    const scrollReveal = () => {
+        const reveals = document.querySelectorAll('.reveal');
+        reveals.forEach(el => {
+            const windowHeight = window.innerHeight;
+            const elementTop = el.getBoundingClientRect().top;
+            if (elementTop < windowHeight - 100) {
+                el.classList.add('active');
+            }
+        });
+    };
+    window.addEventListener('scroll', scrollReveal);
+    window.addEventListener('load', scrollReveal);
 </script>
 </body>
 </html>

@@ -17,17 +17,14 @@
             color: #333;
             min-height: 100vh;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* --- UNIFIED NAVIGATION --- */
+        /* --- NAVIGATION --- */
         nav{position:sticky;top:0;z-index:999;background:#0a58ca;box-shadow: 0 2px 10px rgba(0,0,0,0.1);}
         .nav-inner{
-            max-width:1200px;
-            margin:auto;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            padding:12px 24px;
+            max-width:1200px; margin:auto; display:flex; 
+            justify-content:space-between; align-items:center; padding:12px 24px;
         }
         nav h1{color:#fff;font-size:22px; font-weight: 800;}
         .menu-toggle{ display:none; font-size:30px; color:#fff; cursor:pointer; user-select: none; }
@@ -35,7 +32,6 @@
         .nav-links li a{ color:#fff; text-decoration:none; font-weight:600; padding:10px 15px; display:block; transition: 0.3s; border-radius: 4px; }
         .nav-links li a:hover{ background:rgba(255,255,255,0.2); }
 
-        /* Dropdown Desktop */
         .dropdown{position:relative;}
         .dropdown-menu{
             list-style:none; background:#fff; border-radius:4px; overflow:hidden;
@@ -43,23 +39,25 @@
             position: absolute; top: 100%; right: 0; width: 220px;
         }
         .dropdown-menu li a{ color: #333 !important; padding:12px 20px; font-size:14px; border-bottom: 1px solid #eee; }
-        .dropdown-menu li a:hover{ background: #f4f6fb; }
-        @media(min-width:769px){
-            .dropdown:hover .dropdown-menu{ display:flex; }
-        }
+        @media(min-width:769px){ .dropdown:hover .dropdown-menu{ display:flex; } }
 
-        /* Mobile Styling */
         @media(max-width:768px){
             .menu-toggle{display:block;}
-            .nav-links{
-                display:none; flex-direction:column; background:#0a58ca; position:absolute;
-                width:100%; left:0; top:100%; padding:10px 0; border-top: 1px solid rgba(255,255,255,0.1);
-            }
+            .nav-links{ display:none; flex-direction:column; background:#0a58ca; position:absolute; width:100%; left:0; top:100%; padding:10px 0; }
             .nav-links.active{display:flex;}
-            .dropdown-menu { position:static; width:100%; box-shadow:none; background: rgba(0,0,0,0.1); }
+            .dropdown-menu { position:static; width:100%; background: rgba(0,0,0,0.1); }
             .dropdown-menu.active { display:flex; }
-            .dropdown-menu li a { color: #fff !important; text-align: center; border-bottom: none; background: transparent; }
-            .nav-links li a { text-align: center; width: 100%; padding: 15px; }
+        }
+
+        /* --- ANIMATIONS --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* --- PAGE CONTENT --- */
@@ -79,18 +77,12 @@
             display: inline-block; background: #0a58ca; color: #fff; 
             padding: 8px 25px; border-radius: 30px; font-weight: 800; font-size: 24px; margin-bottom: 20px;
         }
-        .package-hero p { font-size: 18px; color: #555; max-width: 800px; margin: 0 auto; }
         
-        .tech-stack { display: flex; justify-content: center; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
-        .tech-badge { background: #f0f4f8; color: #0a58ca; font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 5px; border: 1px solid #d1d9e6; }
+        .tech-badge { background: #f0f4f8; color: #0a58ca; font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 5px; border: 1px solid #d1d9e6; margin: 5px; display: inline-block; }
 
         .section-title { color: #0a58ca; font-size: 24px; margin: 40px 0 20px; text-align: center; font-weight: 800; }
         
-        .details-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-        }
+        .details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
         .info-card {
             background: rgba(255, 255, 255, 0.9);
             padding: 30px;
@@ -98,14 +90,7 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             border-left: 5px solid #0a58ca;
         }
-        .info-card h3 { color: #333; margin-bottom: 20px; font-size: 20px; border-bottom: 2px solid #f4f6fb; padding-bottom: 10px; }
-        .info-card ul { list-style: none; }
-        .info-card ul li { margin-bottom: 15px; padding-left: 30px; position: relative; font-size: 15px; }
-        .info-card ul li::before {
-            content: "✦"; position: absolute; left: 0; color: #0a58ca; font-weight: bold;
-        }
 
-        /* --- HANDOVER BOX --- */
         .handover-box {
             background: #eef4ff;
             border: 1px solid #0a58ca;
@@ -114,19 +99,17 @@
             text-align: center;
             margin: 40px 0;
         }
-        .handover-box h4 { color: #0a58ca; margin-bottom: 10px; font-size: 20px; }
-        .handover-box p { font-size: 15px; color: #444; }
 
-        /* --- PORTFOLIO / DESIGN REFERENCES --- */
         .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-bottom: 40px; }
         .portfolio-card {
             background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             transition: 0.3s; border: 1px solid #eee;
         }
-        .portfolio-card:hover { transform: translateY(-10px); }
         .portfolio-thumb { width: 100%; height: 220px; background: #e9ecef; overflow: hidden; }
-        .portfolio-thumb img { width: 100%; height: 100%; object-fit: cover; }
+        .portfolio-thumb img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s ease; }
+        .portfolio-card:hover .portfolio-thumb img { transform: scale(1.1); }
         .portfolio-info { padding: 20px; text-align: center; }
+        
         .btn-demo {
             display: inline-block; padding: 10px 25px; background: #0a58ca; color: #fff;
             text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 14px;
@@ -142,7 +125,7 @@
         }
         .btn-viber { background: #665CAC; }
         .btn-whatsapp { background: #25D366; }
-        .btn-cta:hover { transform: translateY(-3px); opacity: 0.9; }
+        .btn-cta:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
 
         @media(max-width: 768px) { .details-grid { grid-template-columns: 1fr; } .btn-cta { width: 100%; } }
     </style>
@@ -170,82 +153,71 @@
 </nav>
 
 <div class="container">
-    <section class="package-hero">
+    <section class="package-hero reveal">
         <div class="price-tag">₱12,000</div>
         <h2>The Essential Pack</h2>
-        <p>A high-performance multi-page (3-5 pages) website tailored to your brand goals. We build your vision to your exact specifications with full transparency.</p>
-        <div class="tech-stack">
+        <p>A high-performance multi-page (3-5 pages) website tailored to your brand goals. Built with transparency and daily updates.</p>
+        <div style="margin-top: 20px;">
             <span class="tech-badge">Custom Tailored</span>
             <span class="tech-badge">GitHub & Netlify</span>
             <span class="tech-badge">Full Account Ownership</span>
         </div>
     </section>
 
-    <h2 class="section-title">Fully Customizable Build</h2>
+    <h2 class="section-title reveal">Key Package Features</h2>
     <div class="details-grid">
-        <section class="info-card">
-            <h3>Bespoke Development</h3>
-            <ul>
-                <li><strong>Your Unique Idea</strong> We don't just copy templates. We take your specific concept and turn it into a functional multi-page site.</li>
-                <li><strong>Personalized Content</strong> Every line of text, color, and image is chosen to represent your business perfectly.</li>
-                <li><strong>Responsive Design</strong> A layout that adapts beautifully to phones, tablets, and desktops.</li>
-            </ul>
+        <section class="info-card reveal">
+            <h3>Development</h3>
+            <p>We build your unique vision from scratch—no boring templates. Full responsive design for mobile and desktop included.</p>
         </section>
-        <section class="info-card">
-            <h3>Complete Control</h3>
-            <ul>
-                <li><strong>Zero Lock-in</strong> We transfer the GitHub and Netlify accounts to you once the project is finished.</li>
-                <li><strong>Source Ownership</strong> You own the raw code. No middleman and no hidden monthly service fees.</li>
-                <li><strong>Professional SEO</strong> Built-in optimization so your custom pages can be found on Google.</li>
-            </ul>
+        <section class="info-card reveal">
+            <h3>Ownership</h3>
+            <p>100% Handover. We transfer the raw code and hosting accounts to you. No monthly middleman fees.</p>
         </section>
     </div>
 
-    <div class="handover-box">
-        <h4>🚀 Account Handover Process</h4>
-        <p>Once the custom build is complete, we turn over the <strong>GitHub</strong> and <strong>Netlify</strong> credentials. You become the sole owner of the platform forever. <br><small><em>(Note: Domain registration and renewal is handled by the client)</em></small></p>
+    <div class="handover-box reveal">
+        <h4>🚀 Professional Handover</h4>
+        <p>Upon completion, we turn over the GitHub and Netlify credentials. You become the sole owner forever. <br><small><em>(Note: We provide a guide to help you purchase your own domain.)</em></small></p>
     </div>
 
-    <h2 class="section-title">Design References (Ideas for You)</h2>
-    <p style="text-align:center; color:#666; margin-bottom:30px;">Use these live models as a reference for quality and structure. Your site will be fully customized to your niche.</p>
+    <h2 class="section-title reveal">Design References</h2>
     <div class="portfolio-grid">
-        <div class="portfolio-card">
+        <div class="portfolio-card reveal">
             <div class="portfolio-thumb"><img src="coffee-demo.jpg" alt="Coffee Shop"></div>
             <div class="portfolio-info">
                 <h4>Coffee Shop Reference</h4>
-                <p>Great for boutique cafes or restaurants needing a digital menu and gallery.</p>
                 <a href="https://jhamcy.github.io/Coffee-Shop-Demo/" target="_blank" class="btn-demo">View Reference</a>
             </div>
         </div>
-
-        <div class="portfolio-card">
+        <div class="portfolio-card reveal">
             <div class="portfolio-thumb"><img src="spa-demo.jpg" alt="Wellness Spa"></div>
             <div class="portfolio-info">
                 <h4>Wellness & Spa Reference</h4>
-                <p>Perfect for calming, service-oriented businesses with detailed packages.</p>
                 <a href="https://jhamcy.github.io/Ataraxy-Wellness-Spa-Demo/" target="_blank" class="btn-demo">View Reference</a>
             </div>
         </div>
     </div>
 
-    <section class="cta-section">
-        <p class="section-title">Have a unique vision for your site?</p>
-        <p>Contact us on your preferred app to discuss your project ideas.</p>
+    <section class="cta-section reveal">
+        <p class="section-title">Ready to start your project?</p>
+        <p>Choose your preferred app below to message us directly.</p>
         <div class="btn-group">
             <a href="viber://chat?number=%2B639944846149" class="btn-cta btn-viber">Chat via Viber</a>
-            <a href="https://wa.me/639944846149?text=Hi!%20I'm%20interested%20in%20The%20Essential%20Package.%20I%20have%20an%20idea%20for%20my%20website!" class="btn-cta btn-whatsapp">Message on WhatsApp</a>
+            
+            <a href="https://wa.me/639310410733?text=Hi!%20I'm%20interested%20in%20The%20Essential%20Package." class="btn-cta btn-whatsapp">Message on WhatsApp</a>
         </div>
     </section>
 </div>
 
 <script>
+    // Navigation Logic
     const menuToggle = document.getElementById('mobile-menu');
     const navLinks = document.getElementById('nav-links');
     const packageLink = document.getElementById('package-link');
     const packageDropdown = document.getElementById('package-dropdown');
 
     menuToggle.addEventListener('click', () => { navLinks.classList.toggle('active'); });
-
     packageLink.addEventListener('click', (e) => {
         if (window.innerWidth <= 768) {
             e.preventDefault();
@@ -253,12 +225,19 @@
         }
     });
 
-    document.addEventListener('click', (e) => {
-        if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
-            navLinks.classList.remove('active');
-            packageDropdown.classList.remove('active');
-        }
-    });
+    // Scroll Reveal Logic
+    const scrollReveal = () => {
+        const reveals = document.querySelectorAll('.reveal');
+        reveals.forEach(el => {
+            const windowHeight = window.innerHeight;
+            const elementTop = el.getBoundingClientRect().top;
+            if (elementTop < windowHeight - 100) {
+                el.classList.add('active');
+            }
+        });
+    };
+    window.addEventListener('scroll', scrollReveal);
+    window.addEventListener('load', scrollReveal);
 </script>
 </body>
 </html>
