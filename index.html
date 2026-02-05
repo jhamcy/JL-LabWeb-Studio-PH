@@ -63,37 +63,33 @@ nav h1{color:#fff;font-size:22px; font-weight: 800;}
   .nav-links li a { text-align: center; width: 100%; padding: 15px; }
 }
 
-/* --- 3. HERO & TECH SECTION --- */
-.hero{text-align:center; padding:20px 20px 10px;}
+/* --- 3. HERO & TRUST BANNER --- */
+.hero{text-align:center; padding:40px 20px 10px;}
 .hero img{width:260px; max-width:90%; margin-bottom:10px; transition: transform 0.3s ease;}
-.hero img:hover { transform: scale(1.05); }
+.hero h2{font-size: 32px; margin-bottom: 8px; color: #0a58ca; font-weight: 800;}
+.hero p{max-width:750px; margin:0 auto 15px; font-size:17px; font-weight: 500;}
 
-.hero h2{
-  font-size: 32px; 
-  white-space: nowrap; 
-  margin-bottom: 8px; 
-  color: #0a58ca; 
-  text-shadow: 0 1px 2px rgba(255,255,255,0.8); 
-  font-weight: 800;
+.trust-banner {
+  background: rgba(10, 88, 202, 0.9);
+  color: white;
+  padding: 30px 20px;
+  text-align: center;
+  margin: 30px auto;
+  max-width: 900px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
-.hero p{max-width:750px; margin:0 auto 15px; font-size:17px; font-weight: 500; color: #333;}
-
-@media(max-width:600px){
-  .hero h2 { font-size: 20px; white-space: normal; }
-}
-
-.tech-wallpaper{max-width:1100px; margin:0 auto 20px; padding:0 20px; text-align:center;}
-.tech-headline{font-size:20px; font-weight:700; margin-bottom:5px; color:#0a58ca;}
-.tech-subtext{font-size:15px; color: #444; font-weight: 600;}
+.trust-banner h3 { font-size: 24px; margin-bottom: 10px; }
+.trust-banner p { font-size: 16px; opacity: 0.9; line-height: 1.4; }
 
 /* --- 4. SLIDESHOW --- */
 .slideshow-container{
-  max-width:900px; margin:10px auto 30px; border-radius:12px; overflow:hidden;
+  max-width:900px; margin:20px auto 40px; border-radius:12px; overflow:hidden;
   box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 .slide{display:none;}
-.slide img{width:100%; height:auto;}
-.caption{ background:rgba(10, 88, 202, 0.9); color:#fff; padding:15px; text-align:center; }
+.slide img{width:100%; height:auto; display: block;}
+.caption{ background:rgba(10, 88, 202, 0.9); color:#fff; padding:15px; text-align:center; font-weight: 600;}
 .dots-container{text-align:center; margin:15px 0;}
 .dot{height:12px; width:12px; margin:0 5px; display:inline-block; border-radius:50%; background:#ccc; cursor:pointer;}
 .active-dot{background:#0a58ca;}
@@ -101,7 +97,6 @@ nav h1{color:#fff;font-size:22px; font-weight: 800;}
 /* --- 5. PACKAGE CARDS --- */
 #pricing { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
 #pricing h3 { text-align: center; margin-bottom: 30px; font-size: 28px; color: #0a58ca; font-weight: 800; }
-
 .package-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
 
 .package-card {
@@ -109,48 +104,23 @@ nav h1{color:#fff;font-size:22px; font-weight: 800;}
   border-radius: 12px;
   padding: 40px; 
   width: 100%;
-  max-width: 360px; 
+  max-width: 420px; 
   text-align: center;
   box-shadow: 0 8px 25px rgba(0,0,0,0.1);
   cursor: pointer;
   border: 1px solid rgba(10, 88, 202, 0.1);
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.6s ease-out;
+  transition: all 0.4s ease;
 }
-
-.package-card.reveal { opacity: 1; transform: translateY(0); }
-
-.package-card:hover { 
-  transform: translateY(-10px); 
-  border-color: #0a58ca; 
-  box-shadow: 0 15px 35px rgba(10, 88, 202, 0.2);
-}
-
+.package-card:hover { transform: translateY(-10px); border-color: #0a58ca; }
 .package-card h4 { color: #0a58ca; font-size: 22px; margin-bottom: 15px; font-weight: 800; }
-.package-card p { font-size: 15px; color: #555; margin-bottom: 25px; min-height: 45px; }
-
-.view-btn { 
-  display: inline-block; 
-  padding: 12px 30px; 
-  background: #0a58ca; 
-  color: #fff; 
-  text-decoration: none; 
-  border-radius: 50px; 
-  font-weight: 700; 
-  font-size: 14px; 
-}
+.package-card p { font-size: 15px; color: #555; margin-bottom: 25px; min-height: 60px; }
+.view-btn { display: inline-block; padding: 12px 30px; background: #0a58ca; color: #fff; border-radius: 50px; font-weight: 700; }
 
 /* --- 6. FLOATING BUTTONS --- */
 .floating-buttons{position:fixed; bottom:25px; right:20px; display:flex; flex-direction:column; gap:15px; z-index:9999;}
-.floating-buttons a{
-  width:55px; height:55px; border-radius:50%; display:flex; align-items:center; justify-content:center;
-  box-shadow:0 5px 15px rgba(0,0,0,0.3); transition:0.3s; animation: pulse 2s infinite;
-}
-.floating-buttons a img{width:28px; height:28px;}
+.floating-buttons a{width:55px; height:55px; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 5px 15px rgba(0,0,0,0.3); transition:0.3s;}
 .viber-floating{background:#665CAC;}
 .whatsapp-floating{background:#25D366;}
-@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.08); } 100% { transform: scale(1); } }
 </style>
 </head>
 
@@ -168,7 +138,6 @@ nav h1{color:#fff;font-size:22px; font-weight: 800;}
         <ul class="dropdown-menu" id="package-dropdown">
           <li><a href="essential-scroll.html">The Essential Pack</a></li>
           <li><a href="identity-pack.html">The Identity Pack</a></li>
-          <li><a href="growth-suite.html">The Growth Suite</a></li>
         </ul>
       </li>
       <li><a href="our-process.html">Process</a></li>
@@ -180,13 +149,13 @@ nav h1{color:#fff;font-size:22px; font-weight: 800;}
 <section class="hero">
   <img src="logo.png" alt="JL LabWeb Studio PH Logo">
   <h2>Turn Your Ideas Into a Professional Website</h2>
-  <p>We build custom, high-performance websites tailored specifically to your business niche and brand vision.</p>
+  <p>Custom, high-performance websites built with transparency and daily progress updates.</p>
 </section>
 
-<section class="tech-wallpaper">
-  <p class="tech-headline">Powered by trusted web platforms</p>
-  <p class="tech-subtext">Developing with GitHub, Netlify, and professional tools for peak performance and security.</p>
-</section>
+<div class="trust-banner">
+  <h3>100% Transparent Development</h3>
+  <p>Secure your slot with a <strong>50% down payment</strong>. In return, you receive <strong>daily updates</strong> and a live preview link to watch your site grow. We build until you are 100% satisfied.</p>
+</div>
 
 <section class="slideshow-container">
   <div class="slide">
@@ -208,33 +177,25 @@ nav h1{color:#fff;font-size:22px; font-weight: 800;}
   <div class="package-container">
     <div class="package-card" onclick="location.href='essential-scroll.html'">
       <h4>The Essential Pack</h4>
-      <p>Single-page solution for a fast and simple online presence.</p>
+      <p>3-5 Page Custom Build. We provide the full account and password upon completion. Best for clients who want direct control over their domain.</p>
       <span class="view-btn">View Details</span>
     </div>
+
     <div class="package-card" onclick="location.href='identity-pack.html'">
       <h4>The Identity Pack</h4>
-      <p>Custom multi-page site for professional branding and credibility.</p>
-      <span class="view-btn">View Details</span>
-    </div>
-    <div class="package-card" onclick="location.href='growth-suite.html'">
-      <h4>The Growth Suite</h4>
-      <p>Full e-commerce infrastructure to sell products and scale your business.</p>
+      <p>Premium Multi-page Experience. Includes managed domain registration and hosting. We handle the technical setup while you focus on your brand.</p>
       <span class="view-btn">View Details</span>
     </div>
   </div>
 </section>
 
 <div class="floating-buttons">
-  <a href="viber://chat?number=%2B639944846149" class="viber-floating" target="_blank">
-    <img src="viber.png" alt="Viber">
-  </a>
-  <a href="https://wa.me/639944846149" class="whatsapp-floating" target="_blank">
-    <img src="whatsapp.png" alt="WhatsApp">
-  </a>
+  <a href="viber://chat?number=%2B639944846149" class="viber-floating"><img src="viber.png" alt="Viber" style="width:28px;"></a>
+  <a href="https://wa.me/639944846149" class="whatsapp-floating"><img src="whatsapp.png" alt="WhatsApp" style="width:28px;"></a>
 </div>
 
 <script>
-// Mobile Menu & Dropdown logic (Synced with other pages)
+/* Navigation Logic */
 const menuToggle = document.getElementById('mobile-menu');
 const navLinks = document.getElementById('nav-links');
 const packageLink = document.getElementById('package-link');
@@ -256,18 +217,7 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Scroll Reveal Observer for Cards
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-            setTimeout(() => { entry.target.classList.add('reveal'); }, index * 150); 
-        }
-    });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.package-card').forEach(card => { observer.observe(card); });
-
-// Slideshow logic
+/* RESTORED Slideshow Logic */
 let slideIndex = 0;
 let slides = document.getElementsByClassName("slide");
 let dots = document.getElementsByClassName("dot");
@@ -283,12 +233,13 @@ function showSlides() {
       slides[slideIndex-1].style.display = "block";
       dots[slideIndex-1].className += " active-dot";
     }
-    setTimeout(showSlides, 4500);
+    setTimeout(showSlides, 4500); // Change image every 4.5 seconds
 }
 showSlides();
 
 function currentSlide(n) {
     slideIndex = n - 1;
+    // Resets timer-based slide show logic manually
 }
 </script>
 
