@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JL LabWeb Studio PH</title>
+<title>JL LabWeb Studio PH | Custom Business Websites</title>
 
 <style>
 /* --- 1. RESET & BASE STYLES --- */
@@ -32,8 +32,8 @@ nav{position:sticky;top:0;z-index:999;background:#0a58ca;box-shadow: 0 2px 10px 
   padding:12px 24px;
 }
 nav h1{color:#fff;font-size:22px; font-weight: 800;}
-.menu-toggle{ display:none; font-size:30px; color:#fff; cursor:pointer; }
-.nav-links{ list-style:none; display:flex; gap:10px; }
+.menu-toggle{ display:none; font-size:30px; color:#fff; cursor:pointer; user-select: none; }
+.nav-links{ list-style:none; display:flex; gap:10px; align-items: center; }
 .nav-links li a{ color:#fff; text-decoration:none; font-weight:600; padding:10px 15px; display:block; transition: 0.3s; border-radius: 4px; }
 .nav-links li a:hover{ background:rgba(255,255,255,0.2); }
 
@@ -41,11 +41,13 @@ nav h1{color:#fff;font-size:22px; font-weight: 800;}
 .dropdown-menu{
   list-style:none; background:#fff; border-radius:4px; overflow:hidden;
   display: none; flex-direction:column; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  position: absolute; top: 100%; right: 0; width: 220px;
 }
-.dropdown-menu li a{ color: #333; padding:10px 20px; font-size:14px; border-bottom: 1px solid #eee; }
+.dropdown-menu li a{ color: #333 !important; padding:12px 20px; font-size:14px; border-bottom: 1px solid #eee; }
+.dropdown-menu li a:hover{ background: #f4f6fb; }
 
 @media(min-width:769px){
-  .dropdown:hover .dropdown-menu{ display:flex; position:absolute; top:100%; right:0; width:220px; }
+  .dropdown:hover .dropdown-menu{ display:flex; }
 }
 
 @media(max-width:768px){
@@ -54,10 +56,11 @@ nav h1{color:#fff;font-size:22px; font-weight: 800;}
     display:none; flex-direction:column; background:#0a58ca; position:absolute;
     width:100%; left:0; top:100%; padding:10px 0; border-top: 1px solid rgba(255,255,255,0.1);
   }
-  .nav-links.show{display:flex;}
-  .dropdown-menu.show{display:flex; position:static; width:100%; background:rgba(0,0,0,0.1); box-shadow:none;}
-  .nav-links li a{ text-align: center; font-size: 18px; }
-  .dropdown-menu li a { color: #fff; background: transparent; border-bottom: none; }
+  .nav-links.active{display:flex;}
+  .dropdown-menu { position:static; width:100%; box-shadow:none; background: rgba(0,0,0,0.1); }
+  .dropdown-menu.active { display:flex; }
+  .dropdown-menu li a { color: #fff !important; text-align: center; border-bottom: none; background: transparent; }
+  .nav-links li a { text-align: center; width: 100%; padding: 15px; }
 }
 
 /* --- 3. HERO & TECH SECTION --- */
@@ -95,9 +98,9 @@ nav h1{color:#fff;font-size:22px; font-weight: 800;}
 .dot{height:12px; width:12px; margin:0 5px; display:inline-block; border-radius:50%; background:#ccc; cursor:pointer;}
 .active-dot{background:#0a58ca;}
 
-/* --- 5. PACKAGE CARDS (WITH ANIMATION) --- */
+/* --- 5. PACKAGE CARDS --- */
 #pricing { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
-#pricing h3 { text-align: center; margin-bottom: 30px; font-size: 24px; color: #333; }
+#pricing h3 { text-align: center; margin-bottom: 30px; font-size: 28px; color: #0a58ca; font-weight: 800; }
 
 .package-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
 
@@ -106,12 +109,11 @@ nav h1{color:#fff;font-size:22px; font-weight: 800;}
   border-radius: 12px;
   padding: 40px; 
   width: 100%;
-  max-width: 450px; 
+  max-width: 360px; 
   text-align: center;
   box-shadow: 0 8px 25px rgba(0,0,0,0.1);
   cursor: pointer;
   border: 1px solid rgba(10, 88, 202, 0.1);
-  /* Animation Start */
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.6s ease-out;
@@ -120,13 +122,13 @@ nav h1{color:#fff;font-size:22px; font-weight: 800;}
 .package-card.reveal { opacity: 1; transform: translateY(0); }
 
 .package-card:hover { 
-  transform: translateY(-10px) scale(1.02); 
+  transform: translateY(-10px); 
   border-color: #0a58ca; 
   box-shadow: 0 15px 35px rgba(10, 88, 202, 0.2);
 }
 
-.package-card h4 { color: #0a58ca; font-size: 22px; margin-bottom: 15px; }
-.package-card p { font-size: 16px; color: #555; margin-bottom: 25px; }
+.package-card h4 { color: #0a58ca; font-size: 22px; margin-bottom: 15px; font-weight: 800; }
+.package-card p { font-size: 15px; color: #555; margin-bottom: 25px; min-height: 45px; }
 
 .view-btn { 
   display: inline-block; 
@@ -134,9 +136,9 @@ nav h1{color:#fff;font-size:22px; font-weight: 800;}
   background: #0a58ca; 
   color: #fff; 
   text-decoration: none; 
-  border-radius: 5px; 
-  font-weight: 600; 
-  font-size: 15px; 
+  border-radius: 50px; 
+  font-weight: 700; 
+  font-size: 14px; 
 }
 
 /* --- 6. FLOATING BUTTONS --- */
@@ -160,30 +162,30 @@ nav h1{color:#fff;font-size:22px; font-weight: 800;}
     <div class="menu-toggle" id="mobile-menu">&#9776;</div>
     <ul class="nav-links" id="nav-links">
       <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
       <li class="dropdown">
-        <a href="#" id="packages-toggle">Web Packages ▼</a>
-        <ul class="dropdown-menu" id="packages-menu">
-          <li><a href="essential-scroll.html">The Essential Scroll</a></li>
+        <a href="#" id="package-link">Web Packages ▼</a>
+        <ul class="dropdown-menu" id="package-dropdown">
+          <li><a href="essential-scroll.html">The Essential Pack</a></li>
           <li><a href="identity-pack.html">The Identity Pack</a></li>
           <li><a href="growth-suite.html">The Growth Suite</a></li>
         </ul>
       </li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="our-process.html">Process</a></li>
       <li><a href="faq.html">FAQ</a></li>
     </ul>
   </div>
 </nav>
 
 <section class="hero">
-  <img src="logo.png" alt="JL LabWeb Studio PH">
+  <img src="logo.png" alt="JL LabWeb Studio PH Logo">
   <h2>Turn Your Ideas Into a Professional Website</h2>
-  <p>At the JL LabWeb Studio, we turn your ideas into a custom website built specifically for your brand.</p>
+  <p>We build custom, high-performance websites tailored specifically to your business niche and brand vision.</p>
 </section>
 
 <section class="tech-wallpaper">
   <p class="tech-headline">Powered by trusted web platforms</p>
-  <p class="tech-subtext">Developing with GoDaddy, GitHub, Netlify, and professional tools for peak performance.</p>
+  <p class="tech-subtext">Developing with GitHub, Netlify, and professional tools for peak performance and security.</p>
 </section>
 
 <section class="slideshow-container">
@@ -202,21 +204,21 @@ nav h1{color:#fff;font-size:22px; font-weight: 800;}
 </section>
 
 <section id="pricing">
-  <h3>Website Packages</h3>
+  <h3>Choose Your Custom Web Solution</h3>
   <div class="package-container">
     <div class="package-card" onclick="location.href='essential-scroll.html'">
-      <h4>The Essential Scroll</h4>
-      <p>Best for a simple online presence.</p>
+      <h4>The Essential Pack</h4>
+      <p>Single-page solution for a fast and simple online presence.</p>
       <span class="view-btn">View Details</span>
     </div>
     <div class="package-card" onclick="location.href='identity-pack.html'">
       <h4>The Identity Pack</h4>
-      <p>Best for branding and credibility.</p>
+      <p>Custom multi-page site for professional branding and credibility.</p>
       <span class="view-btn">View Details</span>
     </div>
     <div class="package-card" onclick="location.href='growth-suite.html'">
       <h4>The Growth Suite</h4>
-      <p>Best for growing businesses.</p>
+      <p>Full e-commerce infrastructure to sell products and scale your business.</p>
       <span class="view-btn">View Details</span>
     </div>
   </div>
@@ -226,40 +228,46 @@ nav h1{color:#fff;font-size:22px; font-weight: 800;}
   <a href="viber://chat?number=%2B639944846149" class="viber-floating" target="_blank">
     <img src="viber.png" alt="Viber">
   </a>
-  <a href="whatsapp://send?phone=639310410733" class="whatsapp-floating" target="_blank">
+  <a href="https://wa.me/639944846149" class="whatsapp-floating" target="_blank">
     <img src="whatsapp.png" alt="WhatsApp">
   </a>
 </div>
 
 <script>
-// Mobile Menu & Dropdown
-const menuToggle = document.getElementById("mobile-menu");
-const navLinks = document.getElementById("nav-links");
-const packagesToggle = document.getElementById("packages-toggle");
-const packagesMenu = document.getElementById("packages-menu");
+// Mobile Menu & Dropdown logic (Synced with other pages)
+const menuToggle = document.getElementById('mobile-menu');
+const navLinks = document.getElementById('nav-links');
+const packageLink = document.getElementById('package-link');
+const packageDropdown = document.getElementById('package-dropdown');
 
-menuToggle.addEventListener("click", (e) => { e.stopPropagation(); navLinks.classList.toggle("show"); });
-packagesToggle.addEventListener("click", (e) => {
-    if (window.innerWidth <= 768) { e.preventDefault(); e.stopPropagation(); packagesMenu.classList.toggle("show"); }
-});
-document.addEventListener("click", (e) => {
-    if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
-        navLinks.classList.remove("show");
-        packagesMenu.classList.remove("show");
+menuToggle.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+
+packageLink.addEventListener('click', (e) => {
+    if (window.innerWidth <= 768) {
+        e.preventDefault();
+        packageDropdown.classList.toggle('active');
     }
 });
 
-// Scroll Reveal Observer
+document.addEventListener('click', (e) => {
+    if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+        navLinks.classList.remove('active');
+        packageDropdown.classList.remove('active');
+    }
+});
+
+// Scroll Reveal Observer for Cards
 const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
             setTimeout(() => { entry.target.classList.add('reveal'); }, index * 150); 
         }
     });
-}, { threshold: 0.2 });
+}, { threshold: 0.1 });
+
 document.querySelectorAll('.package-card').forEach(card => { observer.observe(card); });
 
-// Slideshow
+// Slideshow logic
 let slideIndex = 0;
 let slides = document.getElementsByClassName("slide");
 let dots = document.getElementsByClassName("dot");
@@ -268,7 +276,9 @@ function showSlides() {
     for (let i = 0; i < slides.length; i++) { slides[i].style.display = "none"; }
     slideIndex++;
     if (slideIndex > slides.length) { slideIndex = 1; }
-    for (let i = 0; i < dots.length; i++) { dots[i].className = dots[i].className.replace(" active-dot", ""); }
+    for (let i = 0; i < dots.length; i++) { 
+        dots[i].className = dots[i].className.replace(" active-dot", ""); 
+    }
     if(slides[slideIndex-1]){
       slides[slideIndex-1].style.display = "block";
       dots[slideIndex-1].className += " active-dot";
@@ -276,6 +286,10 @@ function showSlides() {
     setTimeout(showSlides, 4500);
 }
 showSlides();
+
+function currentSlide(n) {
+    slideIndex = n - 1;
+}
 </script>
 
 </body>

@@ -22,12 +22,8 @@
         /* --- UNIFIED NAVIGATION --- */
         nav{position:sticky;top:0;z-index:999;background:#0a58ca;box-shadow: 0 2px 10px rgba(0,0,0,0.1);}
         .nav-inner{
-            max-width:1200px;
-            margin:auto;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            padding:12px 24px;
+            max-width:1200px; margin:auto; display:flex; 
+            justify-content:space-between; align-items:center; padding:12px 24px;
         }
         nav h1{color:#fff;font-size:22px; font-weight: 800;}
         .menu-toggle{ display:none; font-size:30px; color:#fff; cursor:pointer; user-select: none; }
@@ -35,7 +31,7 @@
         .nav-links li a{ color:#fff; text-decoration:none; font-weight:600; padding:10px 15px; display:block; transition: 0.3s; border-radius: 4px; }
         .nav-links li a:hover{ background:rgba(255,255,255,0.2); }
 
-        /* Dropdown Desktop */
+        /* Dropdown */
         .dropdown{position:relative;}
         .dropdown-menu{
             list-style:none; background:#fff; border-radius:4px; overflow:hidden;
@@ -44,11 +40,8 @@
         }
         .dropdown-menu li a{ color: #333 !important; padding:12px 20px; font-size:14px; border-bottom: 1px solid #eee; }
         .dropdown-menu li a:hover{ background: #f4f6fb; }
-        @media(min-width:769px){
-            .dropdown:hover .dropdown-menu{ display:flex; }
-        }
+        @media(min-width:769px){ .dropdown:hover .dropdown-menu{ display:flex; } }
 
-        /* Unified Mobile Styling */
         @media(max-width:768px){
             .menu-toggle{display:block;}
             .nav-links{
@@ -68,107 +61,60 @@
         .package-hero {
             text-align: center;
             background: rgba(255, 255, 255, 0.9); 
-            padding: 50px 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            margin-bottom: 40px;
+            padding: 50px 20px; border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1); margin-bottom: 40px;
         }
         
-        .package-hero h2 { font-size: 36px; color: #0a58ca; margin-bottom: 10px; }
-        .package-hero .price-tag { 
-            display: inline-block; background: #0a58ca; color: #fff; 
-            padding: 8px 25px; border-radius: 30px; font-weight: 800; font-size: 22px; margin-bottom: 20px;
-        }
-        .package-hero p { font-size: 18px; color: #555; max-width: 800px; margin: 0 auto; }
-        .package-hero .note { font-size: 14px; color: #888; margin-top: 15px; }
-        
+        .price-tag { display: inline-block; background: #0a58ca; color: #fff; padding: 8px 25px; border-radius: 30px; font-weight: 800; font-size: 24px; }
+        .price-disclaimer { display: block; font-size: 13px; color: #777; margin: 5px 0 20px; font-style: italic; }
+
+        .tech-stack { display: flex; justify-content: center; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
+        .tech-badge { background: #eef4ff; color: #0a58ca; font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 5px; border: 1px solid #0a58ca; text-transform: uppercase; }
+
         .section-title { color: #0a58ca; font-size: 24px; margin: 40px 0 20px; text-align: center; font-weight: 800; }
         
-        .details-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-        }
+        .details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 40px; }
         .info-card {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border-left: 5px solid #0a58ca;
+            background: rgba(255, 255, 255, 0.9); padding: 30px; border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-left: 5px solid #0a58ca;
         }
-        .info-card h3 { color: #333; margin-bottom: 20px; font-size: 20px; border-bottom: 2px solid #f4f6fb; padding-bottom: 10px; }
+        .info-card h3 { color: #333; margin-bottom: 15px; font-size: 20px; border-bottom: 2px solid #f4f6fb; padding-bottom: 10px; }
         .info-card ul { list-style: none; }
-        .info-card ul li { margin-bottom: 15px; padding-left: 30px; position: relative; font-size: 15px; }
-        .info-card ul li::before {
-            content: "✦"; position: absolute; left: 0; color: #0a58ca; font-weight: bold;
-        }
-        .info-card ul li strong { color: #0a58ca; display: block; font-size: 16px; }
+        .info-card ul li { margin-bottom: 12px; padding-left: 25px; position: relative; font-size: 15px; }
+        .info-card ul li::before { content: "✦"; position: absolute; left: 0; color: #0a58ca; font-weight: bold; }
 
-        /* --- PORTFOLIO SECTION --- */
-        .portfolio-title { color: #0a58ca; font-size: 24px; margin: 60px 0 20px; text-align: center; font-weight: 800; }
-        .portfolio-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 25px;
-            margin-bottom: 40px;
+        /* --- SIMPLIFIED GOOGLE EXPLAINER BOX --- */
+        .explainer-box {
+            background: #fff8e1; border: 1px solid #ffe082; padding: 25px;
+            border-radius: 12px; margin: 40px 0; display: flex; gap: 20px; align-items: center;
         }
+        .explainer-icon { font-size: 40px; }
+        .explainer-text h4 { color: #856404; margin-bottom: 5px; }
+        .explainer-text p { font-size: 14px; color: #6d4c41; line-height: 1.5; }
+
+        /* --- PORTFOLIO --- */
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-bottom: 40px; }
         .portfolio-card {
-            background: #fff;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-            border: 1px solid #eee;
-            width: 100%;
-            max-width: 380px;
+            background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: 0.3s; border: 1px solid #eee;
         }
-        .portfolio-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 25px rgba(10, 88, 202, 0.15);
-        }
-        .portfolio-thumb {
-            width: 100%; height: 220px; background: #e9ecef; overflow: hidden;
-        }
-        .portfolio-thumb img {
-            width: 100%; height: 100%; object-fit: cover;
-        }
+        .portfolio-thumb { width: 100%; height: 220px; background: #e9ecef; overflow: hidden; }
+        .portfolio-thumb img { width: 100%; height: 100%; object-fit: cover; }
         .portfolio-info { padding: 20px; text-align: center; }
-        .portfolio-info h4 { color: #333; margin-bottom: 8px; font-size: 18px; }
-        .portfolio-info p { font-size: 14px; color: #666; margin-bottom: 15px; }
-        
-        .feature-tags {
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 20px;
-        }
-        .feature-tags span {
-            background: #f0f4f8; color: #0a58ca; font-size: 11px; font-weight: 700;
-            padding: 4px 10px; border-radius: 4px; text-transform: uppercase;
-        }
-        .btn-demo {
-            display: inline-block; padding: 10px 25px; background: #0a58ca; color: #fff;
-            text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 14px; transition: 0.3s;
-        }
-        .btn-demo:hover { background: #333; color: #fff; }
+        .btn-demo { display: inline-block; padding: 10px 25px; background: #0a58ca; color: #fff; text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 14px; }
 
-        /* --- CTA SECTION --- */
-        .cta-section { text-align: center; margin: 60px 0; background: rgba(255, 255, 255, 0.9); padding: 40px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
-        .cta-headline { font-size: 22px; font-weight: 800; margin-bottom: 10px; color: #0a58ca;}
-        .cta-sub { color: #666; margin-bottom: 30px; }
-        .btn-group { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        /* --- CTA --- */
+        .cta-section { text-align: center; margin: 60px 0; background: rgba(255, 255, 255, 0.9); padding: 40px; border-radius: 15px; }
+        .btn-group { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 25px;}
         .btn-cta {
             display: flex; align-items: center; justify-content: center; padding: 16px 35px;
             text-decoration: none; font-weight: 700; font-size: 17px; border-radius: 50px;
             transition: 0.3s; color: #fff; min-width: 240px;
         }
-        .btn-viber { background: #665CAC; box-shadow: 0 4px 15px rgba(102, 92, 172, 0.3); }
-        .btn-whatsapp { background: #25D366; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
-        .btn-cta:hover { transform: translateY(-3px); opacity: 0.95; box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+        .btn-viber { background: #665CAC; }
+        .btn-whatsapp { background: #25D366; }
 
-        @media(max-width: 768px) {
-            .details-grid { grid-template-columns: 1fr; }
-            .btn-group { flex-direction: column; align-items: center; }
-            .btn-cta { width: 100%; }
-        }
+        @media(max-width: 768px) { .details-grid { grid-template-columns: 1fr; } .explainer-box { flex-direction: column; text-align: center; } }
     </style>
 </head>
 <body>
@@ -179,6 +125,7 @@
         <div class="menu-toggle" id="mobile-menu">&#9776;</div>
         <ul class="nav-links" id="nav-links">
             <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
             <li class="dropdown">
                 <a href="#" id="package-link">Web Packages ▼</a>
                 <ul class="dropdown-menu" id="package-dropdown">
@@ -187,8 +134,7 @@
                     <li><a href="growth-suite.html">The Growth Suite</a></li>
                 </ul>
             </li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="our-process.html">Process</a></li>
             <li><a href="faq.html">FAQ</a></li>
         </ul>
     </div>
@@ -196,61 +142,75 @@
 
 <div class="container">
     <section class="package-hero">
-        <div class="price-tag">₱18,000 – ₱25,000</div>
+        <div class="price-tag">Starts at ₱18,000</div>
+        <span class="price-disclaimer">*Final price depends on domain registration fees and custom feature complexity.*</span>
         <h2>The Identity Pack</h2>
-        <p>Go beyond just a website. Establish your professional footprint with a custom domain and high-speed hosting, built into one complete package.</p>
-        <p class="note">*Full ownership and setup included in the price.*</p>
+        <p>A premium collaboration where your ideas meet professional craft. We manage the technical heavy lifting while building a custom digital identity that fits your brand vision.</p>
+        <div class="tech-stack">
+            <span class="tech-badge">Custom Architecture</span>
+            <span class="tech-badge">Managed Domain</span>
+            <span class="tech-badge">1-Year Hosting</span>
+            <span class="tech-badge">Official Google Indexing</span>
+        </div>
     </section>
 
-    <h2 class="section-title">Exclusive Features</h2>
+    <h2 class="section-title">Your Vision, Fully Realized</h2>
     <div class="details-grid">
         <section class="info-card">
-            <h3>Domain & Hosting</h3>
+            <h3>Creative Partnership</h3>
             <ul>
-                <li><strong>Registered Domain</strong> Your own professional web address (e.g., .com, .ph, .net).</li>
-                <li><strong>Premium Hosting</strong> Fast, secure, and reliable hosting server provided by us.</li>
-                <li><strong>Business Emails</strong> Look professional with your-name@yourdomain.com.</li>
+                <li><strong>Custom Concepts:</strong> We take your unique business ideas and build a custom multi-page flow from scratch.</li>
+                <li><strong>Bespoke Branding:</strong> Full integration of your specific colors, logo, and personality into every pixel.</li>
+                <li><strong>Unique UX:</strong> User experiences designed for your niche to ensure your visitors stay engaged.</li>
             </ul>
         </section>
         <section class="info-card">
-            <h3>Advanced Structure</h3>
+            <h3>Managed Performance</h3>
             <ul>
-                <li><strong>Full Multi-Page Site</strong> Home, About, Services, Gallery, and Contact pages.</li>
-                <li><strong>SEO Optimization</strong> Enhanced search engine setup to get you found faster.</li>
-                <li><strong>SSL Security</strong> Secure your site with a locked padlock in the browser bar.</li>
+                <li><strong>Domain & DNS:</strong> We handle the registration and technical setup of your professional .com or .ph name.</li>
+                <li><strong>Secure Hosting:</strong> Premium server space with high-speed performance and SSL encryption included.</li>
+                <li><strong>Search Registration:</strong> We manually submit your site to Google to ensure you appear in search results.</li>
             </ul>
         </section>
     </div>
 
-    <h2 class="portfolio-title">Available Demo Models</h2>
+    <div class="explainer-box">
+        <div class="explainer-icon">💡</div>
+        <div class="explainer-text">
+            <h4>How Google Works for You</h4>
+            <p>
+                This package makes sure your website is officially registered on Google so it appears in search results. 
+                Please note that <strong>paying for "Sponsored" or "Ad" spots</strong> is a separate cost handled by Google. 
+                We build the high-quality website first, ensuring that when people find you—whether through search or future ads—they see a professional brand they can trust.
+            </p>
+        </div>
+    </div>
+
+    <h2 class="section-title">Inspiration References</h2>
+    <p style="text-align:center; color:#666; margin-bottom:30px;">These live models act as a reference to help spark your ideas. Your final project will be customized to your specific business goals.</p>
     <div class="portfolio-grid">
         <div class="portfolio-card">
-            <div class="portfolio-thumb"><img src="coffee-demo.jpg" alt="Coffee Shop Demo"></div>
+            <div class="portfolio-thumb"><img src="coffee-demo.jpg" alt="Coffee Shop"></div>
             <div class="portfolio-info">
-                <h4>Coffee Shop Model</h4>
-                <p>A multi-page layout featuring a digital menu, gallery, and location integration.</p>
-                <div class="feature-tags"><span>Custom Domain</span><span>SSL Secured</span><span>Multi-Page</span></div>
-                <a href="https://jhamcy.github.io/Coffee-Shop-Demo/" target="_blank" class="btn-demo">View Live Demo</a>
+                <h4>Coffee Shop Reference</h4>
+                <a href="https://jhamcy.github.io/Coffee-Shop-Demo/" target="_blank" class="btn-demo">View Reference</a>
             </div>
         </div>
-
         <div class="portfolio-card">
-            <div class="portfolio-thumb"><img src="spa-demo.jpg" alt="Ataraxy Wellness Spa Demo"></div>
+            <div class="portfolio-thumb"><img src="spa-demo.jpg" alt="Wellness Spa"></div>
             <div class="portfolio-info">
-                <h4>Wellness & Spa Model</h4>
-                <p>Professional service-based design with dedicated pages for treatment details.</p>
-                <div class="feature-tags"><span>High-Speed Hosting</span><span>Service Catalog</span><span>SEO Ready</span></div>
-                <a href="https://jhamcy.github.io/Ataraxy-Wellness-Spa-Demo/" target="_blank" class="btn-demo">View Live Demo</a>
+                <h4>Wellness & Spa Reference</h4>
+                <a href="https://jhamcy.github.io/Ataraxy-Wellness-Spa-Demo/" target="_blank" class="btn-demo">View Reference</a>
             </div>
         </div>
     </div>
 
     <section class="cta-section">
-        <p class="cta-headline">Ready for a professional home on the web?</p>
-        <p class="cta-sub">We handle the domain registration and hosting so you can focus on your business.</p>
+        <p class="section-title">Have a unique idea for your brand?</p>
+        <p>Let's discuss your concept and check domain availability today.</p>
         <div class="btn-group">
-            <a href="viber://chat?number=%2B639944846149" class="btn-cta btn-viber">Chat via Viber</a>
-            <a href="https://wa.me/639310410733?text=Hi!%20I'm%20interested%20in%20The%20Identity%20Pack%20(Domain%20+%20Hosting)." class="btn-cta btn-whatsapp">Message on WhatsApp</a>
+            <a href="viber://chat?number=%2B639944846149" class="btn-cta btn-viber">Discuss on Viber</a>
+            <a href="https://wa.me/639944846149?text=Hi!%20I'm%20interested%20in%20The%20Identity%20Package.%20I%20have%20an%20idea%20for%20my%20website!" class="btn-cta btn-whatsapp">Message on WhatsApp</a>
         </div>
     </section>
 </div>

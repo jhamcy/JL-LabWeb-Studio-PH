@@ -3,19 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Essential Multi-Page - JL LabWeb Studio PH</title>
+    <title>The Essential Pack - JL LabWeb Studio PH</title>
     <style>
         /* --- GLOBAL STYLES --- */
         *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI', Roboto, Helvetica, Arial, sans-serif;}
         
         body {
-            /* REMOVED ALL GRADIENTS AND TINTS - VIEWING ORIGINAL COLOR OF JPG */
             background-image: url("background.jpg");
             background-repeat: no-repeat;
             background-position: center center;
             background-attachment: fixed;
             background-size: cover;
-            
             color: #333;
             min-height: 100vh;
             line-height: 1.6;
@@ -50,7 +48,7 @@
             .dropdown:hover .dropdown-menu{ display:flex; }
         }
 
-        /* Unified Mobile Styling */
+        /* Mobile Styling */
         @media(max-width:768px){
             .menu-toggle{display:block;}
             .nav-links{
@@ -67,8 +65,6 @@
         /* --- PAGE CONTENT --- */
         .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
         
-        /* I kept a very light semi-transparent white on the cards so they are readable 
-           over your background, while still letting the background show through. */
         .package-hero {
             text-align: center;
             background: rgba(255, 255, 255, 0.9); 
@@ -81,11 +77,13 @@
         .package-hero h2 { font-size: 36px; color: #0a58ca; margin-bottom: 10px; }
         .package-hero .price-tag { 
             display: inline-block; background: #0a58ca; color: #fff; 
-            padding: 8px 25px; border-radius: 30px; font-weight: 800; font-size: 22px; margin-bottom: 20px;
+            padding: 8px 25px; border-radius: 30px; font-weight: 800; font-size: 24px; margin-bottom: 20px;
         }
         .package-hero p { font-size: 18px; color: #555; max-width: 800px; margin: 0 auto; }
-        .package-hero .note { font-size: 14px; color: #888; margin-top: 15px; }
         
+        .tech-stack { display: flex; justify-content: center; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+        .tech-badge { background: #f0f4f8; color: #0a58ca; font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 5px; border: 1px solid #d1d9e6; }
+
         .section-title { color: #0a58ca; font-size: 24px; margin: 40px 0 20px; text-align: center; font-weight: 800; }
         
         .details-grid {
@@ -106,73 +104,47 @@
         .info-card ul li::before {
             content: "✦"; position: absolute; left: 0; color: #0a58ca; font-weight: bold;
         }
-        .info-card ul li strong { color: #0a58ca; display: block; font-size: 16px; }
 
-        /* --- PORTFOLIO SECTION --- */
-        .portfolio-title { color: #0a58ca; font-size: 24px; margin: 60px 0 20px; text-align: center; font-weight: 800; }
-        .portfolio-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-        .portfolio-card {
-            background: #fff;
+        /* --- HANDOVER BOX --- */
+        .handover-box {
+            background: #eef4ff;
+            border: 1px solid #0a58ca;
+            padding: 30px;
             border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-            border: 1px solid #eee;
-            width: 100%;
-            max-width: 380px;
+            text-align: center;
+            margin: 40px 0;
         }
-        .portfolio-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 25px rgba(10, 88, 202, 0.15);
+        .handover-box h4 { color: #0a58ca; margin-bottom: 10px; font-size: 20px; }
+        .handover-box p { font-size: 15px; color: #444; }
+
+        /* --- PORTFOLIO / DESIGN REFERENCES --- */
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-bottom: 40px; }
+        .portfolio-card {
+            background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: 0.3s; border: 1px solid #eee;
         }
-        .portfolio-thumb {
-            width: 100%; height: 220px; background: #e9ecef; overflow: hidden;
-        }
-        .portfolio-thumb img {
-            width: 100%; height: 100%; object-fit: cover;
-        }
+        .portfolio-card:hover { transform: translateY(-10px); }
+        .portfolio-thumb { width: 100%; height: 220px; background: #e9ecef; overflow: hidden; }
+        .portfolio-thumb img { width: 100%; height: 100%; object-fit: cover; }
         .portfolio-info { padding: 20px; text-align: center; }
-        .portfolio-info h4 { color: #333; margin-bottom: 8px; font-size: 18px; }
-        .portfolio-info p { font-size: 14px; color: #666; margin-bottom: 15px; }
-        
-        .feature-tags {
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 20px;
-        }
-        .feature-tags span {
-            background: #f0f4f8; color: #0a58ca; font-size: 11px; font-weight: 700;
-            padding: 4px 10px; border-radius: 4px; text-transform: uppercase;
-        }
         .btn-demo {
             display: inline-block; padding: 10px 25px; background: #0a58ca; color: #fff;
-            text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 14px; transition: 0.3s;
+            text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 14px;
         }
-        .btn-demo:hover { background: #333; color: #fff; }
 
-        /* --- CTA SECTION --- */
-        .cta-section { text-align: center; margin: 60px 0; background: rgba(255, 255, 255, 0.9); padding: 40px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
-        .cta-headline { font-size: 22px; font-weight: 800; margin-bottom: 10px; color: #0a58ca;}
-        .cta-sub { color: #666; margin-bottom: 30px; }
-        .btn-group { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        /* --- CTA --- */
+        .cta-section { text-align: center; margin: 60px 0; background: rgba(255, 255, 255, 0.9); padding: 40px; border-radius: 15px; }
+        .btn-group { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 25px;}
         .btn-cta {
             display: flex; align-items: center; justify-content: center; padding: 16px 35px;
             text-decoration: none; font-weight: 700; font-size: 17px; border-radius: 50px;
             transition: 0.3s; color: #fff; min-width: 240px;
         }
-        .btn-viber { background: #665CAC; box-shadow: 0 4px 15px rgba(102, 92, 172, 0.3); }
-        .btn-whatsapp { background: #25D366; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
-        .btn-cta:hover { transform: translateY(-3px); opacity: 0.95; box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+        .btn-viber { background: #665CAC; }
+        .btn-whatsapp { background: #25D366; }
+        .btn-cta:hover { transform: translateY(-3px); opacity: 0.9; }
 
-        @media(max-width: 768px) {
-            .details-grid { grid-template-columns: 1fr; }
-            .btn-group { flex-direction: column; align-items: center; }
-            .btn-cta { width: 100%; }
-        }
+        @media(max-width: 768px) { .details-grid { grid-template-columns: 1fr; } .btn-cta { width: 100%; } }
     </style>
 </head>
 <body>
@@ -183,6 +155,7 @@
         <div class="menu-toggle" id="mobile-menu">&#9776;</div>
         <ul class="nav-links" id="nav-links">
             <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
             <li class="dropdown">
                 <a href="#" id="package-link">Web Packages ▼</a>
                 <ul class="dropdown-menu" id="package-dropdown">
@@ -191,8 +164,7 @@
                     <li><a href="growth-suite.html">The Growth Suite</a></li>
                 </ul>
             </li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="our-process.html">Process</a></li>
             <li><a href="faq.html">FAQ</a></li>
         </ul>
     </div>
@@ -200,61 +172,69 @@
 
 <div class="container">
     <section class="package-hero">
-        <div class="price-tag">₱12,500 – ₱15,000</div>
-        <h2>The Essential Multi-Page</h2>
-        <p>Get a professional website based on our high-quality demos. Whether you want the exact same structure or a fully customized version of your own idea, we deliver a complete multi-page experience.</p>
-        <p class="note">*Price covers expert design & development based on current model complexity.*</p>
+        <div class="price-tag">₱12,000</div>
+        <h2>The Essential Pack</h2>
+        <p>A high-performance multi-page website tailored to your brand goals. We use our design references to help spark your vision, then we build it to your specifications.</p>
+        <div class="tech-stack">
+            <span class="tech-badge">Custom Tailored</span>
+            <span class="tech-badge">GitHub Pages</span>
+            <span class="tech-badge">Full Account Handover</span>
+        </div>
     </section>
 
-    <h2 class="section-title">Package Inclusions</h2>
+    <h2 class="section-title">Fully Customizable Build</h2>
     <div class="details-grid">
         <section class="info-card">
-            <h3>Customization</h3>
+            <h3>Bespoke Development</h3>
             <ul>
-                <li><strong>Idea to Reality</strong> We build unique sites based on your specific business needs.</li>
-                <li><strong>Flexible Figures</strong> We adjust sections, pricing, and text to fit your brand.</li>
-                <li><strong>Brand Alignment</strong> Use your logo and colors to make the site truly yours.</li>
+                <li><strong>Your Unique Idea</strong> We don't just copy templates. We take your specific concept and turn it into a functional multi-page site.</li>
+                <li><strong>Personalized Content</strong> Every line of text, color, and image is chosen to represent your business perfectly.</li>
+                <li><strong>Responsive Design</strong> A layout that adapts beautifully to phones, tablets, and desktops.</li>
             </ul>
         </section>
         <section class="info-card">
-            <h3>Multi-Page Value</h3>
+            <h3>Complete Control</h3>
             <ul>
-                <li><strong>Full Site Structure</strong> Dedicated Home, Services, About, and Contact pages.</li>
-                <li><strong>Professional SEO</strong> Built-in optimization to help you rank on Google.</li>
-                <li><strong>Ready-to-Sell Models</strong> Deployment-ready designs based on our studio demos.</li>
+                <li><strong>Zero Lock-in</strong> We transfer the GitHub and Netlify accounts to you once the project is finished.</li>
+                <li><strong>Source Ownership</strong> You own the raw code. No middleman and no hidden monthly service fees.</li>
+                <li><strong>Professional SEO</strong> Built-in optimization so your custom pages can be found on Google.</li>
             </ul>
         </section>
     </div>
 
-    <h2 class="portfolio-title">Available Demo Models</h2>
+    <div class="handover-box">
+        <h4>🚀 Account Handover Process</h4>
+        <p>Once the custom build is complete, we turn over the <strong>GitHub</strong> and <strong>Netlify</strong> credentials. You become the sole owner of the platform and the code forever.</p>
+    </div>
+
+    <h2 class="section-title">Design References (Ideas for You)</h2>
+    <p style="text-align:center; color:#666; margin-bottom:30px;">Use these live models as a reference for quality and structure. Your site will be fully customized to your niche.</p>
     <div class="portfolio-grid">
         <div class="portfolio-card">
-            <div class="portfolio-thumb"><img src="coffee-demo.jpg" alt="Coffee Shop Demo"></div>
+            <div class="portfolio-thumb"><img src="coffee-demo.jpg" alt="Coffee Shop"></div>
             <div class="portfolio-info">
-                <h4>Coffee Shop Model</h4>
-                <p>A multi-page layout featuring a digital menu, gallery, and location integration.</p>
-                <div class="feature-tags"><span>Multi-Page</span><span>Product Menu</span><span>Google Maps</span></div>
-                <a href="https://jhamcy.github.io/Coffee-Shop-Demo/" target="_blank" class="btn-demo">View Live Demo</a>
+                <h4>Coffee Shop Reference</h4>
+                <p>Great for boutique cafes or restaurants needing a digital menu and gallery.</p>
+                <a href="https://jhamcy.github.io/Coffee-Shop-Demo/" target="_blank" class="btn-demo">View Reference</a>
             </div>
         </div>
 
         <div class="portfolio-card">
-            <div class="portfolio-thumb"><img src="spa-demo.jpg" alt="Ataraxy Wellness Spa Demo"></div>
+            <div class="portfolio-thumb"><img src="spa-demo.jpg" alt="Wellness Spa"></div>
             <div class="portfolio-info">
-                <h4>Wellness & Spa Model</h4>
-                <p>Professional service-based design with dedicated pages for treatment details.</p>
-                <div class="feature-tags"><span>Clean UI</span><span>Service Catalog</span><span>Booking CTA</span></div>
-                <a href="https://jhamcy.github.io/Ataraxy-Wellness-Spa-Demo/" target="_blank" class="btn-demo">View Live Demo</a>
+                <h4>Wellness & Spa Reference</h4>
+                <p>Perfect for calming, service-oriented businesses with detailed packages.</p>
+                <a href="https://jhamcy.github.io/Ataraxy-Wellness-Spa-Demo/" target="_blank" class="btn-demo">View Reference</a>
             </div>
         </div>
     </div>
 
     <section class="cta-section">
-        <p class="cta-headline">Found a model you like?</p>
-        <p class="cta-sub">We can customize these demos or build your unique idea from scratch.</p>
+        <p class="section-title">Have a unique vision for your site?</p>
+        <p>Contact us on your preferred app to discuss your project ideas.</p>
         <div class="btn-group">
             <a href="viber://chat?number=%2B639944846149" class="btn-cta btn-viber">Chat via Viber</a>
-            <a href="https://wa.me/639310410733?text=Hi!%20I'm%20interested%20in%20The%20Essential%20Package%20for%20my%20business." class="btn-cta btn-whatsapp">Message on WhatsApp</a>
+            <a href="https://wa.me/639944846149?text=Hi!%20I'm%20interested%20in%20The%20Essential%20Package.%20I%20have%20an%20idea%20for%20my%20website!" class="btn-cta btn-whatsapp">Message on WhatsApp</a>
         </div>
     </section>
 </div>

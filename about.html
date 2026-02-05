@@ -32,8 +32,8 @@ nav{position:sticky;top:0;z-index:999;background:#0a58ca;box-shadow: 0 2px 10px 
   padding:12px 24px;
 }
 nav h1{color:#fff;font-size:22px; font-weight: 800;}
-.menu-toggle{ display:none; font-size:30px; color:#fff; cursor:pointer; }
-.nav-links{ list-style:none; display:flex; gap:10px; }
+.menu-toggle{ display:none; font-size:30px; color:#fff; cursor:pointer; user-select: none; }
+.nav-links{ list-style:none; display:flex; gap:10px; align-items: center; }
 .nav-links li a{ color:#fff; text-decoration:none; font-weight:600; padding:10px 15px; display:block; transition: 0.3s; border-radius: 4px; }
 .nav-links li a:hover{ background:rgba(255,255,255,0.2); }
 
@@ -41,11 +41,13 @@ nav h1{color:#fff;font-size:22px; font-weight: 800;}
 .dropdown-menu{
   list-style:none; background:#fff; border-radius:4px; overflow:hidden;
   display: none; flex-direction:column; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  position: absolute; top: 100%; right: 0; width: 220px;
 }
-.dropdown-menu li a{ color: #333; padding:10px 20px; font-size:14px; border-bottom: 1px solid #eee; }
+.dropdown-menu li a{ color: #333 !important; padding:12px 20px; font-size:14px; border-bottom: 1px solid #eee; }
+.dropdown-menu li a:hover{ background: #f4f6fb; }
 
 @media(min-width:769px){
-  .dropdown:hover .dropdown-menu{ display:flex; position:absolute; top:100%; right:0; width:220px; }
+  .dropdown:hover .dropdown-menu{ display:flex; }
 }
 
 @media(max-width:768px){
@@ -54,20 +56,22 @@ nav h1{color:#fff;font-size:22px; font-weight: 800;}
     display:none; flex-direction:column; background:#0a58ca; position:absolute;
     width:100%; left:0; top:100%; padding:10px 0; border-top: 1px solid rgba(255,255,255,0.1);
   }
-  .nav-links.show{display:flex;}
-  .dropdown-menu.show{display:flex; position:static; width:100%; background:rgba(0,0,0,0.1); box-shadow:none;}
-  .nav-links li a{ text-align: center; }
-  .dropdown-menu li a { color: #fff; background: transparent; border-bottom: none; }
+  .nav-links.active{display:flex;}
+  .dropdown-menu { position:static; width:100%; box-shadow:none; background: rgba(0,0,0,0.1); }
+  .dropdown-menu.active { display:flex; }
+  .dropdown-menu li a { color: #fff !important; text-align: center; border-bottom: none; background: transparent; }
+  .nav-links li a { text-align: center; width: 100%; padding: 15px; }
 }
 
 /* --- 3. ABOUT CONTENT --- */
 .about-hero {
     text-align: center;
     padding: 60px 20px;
-    background: rgba(10, 88, 202, 0.05);
+    background: rgba(255, 255, 255, 0.85);
+    margin-bottom: 30px;
 }
-.about-hero h2 { color: #0a58ca; font-size: 36px; margin-bottom: 15px; }
-.about-hero p { max-width: 800px; margin: 0 auto; font-size: 18px; color: #555; }
+.about-hero h2 { color: #0a58ca; font-size: 36px; margin-bottom: 15px; font-weight: 800;}
+.about-hero p { max-width: 800px; margin: 0 auto; font-size: 18px; color: #444; font-weight: 500; }
 
 .section-container {
     max-width: 1100px;
@@ -79,52 +83,62 @@ nav h1{color:#fff;font-size:22px; font-weight: 800;}
     align-items: center;
 }
 
-.about-text { flex: 1; min-width: 300px; }
-.about-text h3 { color: #0a58ca; margin-bottom: 20px; font-size: 28px; }
+.about-text { flex: 1; min-width: 300px; background: rgba(255,255,255,0.85); padding: 30px; border-radius: 12px; }
+.about-text h3 { color: #0a58ca; margin-bottom: 20px; font-size: 28px; font-weight: 800; }
 .about-text p { margin-bottom: 20px; font-size: 16px; color: #444; }
 
 .about-image { flex: 1; min-width: 300px; text-align: center; }
-.about-image img { width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+.about-image img { width: 100%; max-width: 400px; border-radius: 12px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); }
 
 /* Why Choose Us Grid */
 .why-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin-top: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+    width: 100%;
 }
 .why-card {
     background: #fff;
-    padding: 30px;
+    padding: 35px;
     border-radius: 12px;
     text-align: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    border-bottom: 4px solid #0a58ca;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    border-bottom: 5px solid #0a58ca;
+    transition: 0.3s;
 }
-.why-card h4 { color: #0a58ca; margin-bottom: 10px; }
-.why-card p { font-size: 14px; color: #666; }
+.why-card:hover { transform: translateY(-5px); }
+.why-card h4 { color: #0a58ca; margin-bottom: 12px; font-weight: 800; }
+.why-card p { font-size: 15px; color: #666; }
 
 /* --- 4. CALL TO ACTION --- */
 .cta-box {
     text-align: center;
     background: #0a58ca;
     color: #fff;
-    padding: 50px 20px;
+    padding: 60px 20px;
     margin-top: 60px;
 }
-.cta-box h2 { margin-bottom: 20px; }
+.cta-box h2 { margin-bottom: 10px; font-weight: 800; }
+.cta-box p { margin-bottom: 30px; opacity: 0.9; }
 .cta-btn {
     display: inline-block;
-    padding: 15px 35px;
+    padding: 16px 45px;
     background: #fff;
     color: #0a58ca;
     text-decoration: none;
-    font-weight: 700;
+    font-weight: 800;
     border-radius: 50px;
     transition: 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
-.cta-btn:hover { transform: scale(1.1); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+.cta-btn:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
 
+@media(max-width: 768px) {
+    .about-hero h2 { font-size: 28px; }
+    .section-container { flex-direction: column; }
+}
 </style>
 </head>
 
@@ -136,16 +150,16 @@ nav h1{color:#fff;font-size:22px; font-weight: 800;}
     <div class="menu-toggle" id="mobile-menu">&#9776;</div>
     <ul class="nav-links" id="nav-links">
       <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
       <li class="dropdown">
-        <a href="#" id="packages-toggle">Web Packages ▼</a>
-        <ul class="dropdown-menu" id="packages-menu">
-          <li><a href="essential-scroll.html">The Essential Scroll</a></li>
+        <a href="#" id="package-link">Web Packages ▼</a>
+        <ul class="dropdown-menu" id="package-dropdown">
+          <li><a href="essential-scroll.html">The Essential Pack</a></li>
           <li><a href="identity-pack.html">The Identity Pack</a></li>
           <li><a href="growth-suite.html">The Growth Suite</a></li>
         </ul>
       </li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="our-process.html">Process</a></li>
       <li><a href="faq.html">FAQ</a></li>
     </ul>
   </div>
@@ -153,56 +167,63 @@ nav h1{color:#fff;font-size:22px; font-weight: 800;}
 
 <section class="about-hero">
     <h2>Driven by Innovation, Defined by Quality</h2>
-    <p>We are a dedicated Web Development Studio in the Philippines focused on helping businesses establish a professional digital presence.</p>
+    <p>We are a dedicated Web Development Studio in the Philippines helping brands turn unique ideas into high-performance digital homes.</p>
 </section>
 
 <div class="section-container">
     <div class="about-text">
         <h3>Our Philosophy</h3>
-        <p>At JL LabWeb Studio PH, we don't believe in generic templates. Every brand has a unique story, and its website should reflect that. We build websites from the ground up using professional tools like GoDaddy, GitHub, and Netlify.</p>
-        <p>Whether you are a startup needing your first landing page or a growing business looking for a brand identity refresh, we focus on performance, mobile responsiveness, and clean code.</p>
+        <p>At JL LabWeb Studio PH, we don't believe in generic templates. Every brand has a unique story, and its website should reflect that. We build websites from the ground up using modern architecture to ensure speed, security, and scalability.</p>
+        <p>Our mission is to bridge the gap between complex technology and business owners. We handle the tech stack—from hosting and domain registration to Google indexing—so you can focus on running your business.</p>
     </div>
     <div class="about-image">
-        <img src="logo.png" alt="JL LabWeb Philosophy" style="max-width: 300px;">
+        <img src="logo.png" alt="JL LabWeb Studio PH Philosophy">
     </div>
 </div>
 
 <div class="section-container">
     <div class="why-grid">
         <div class="why-card">
-            <h4>Custom Built</h4>
-            <p>No cookie-cutter templates. Your site is designed specifically for your brand’s needs.</p>
+            <h4>Custom Build Approach</h4>
+            <p>Our demos are just the starting point. We customize every layout, color, and feature to fit your specific business niche.</p>
         </div>
         <div class="why-card">
-            <h4>Mobile First</h4>
-            <p>Over 60% of users are on mobile. We ensure your site looks perfect on every screen size.</p>
+            <h4>Google Visibility</h4>
+            <p>We don't just build; we register. We ensure your site is officially indexed so your customers can find you on the world's largest search engine.</p>
         </div>
         <div class="why-card">
-            <h4>Direct Support</h4>
-            <p>Communicate directly with your developer via Viber or WhatsApp for fast updates.</p>
+            <h4>No Lock-in Ownership</h4>
+            <p>We believe in full transparency. Once the project is complete, we turnover all account credentials. You own your digital assets 100%.</p>
         </div>
     </div>
 </div>
 
 <section class="cta-box">
     <h2>Ready to start your digital journey?</h2>
-    <a href="contact.html" class="cta-btn">Book a Package Now</a>
+    <p>Let's turn your vision into a professional website today.</p>
+    <a href="index.html#pricing" class="cta-btn">View Packages</a>
 </section>
 
 <script>
-const menuToggle = document.getElementById("mobile-menu");
-const navLinks = document.getElementById("nav-links");
-const packagesToggle = document.getElementById("packages-toggle");
-const packagesMenu = document.getElementById("packages-menu");
+// Unified Navigation Logic
+const menuToggle = document.getElementById('mobile-menu');
+const navLinks = document.getElementById('nav-links');
+const packageLink = document.getElementById('package-link');
+const packageDropdown = document.getElementById('package-dropdown');
 
-menuToggle.addEventListener("click", (e) => { e.stopPropagation(); navLinks.classList.toggle("show"); });
-packagesToggle.addEventListener("click", (e) => {
-    if (window.innerWidth <= 768) { e.preventDefault(); e.stopPropagation(); packagesMenu.classList.toggle("show"); }
+menuToggle.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+
+packageLink.addEventListener('click', (e) => {
+    if (window.innerWidth <= 768) {
+        e.preventDefault();
+        packageDropdown.classList.toggle('active');
+    }
 });
-document.addEventListener("click", (e) => {
-    if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
-        navLinks.classList.remove("show");
-        packagesMenu.classList.remove("show");
+
+document.addEventListener('click', (e) => {
+    if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+        navLinks.classList.remove('active');
+        packageDropdown.classList.remove('active');
     }
 });
 </script>
