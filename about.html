@@ -32,6 +32,7 @@
         .nav-links li a{ color:#fff; text-decoration:none; font-weight:600; padding:10px 15px; display:block; transition: 0.3s; border-radius: 4px; }
         .nav-links li a:hover{ background:rgba(255,255,255,0.2); }
 
+        /* Dropdown */
         .dropdown{position:relative;}
         .dropdown-menu{
             list-style:none; background:#fff; border-radius:4px; overflow:hidden;
@@ -41,16 +42,9 @@
         .dropdown-menu li a{ color: #333 !important; padding:12px 20px; font-size:14px; border-bottom: 1px solid #eee; }
         @media(min-width:769px){ .dropdown:hover .dropdown-menu{ display:flex; } }
 
-        /* --- ANIMATION STYLES --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        /* --- ANIMATIONS --- */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
         @keyframes logoPop {
             0% { transform: scale(0.8); opacity: 0; }
@@ -58,70 +52,67 @@
         }
 
         /* --- CONTENT STYLES --- */
-        .container { max-width: 1000px; margin: 60px auto; padding: 0 20px; }
+        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
         
         .about-hero {
-            text-align: center;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 40px 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            margin-bottom: 40px;
+            text-align: center; background: rgba(255, 255, 255, 0.95);
+            padding: 50px 30px; border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1); margin-bottom: 30px;
         }
 
-        /* RESTORED LOGO STYLE */
         .about-logo {
-            width: 220px;
-            max-width: 80%;
-            margin-bottom: 20px;
+            width: 220px; max-width: 80%; margin-bottom: 25px;
             animation: logoPop 1s ease-out forwards;
         }
 
-        .about-hero h2 { color: #0a58ca; font-size: 36px; margin-bottom: 15px; }
+        .about-hero h2 { color: #0a58ca; font-size: 36px; margin-bottom: 15px; font-weight: 800; }
 
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 50px; }
-        
-        .info-card {
-            background: #fff;
-            padding: 35px;
-            border-radius: 12px;
-            border-top: 5px solid #0a58ca;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: 0.3s;
+        /* MISSION & VISION SIDE-BY-SIDE */
+        .mv-container { 
+            display: grid; grid-template-columns: 1fr 1fr; gap: 25px; 
+            margin-bottom: 40px; align-items: stretch;
         }
-        .info-card:hover { transform: translateY(-10px); box-shadow: 0 12px 20px rgba(10, 88, 202, 0.1); }
+        .mv-card { 
+            padding: 40px 30px; border-radius: 15px; color: #fff; text-align: center; 
+            box-shadow: 0 10px 30px rgba(10, 88, 202, 0.15); transition: 0.3s;
+            display: flex; flex-direction: column; justify-content: center;
+        }
+        .mv-card:hover { transform: translateY(-5px); }
+        .mission { background: linear-gradient(135deg, #0a58ca 0%, #063d8d 100%); }
+        .vision { background: linear-gradient(135deg, #063d8d 0%, #04295e 100%); }
+        .mv-icon { font-size: 40px; background: rgba(255,255,255,0.15); width: 70px; height: 70px; display: flex; align-items: center; justify-content: center; border-radius: 50%; margin: 0 auto 20px; }
 
-        .values-section {
-            background: #0a58ca;
-            color: #fff;
-            padding: 50px;
-            border-radius: 15px;
-            text-align: center;
+        /* THE SUPPORT PROMISE */
+        .support-promise {
+            background: #fff; padding: 50px; border-radius: 15px;
+            border-right: 8px solid #0a58ca; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             margin-bottom: 50px;
         }
-        .values-grid { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; margin-top: 30px; }
-        .value-item { 
-            flex: 1; min-width: 200px; 
-            opacity: 0; transform: scale(0.9); transition: 0.6s ease;
-        }
+        .support-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; margin-top: 25px; }
+
+        /* TOOLBOX GRID */
+        .tech-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin-bottom: 50px; }
+        .tech-item { background: #fff; padding: 20px; border-radius: 10px; width: 130px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: 0.3s; }
+        .tech-item:hover { transform: translateY(-5px); background: #0a58ca; color: #fff; }
+        .tech-icon-label { display: block; font-weight: 900; font-size: 18px; color: #0a58ca; margin-bottom: 5px; }
+        .tech-item:hover .tech-icon-label { color: #fff; }
+        .tech-item p { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* VALUES */
+        .values-section { background: #0a58ca; color: #fff; padding: 60px 40px; border-radius: 15px; text-align: center; margin-bottom: 50px; }
+        .values-grid { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 30px; margin-top: 40px; }
+        .value-item { flex: 1; min-width: 200px; opacity: 0; transform: scale(0.9); transition: 0.6s ease; }
         .value-item.active { opacity: 1; transform: scale(1); }
 
-        .tech-footer {
-            text-align: center;
-            padding: 30px;
-            background: rgba(255,255,255,0.8);
-            border-radius: 12px;
-            border-bottom: 5px solid #0a58ca;
-        }
+        .tech-footer { text-align: center; padding: 40px; background: rgba(255,255,255,0.9); border-radius: 15px; border-bottom: 5px solid #0a58ca; }
 
         @media(max-width:768px){
-            .about-grid { grid-template-columns: 1fr; }
+            .mv-container { grid-template-columns: 1fr; }
             .menu-toggle{display:block;}
-            .nav-links{
-                display:none; flex-direction:column; background:#0a58ca; position:absolute;
-                width:100%; left:0; top:100%; padding:10px 0;
-            }
+            .nav-links{ display:none; flex-direction:column; background:#0a58ca; position:absolute; width:100%; left:0; top:100%; padding:10px 0; }
             .nav-links.active{display:flex;}
+            .dropdown-menu { position:static; width:100%; background: rgba(0,0,0,0.1); }
+            .dropdown-menu.active { display:flex; }
         }
     </style>
 </head>
@@ -150,79 +141,123 @@
 <div class="container">
     <section class="about-hero reveal">
         <img src="logo.png" alt="JL LabWeb Logo" class="about-logo">
-        
         <h2>Your Vision, Our Code.</h2>
-        <p>JL LabWeb Studio PH is a dedicated web design space where local business ideas are transformed into professional digital identities.</p>
+        <p>JL LabWeb Studio PH is a dedicated digital space where local business ideas are transformed into professional websites.</p>
     </section>
 
-    <div class="about-grid">
-        <div class="info-card reveal">
-            <h3>Who We Are</h3>
-            <p>We are a modern web studio focused on bridging the gap between small business owners and the digital world. We build partnerships based on trust and transparency.</p>
+    <section class="mv-container reveal">
+        <div class="mv-card mission">
+            <div class="mv-icon">🎯</div>
+            <h3>Our Mission</h3>
+            <p>To empower Filipino entrepreneurs by providing <strong>digital homes</strong> they truly own through transparent, contract-free development.</p>
         </div>
-        <div class="info-card reveal">
-            <h3>The Transparency Promise</h3>
-            <p>We know that a 50% deposit is a sign of trust. That's why we provide daily updates and a live link to your site as we build it. You stay in control of the progress.</p>
+        <div class="mv-card vision">
+            <div class="mv-icon">🚀</div>
+            <h3>Our Vision</h3>
+            <p>To be the PH standard for transparent web development, ensuring every local brand has the <strong>foundation</strong> to compete globally.</p>
         </div>
-    </div>
+    </section>
 
-    <section class="values-section reveal">
-        <h3>Our Core Values</h3>
+    <section class="support-promise reveal">
+        <h2 style="color: #0a58ca;">We Don’t Just Build & Leave.</h2>
+        <p style="font-size: 17px; color: #555;">
+            Our relationship doesn’t end when the site goes live. We treat every project as a long-term partnership.
+        </p>
+        <div class="support-grid">
+            <div>
+                <h4 style="color: #0a58ca;">✅ 30-Day Health Check</h4>
+                <p style="font-size: 14px;">We monitor performance to ensure everything is running exactly as planned.</p>
+            </div>
+            <div>
+                <h4 style="color: #0a58ca;">✅ Ongoing Safety</h4>
+                <p style="font-size: 14px;">We provide support for hosting and domain management to keep you online.</p>
+            </div>
+            <div>
+                <h4 style="color: #0a58ca;">✅ Future Growth</h4>
+                <p style="font-size: 14px;">As your business grows, we are ready to scale your site with new professional features.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="reveal" style="margin-bottom: 50px;">
+        <h3 style="text-align: center; color: #0a58ca; margin-bottom: 30px;">Our Technical Toolbox</h3>
+        <div class="tech-grid">
+            <div class="tech-item">
+                <span class="tech-icon-label">HTML5</span>
+                <p>Structure</p>
+            </div>
+            <div class="tech-item">
+                <span class="tech-icon-label">CSS3</span>
+                <p>Styling</p>
+            </div>
+            <div class="tech-item">
+                <span class="tech-icon-label">JS</span>
+                <p>Interactivity</p>
+            </div>
+            <div class="tech-item">
+                <span class="tech-icon-label">GITHUB</span>
+                <p>Security</p>
+            </div>
+            <div class="tech-item">
+                <span class="tech-icon-label">NETLIFY</span>
+                <p>Deployment</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="values-section reveal" id="trigger-values">
+        <h3>Our Core Studio Values</h3>
         <div class="values-grid">
-            <div class="value-item" id="val-1">
+            <div class="value-item">
                 <h4>No Lock-In</h4>
-                <p>You own your code and accounts 100%. Full handover upon completion.</p>
+                <p>100% Ownership. We provide a full technical handover upon completion.</p>
             </div>
-            <div class="value-item" id="val-2">
+            <div class="value-item">
                 <h4>Daily Sync</h4>
-                <p>Live progress links ensure the final product matches your dream.</p>
+                <p>Live preview links ensure the final product perfectly matches your vision.</p>
             </div>
-            <div class="value-item" id="val-3">
+            <div class="value-item">
                 <h4>PH-Built</h4>
-                <p>Proudly supporting local businesses with global web standards.</p>
+                <p>Empowering local businesses with international development standards.</p>
             </div>
         </div>
     </section>
 
     <div class="tech-footer reveal">
-        <h3>Professional Tech Stack</h3>
-        <p>Built with modern tools for speed and security.</p>
-        <div style="margin-top: 15px; font-weight: bold; color: #0a58ca; letter-spacing: 1px;">
-            HTML5 &bull; CSS3 &bull; JS &bull; GITHUB &bull; NETLIFY
-        </div>
+        <p style="font-weight: 800; color: #0a58ca; letter-spacing: 2px;">JL LABWEB STUDIO PH</p>
     </div>
 </div>
 
 <script>
-    // Toggle Navigation
     const menuToggle = document.getElementById('mobile-menu');
     const navLinks = document.getElementById('nav-links');
-    menuToggle.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+    const packageLink = document.getElementById('package-link');
+    const packageDropdown = document.getElementById('package-dropdown');
 
-    // Scroll Animation Logic
+    menuToggle.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+    
+    packageLink.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+            e.preventDefault();
+            packageDropdown.classList.toggle('active');
+        }
+    });
+
     const scrollReveal = () => {
         const reveals = document.querySelectorAll('.reveal');
-        const valueItems = document.querySelectorAll('.value-item');
-
         reveals.forEach(el => {
             const windowHeight = window.innerHeight;
             const elementTop = el.getBoundingClientRect().top;
-            const elementVisible = 150;
-
-            if (elementTop < windowHeight - elementVisible) {
+            if (elementTop < windowHeight - 100) {
                 el.classList.add('active');
+                if (el.id === 'trigger-values') {
+                    const items = el.querySelectorAll('.value-item');
+                    items.forEach((item, i) => {
+                        setTimeout(() => { item.classList.add('active'); }, i * 200);
+                    });
+                }
             }
         });
-
-        // Staggered animation for values
-        const valuesSection = document.querySelector('.values-section');
-        if (valuesSection.classList.contains('active')) {
-            valueItems.forEach((item, index) => {
-                setTimeout(() => {
-                    item.classList.add('active');
-                }, index * 200);
-            });
-        }
     };
 
     window.addEventListener('scroll', scrollReveal);
