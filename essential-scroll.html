@@ -4,228 +4,289 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Essential Pack - JL LabWeb Studio PH</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* --- GLOBAL STYLES --- */
-        *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI', Roboto, Helvetica, Arial, sans-serif;}
+        /* --- 1. RESET & BASE (SYNCED WITH INDEX) --- */
+        *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI', sans-serif;}
         
         body {
-            background-image: url("background.jpg");
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-attachment: fixed;
+            background: #f4f6fb url("background.jpg") no-repeat fixed center;
             background-size: cover;
             color: #333;
             min-height: 100vh;
             line-height: 1.6;
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* --- NAVIGATION --- */
-        nav{position:sticky;top:0;z-index:999;background:#0a58ca;box-shadow: 0 2px 10px rgba(0,0,0,0.1);}
+        /* --- 2. NAVIGATION (SYNCED WITH INDEX) --- */
+        nav{
+            position: sticky; top: 0; z-index: 1000;
+            background: #0a58ca; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
         .nav-inner{
             max-width:1200px; margin:auto; display:flex; 
             justify-content:space-between; align-items:center; padding:12px 24px;
         }
-        nav h1{color:#fff;font-size:22px; font-weight: 800;}
+        .logo-text{color:#fff; font-size:20px; font-weight: 800;}
         .menu-toggle{ display:none; font-size:30px; color:#fff; cursor:pointer; user-select: none; }
-        .nav-links{ list-style:none; display:flex; gap:10px; align-items: center; }
-        .nav-links li a{ color:#fff; text-decoration:none; font-weight:600; padding:10px 15px; display:block; transition: 0.3s; border-radius: 4px; }
+        
+        .nav-links{ list-style:none; display:flex; gap:10px; align-items: center;}
+        .nav-links li a{ color:#fff; text-decoration:none; font-weight:600; padding:10px 15px; display:block; border-radius: 4px; transition: 0.3s;}
         .nav-links li a:hover{ background:rgba(255,255,255,0.2); }
 
-        .dropdown{position:relative;}
+        /* Dropdown Desktop */
+        .dropdown{ position: relative; }
         .dropdown-menu{
-            list-style:none; background:#fff; border-radius:4px; overflow:hidden;
-            display: none; flex-direction:column; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            position: absolute; top: 100%; right: 0; width: 220px;
+            display: none; position: absolute; top: 100%; right: 0; 
+            background: #fff; min-width: 200px; border-radius: 4px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;
         }
-        .dropdown-menu li a{ color: #333 !important; padding:12px 20px; font-size:14px; border-bottom: 1px solid #eee; }
-        @media(min-width:769px){ .dropdown:hover .dropdown-menu{ display:flex; } }
+        .dropdown-menu li a{ color: #333 !important; padding: 12px 20px; font-size: 14px; border-bottom: 1px solid #eee; }
+        
+        @media(min-width: 769px) {
+            .dropdown:hover .dropdown-menu { display: block; }
+        }
 
         @media(max-width:768px){
             .menu-toggle{display:block;}
-            .nav-links{ display:none; flex-direction:column; background:#0a58ca; position:absolute; width:100%; left:0; top:100%; padding:10px 0; }
+            .nav-links{ 
+                display:none; flex-direction:column; background:#0a58ca; 
+                position:absolute; width:100%; left:0; top:100%; text-align: center; gap: 0;
+            }
             .nav-links.active{display:flex;}
-            .dropdown-menu { position:static; width:100%; background: rgba(0,0,0,0.1); }
-            .dropdown-menu.active { display:flex; }
+            .nav-links li { width: 100%; border-bottom: 1px solid rgba(255,255,255,0.1); }
+            .nav-links li a { padding: 15px; width: 100%; } 
+            
+            .dropdown-menu{ position: static; width: 100%; background: rgba(0,0,0,0.1); box-shadow: none; display: none; }
+            .dropdown-menu.active { display: flex; flex-direction: column; }
+            .dropdown-menu li a { color: #fff !important; border-bottom: 1px solid rgba(255,255,255,0.05); }
         }
 
-        /* --- ANIMATIONS --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        /* --- 3. ANIMATIONS --- */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* --- PAGE CONTENT --- */
-        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+        /* --- 4. PAGE CONTENT --- */
+        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; flex: 1; }
         
         .package-hero {
-            text-align: center;
-            background: rgba(255, 255, 255, 0.9); 
-            padding: 50px 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            margin-bottom: 40px;
+            text-align: center; background: rgba(255, 255, 255, 0.9); 
+            padding: 50px 20px; border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1); margin-bottom: 40px;
         }
         
-        .package-hero h2 { font-size: 36px; color: #0a58ca; margin-bottom: 10px; }
-        .package-hero .price-tag { 
-            display: inline-block; background: #0a58ca; color: #fff; 
-            padding: 8px 25px; border-radius: 30px; font-weight: 800; font-size: 24px; margin-bottom: 20px;
-        }
-        
-        .tech-badge { background: #f0f4f8; color: #0a58ca; font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 5px; border: 1px solid #d1d9e6; margin: 5px; display: inline-block; }
+        .price-tag { display: inline-block; background: #0a58ca; color: #fff; padding: 8px 25px; border-radius: 30px; font-weight: 800; font-size: 24px; }
+        .price-disclaimer { display: block; font-size: 13px; color: #777; margin: 5px 0 20px; font-style: italic; }
+
+        .tech-badge { background: #eef4ff; color: #0a58ca; font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 5px; border: 1px solid #0a58ca; text-transform: uppercase; margin: 5px; display: inline-block; }
 
         .section-title { color: #0a58ca; font-size: 24px; margin: 40px 0 20px; text-align: center; font-weight: 800; }
         
-        .details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+        .details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 40px; }
         .info-card {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border-left: 5px solid #0a58ca;
+            background: rgba(255, 255, 255, 0.9); padding: 30px; border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-left: 5px solid #0a58ca;
+        }
+        .info-card ul { list-style: none; margin-top: 15px; }
+        .info-card ul li { margin-bottom: 12px; padding-left: 25px; position: relative; font-size: 15px; }
+        .info-card ul li::before { content: "✦"; position: absolute; left: 0; color: #0a58ca; font-weight: bold; }
+
+        .explainer-box {
+            background: #fff8e1; border: 1px solid #ffe082; padding: 25px;
+            border-radius: 12px; margin: 40px 0; display: flex; gap: 20px; align-items: flex-start;
         }
 
-        .handover-box {
-            background: #eef4ff;
-            border: 1px solid #0a58ca;
-            padding: 30px;
-            border-radius: 12px;
-            text-align: center;
-            margin: 40px 0;
+        .clarity-box {
+            margin-top: 20px; padding: 15px; background: rgba(10, 88, 202, 0.05); 
+            border-radius: 8px; border: 1px dashed #0a58ca;
         }
 
-        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-bottom: 40px; }
+        /* PORTFOLIO / DEMO SECTION */
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 40px; }
         .portfolio-card {
             background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             transition: 0.3s; border: 1px solid #eee;
         }
-        .portfolio-thumb { width: 100%; height: 220px; background: #e9ecef; overflow: hidden; }
-        .portfolio-thumb img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s ease; }
-        .portfolio-card:hover .portfolio-thumb img { transform: scale(1.1); }
+        .portfolio-thumb { width: 100%; height: 200px; background: #e9ecef; overflow: hidden; }
+        .portfolio-thumb img { width: 100%; height: 100%; object-fit: cover; }
         .portfolio-info { padding: 20px; text-align: center; }
-        
-        .btn-demo {
-            display: inline-block; padding: 10px 25px; background: #0a58ca; color: #fff;
-            text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 14px;
-        }
+        .btn-demo { display: inline-block; padding: 10px 25px; background: #0a58ca; color: #fff; text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 14px; }
 
-        /* --- CTA --- */
+        /* CONTACT SECTION */
         .cta-section { text-align: center; margin: 60px 0; background: rgba(255, 255, 255, 0.9); padding: 40px; border-radius: 15px; }
         .btn-group { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 25px;}
+        
         .btn-cta {
-            display: flex; align-items: center; justify-content: center; padding: 16px 35px;
-            text-decoration: none; font-weight: 700; font-size: 17px; border-radius: 50px;
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 35px;
+            text-decoration: none; font-weight: 800; font-size: 17px; border-radius: 50px;
             transition: 0.3s; color: #fff; min-width: 240px;
         }
-        .btn-viber { background: #665CAC; }
+        .btn-viber { background: #7360f2; }
         .btn-whatsapp { background: #25D366; }
-        .btn-cta:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .btn-cta:hover { transform: translateY(-3px); filter: brightness(1.1); }
 
-        @media(max-width: 768px) { .details-grid { grid-template-columns: 1fr; } .btn-cta { width: 100%; } }
+        @media(max-width: 768px) { .details-grid { grid-template-columns: 1fr; } .explainer-box { flex-direction: column; text-align: center; } .btn-cta { width: 100%; } }
     </style>
 </head>
 <body>
 
 <nav>
-    <div class="nav-inner">
-        <h1>JL LabWeb</h1>
-        <div class="menu-toggle" id="mobile-menu">&#9776;</div>
-        <ul class="nav-links" id="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li class="dropdown">
-                <a href="#" id="package-link">Web Packages ▼</a>
-                <ul class="dropdown-menu" id="package-dropdown">
-                    <li><a href="essential-scroll.html">The Essential Pack</a></li>
-                    <li><a href="identity-pack.html">The Identity Pack</a></li>
-                </ul>
-            </li>
-            <li><a href="our-process.html">Process</a></li>
-            <li><a href="faq.html">FAQ</a></li>
+  <div class="nav-inner">
+    <div class="logo-text">JL LabWeb Studio PH</div>
+    <div class="menu-toggle" id="mobile-menu">&#9776;</div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li class="dropdown" id="dropdown-wrapper">
+        <a href="javascript:void(0)" id="package-link">Web Packages ▼</a>
+        <ul class="dropdown-menu" id="package-dropdown">
+          <li><a href="essential-scroll.html">The Essential Pack</a></li>
+          <li><a href="identity-pack.html">The Identity Pack</a></li>
         </ul>
-    </div>
+      </li>
+      <li><a href="our-process.html">Process</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+  </div>
 </nav>
 
 <div class="container">
     <section class="package-hero reveal">
-        <div class="price-tag">₱12,000</div>
+        <div class="price-tag">Starts at ₱8,500</div>
+        <span class="price-disclaimer">*One-time service fee. No monthly maintenance fees.*</span>
         <h2>The Essential Pack</h2>
-        <p>A high-performance multi-page (3-5 pages) website tailored to your brand goals. Built with transparency and daily updates.</p>
-        <div style="margin-top: 20px;">
-            <span class="tech-badge">Custom Tailored</span>
-            <span class="tech-badge">GitHub & Netlify</span>
-            <span class="tech-badge">Full Account Ownership</span>
+        <p>A professional 3 to 5-page website foundation. Perfect for businesses who want full ownership of their source code and zero monthly hosting bills.</p>
+        <div class="tech-stack">
+            <span class="tech-badge">3-5 Custom Pages</span>
+            <span class="tech-badge">Full Source Code Handover</span>
+            <span class="tech-badge">Free Hosting Setup</span>
+            <span class="tech-badge">Mobile Responsive</span>
         </div>
     </section>
 
-    <h2 class="section-title reveal">Key Package Features</h2>
+    <h2 class="section-title reveal">What You Get</h2>
     <div class="details-grid">
         <section class="info-card reveal">
-            <h3>Development</h3>
-            <p>We build your unique vision from scratch—no boring templates. Full responsive design for mobile and desktop included.</p>
+            <h3>Complete Ownership</h3>
+            <ul>
+                <li><strong>No Middleman:</strong> You own the GitHub and Netlify accounts directly.</li>
+                <li><strong>Source Code:</strong> We hand over the actual raw files. You are never locked to us.</li>
+                <li><strong>Zero Monthly Fees:</strong> We use modern infrastructure to give you high-speed hosting for free.</li>
+            </ul>
         </section>
         <section class="info-card reveal">
-            <h3>Ownership</h3>
-            <p>100% Handover. We transfer the raw code and hosting accounts to you. No monthly middleman fees.</p>
+            <h3>Technical Setup</h3>
+            <ul>
+                <li><strong>SEO Foundation:</strong> Your site is indexed on Google Search Console.</li>
+                <li><strong>SSL Security:</strong> Guaranteed green padlock icon for user trust.</li>
+                <li><strong>Domain Integration:</strong> We assist in connecting your chosen .com or .ph name.</li>
+            </ul>
         </section>
     </div>
 
-    <div class="handover-box reveal">
-        <h4>🚀 Professional Handover</h4>
-        <p>Upon completion, we turn over the GitHub and Netlify credentials. You become the sole owner forever. <br><small><em>(Note: We provide a guide to help you purchase your own domain.)</em></small></p>
-    </div>
-
-    <h2 class="section-title reveal">Design References</h2>
+    <h2 class="section-title reveal">Reference Demos</h2>
     <div class="portfolio-grid">
         <div class="portfolio-card reveal">
-            <div class="portfolio-thumb"><img src="coffee-demo.jpg" alt="Coffee Shop"></div>
+            <div class="portfolio-thumb"><img src="coffee-demo.jpg" alt="Portfolio Reference"></div>
             <div class="portfolio-info">
-                <h4>Coffee Shop Reference</h4>
-                <a href="https://jhamcy.github.io/Coffee-Shop-Demo/" target="_blank" class="btn-demo">View Reference</a>
+                <h4>Starter Portfolio Reference</h4>
+                <a href="https://jhamcy.github.io/Coffee-Shop-Demo/" target="_blank" class="btn-demo">View Demo</a>
             </div>
         </div>
         <div class="portfolio-card reveal">
-            <div class="portfolio-thumb"><img src="spa-demo.jpg" alt="Wellness Spa"></div>
+            <div class="portfolio-thumb"><img src="spa-demo.jpg" alt="Service Reference"></div>
             <div class="portfolio-info">
-                <h4>Wellness & Spa Reference</h4>
-                <a href="https://jhamcy.github.io/Ataraxy-Wellness-Spa-Demo/" target="_blank" class="btn-demo">View Reference</a>
+                <h4>Service Business Reference</h4>
+                <a href="https://jhamcy.github.io/Ataraxy-Wellness-Spa-Demo/" target="_blank" class="btn-demo">View Demo</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="explainer-box reveal">
+        <div style="font-size: 40px;">💡</div>
+        <div class="explainer-text">
+            <h4>Budget Transparency</h4>
+            <p>
+                We believe in honesty. This pack covers our expert labor for design and coding.
+            </p>
+            
+            <div class="clarity-box">
+                <h5 style="color: #0a58ca; margin-bottom: 5px;">📍 Professional Clarity:</h5>
+                <p style="font-size: 14px; color: #555;">
+                    <strong>Google Ads registration</strong> and <strong>Custom Domain costs</strong> are paid directly to Google/Registrars. We help you set them up, but you maintain the direct billing relationship with them.
+                </p>
             </div>
         </div>
     </div>
 
     <section class="cta-section reveal">
-        <p class="section-title">Ready to start your project?</p>
-        <p>Choose your preferred app below to message us directly.</p>
+        <p class="section-title">Ready to own your source code?</p>
         <div class="btn-group">
-            <a href="viber://chat?number=%2B639944846149" class="btn-cta btn-viber">Chat via Viber</a>
-            
-            <a href="https://wa.me/639310410733?text=Hi!%20I'm%20interested%20in%20The%20Essential%20Package." class="btn-cta btn-whatsapp">Message on WhatsApp</a>
+            <a href="viber://chat?number=%2B639944846149" class="btn-cta btn-viber">
+                <i class="fa-brands fa-viber"></i> Discuss on Viber
+            </a>
+            <a href="https://wa.me/639310410733?text=Hi!%20I'm%20interested%20in%20The%20Essential%20Package." class="btn-cta btn-whatsapp" target="_blank">
+                <i class="fa-brands fa-whatsapp"></i> Message on WhatsApp
+            </a>
         </div>
     </section>
 </div>
 
+<footer style="background: #0a58ca; color: #fff; padding: 40px 20px; text-align: center; margin-top: 60px;">
+    <div style="max-width: 1200px; margin: auto;">
+        <h3 style="margin-bottom: 10px;">JL LabWeb Studio PH</h3>
+        <p style="font-size: 14px; opacity: 0.8; margin-bottom: 20px;">Providing High-Performance Web Solutions for Filipino Businesses.</p>
+        <div style="font-size: 20px; display: flex; justify-content: center; gap: 20px;">
+             <a href="#" style="color: #fff;"><i class="fa-brands fa-facebook"></i></a>
+             <a href="#" style="color: #fff;"><i class="fa-brands fa-instagram"></i></a>
+             <a href="#" style="color: #fff;"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 30px 0;">
+        <p style="font-size: 12px; opacity: 0.6;">&copy; 2026 JL LabWeb Studio. All Rights Reserved.</p>
+    </div>
+</footer>
+
 <script>
-    // Navigation Logic
     const menuToggle = document.getElementById('mobile-menu');
     const navLinks = document.getElementById('nav-links');
     const packageLink = document.getElementById('package-link');
     const packageDropdown = document.getElementById('package-dropdown');
 
-    menuToggle.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+    // MOBILE TOGGLE
+    menuToggle.addEventListener('click', (e) => { 
+        e.stopPropagation();
+        navLinks.classList.toggle('active'); 
+    });
+
+    // PACKAGE DROPDOWN
     packageLink.addEventListener('click', (e) => {
         if (window.innerWidth <= 768) {
             e.preventDefault();
+            e.stopPropagation();
             packageDropdown.classList.toggle('active');
         }
     });
 
-    // Scroll Reveal Logic
+    // CLOSE ON BACKGROUND CLICK
+    document.addEventListener('click', (e) => {
+        if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+            navLinks.classList.remove('active');
+            packageDropdown.classList.remove('active');
+        }
+    });
+
+    // HIDE ON SCROLL
+    window.addEventListener('scroll', () => {
+        if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            packageDropdown.classList.remove('active');
+        }
+        scrollReveal();
+    });
+
+    // REVEAL ANIMATION
     const scrollReveal = () => {
         const reveals = document.querySelectorAll('.reveal');
         reveals.forEach(el => {
@@ -236,7 +297,6 @@
             }
         });
     };
-    window.addEventListener('scroll', scrollReveal);
     window.addEventListener('load', scrollReveal);
 </script>
 </body>

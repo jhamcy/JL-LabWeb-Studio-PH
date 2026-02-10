@@ -1,122 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FAQ - JL LabWeb Studio PH</title>
-<style>
-/* --- GLOBAL STYLES --- */
-*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI', Roboto, Helvetica, Arial, sans-serif;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - JL LabWeb Studio PH</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* --- 1. RESET & BASE (SYNCED WITH INDEX) --- */
+        *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI', sans-serif;}
+        body{
+            background: #f4f6fb url("background.jpg") no-repeat fixed center;
+            background-size: cover;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
 
-body {
-  background:#f4f6fb;
-  background-image: linear-gradient(rgba(244, 246, 251, 0.9), rgba(244, 246, 251, 0.9)), url("background.jpg");
-  background-repeat:no-repeat;
-  background-position:center center;
-  background-attachment:fixed;
-  background-size:cover;
-  color:#333;
-  min-height:100vh;
-  line-height: 1.6;
-}
+        /* --- 2. NAVIGATION (SYNCED WITH INDEX) --- */
+        nav{
+            position: sticky; top: 0; z-index: 1000;
+            background: #0a58ca; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .nav-inner{
+            max-width:1200px; margin:auto; display:flex; 
+            justify-content:space-between; align-items:center; padding:12px 24px;
+        }
+        .logo-text{color:#fff; font-size:20px; font-weight: 800;}
+        .menu-toggle{ display:none; font-size:30px; color:#fff; cursor:pointer; user-select: none; }
+        
+        .nav-links{ list-style:none; display:flex; gap:10px; align-items: center;}
+        .nav-links li a{ color:#fff; text-decoration:none; font-weight:600; padding:10px 15px; display:block; border-radius: 4px; transition: 0.3s;}
+        .nav-links li a:hover{ background:rgba(255,255,255,0.2); }
 
-/* --- NAVIGATION --- */
-nav{position:sticky;top:0;z-index:999;background:#0a58ca;box-shadow: 0 2px 10px rgba(0,0,0,0.1);}
-.nav-inner{
-  max-width:1200px; margin:auto; display:flex; 
-  justify-content:space-between; align-items:center; padding:12px 24px;
-}
-nav h1{color:#fff;font-size:22px; font-weight: 800;}
-.menu-toggle{ display:none; font-size:30px; color:#fff; cursor:pointer; user-select: none; }
-.nav-links{ list-style:none; display:flex; gap:10px; align-items: center; }
-.nav-links li a{ color:#fff; text-decoration:none; font-weight:600; padding:10px 15px; display:block; transition: 0.3s; border-radius: 4px; }
-.nav-links li a:hover{ background:rgba(255,255,255,0.2); }
+        .dropdown{ position: relative; }
+        .dropdown-menu{
+            display: none; position: absolute; top: 100%; right: 0; 
+            background: #fff; min-width: 200px; border-radius: 4px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;
+        }
+        .dropdown-menu li a{ color: #333 !important; padding: 12px 20px; font-size: 14px; border-bottom: 1px solid #eee; }
+        
+        @media(min-width: 769px) {
+            .dropdown:hover .dropdown-menu { display: block; }
+        }
 
-.dropdown{position:relative;}
-.dropdown-menu{
-  list-style:none; background:#fff; border-radius:4px; overflow:hidden;
-  display: none; flex-direction:column; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  position: absolute; top: 100%; right: 0; width: 220px;
-}
-.dropdown-menu li a{ color: #333 !important; padding:12px 20px; font-size:14px; border-bottom: 1px solid #eee; }
-@media(min-width:769px){ .dropdown:hover .dropdown-menu{ display:flex; } }
+        @media(max-width:768px){
+            .menu-toggle{display:block;}
+            .nav-links{ 
+                display:none; flex-direction:column; background:#0a58ca; 
+                position:absolute; width:100%; left:0; top:100%; text-align: center; gap: 0;
+            }
+            .nav-links.active{display:flex;}
+            .nav-links li { width: 100%; border-bottom: 1px solid rgba(255,255,255,0.1); }
+            .nav-links li a { padding: 15px; width: 100%; } /* Entire Row Clickable */
+            
+            .dropdown-menu{ position: static; width: 100%; background: rgba(0,0,0,0.1); box-shadow: none; display: none; }
+            .dropdown-menu.active { display: flex; flex-direction: column; }
+            .dropdown-menu li a { color: #fff !important; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        }
 
-@media(max-width:768px){
-  .menu-toggle{display:block;}
-  .nav-links{ display:none; flex-direction:column; background:#0a58ca; position:absolute; width:100%; left:0; top:100%; padding:10px 0; }
-  .nav-links.active{display:flex;}
-  .dropdown-menu.active { display:flex; position: static; background: rgba(0,0,0,0.1); width: 100%; }
-}
+        /* --- 3. FAQ STYLES --- */
+        .faq-container { max-width:850px; margin:60px auto; padding:0 20px; flex: 1; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-/* --- FAQ SECTION --- */
-.faq { max-width:850px; margin:60px auto; padding:0 20px; }
-.faq h3 { text-align:center; font-size:32px; margin-bottom:30px; color: #0a58ca; font-weight: 800; }
+        .faq-header { text-align:center; margin-bottom:40px; }
+        .faq-header h2 { font-size:36px; color: #0a58ca; font-weight: 800; }
 
-.faq-item { 
-  background:#fff; 
-  margin-bottom:15px; 
-  border-radius:8px; 
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-  overflow: hidden;
-  border: 1px solid #e1e4e8;
-}
+        .faq-search {
+            width: 100%; padding: 15px 25px; border-radius: 50px; border: 2px solid #0a58ca;
+            margin-bottom: 40px; font-size: 16px; outline: none; background: rgba(255,255,255,0.95);
+        }
 
-.faq-question { 
-  padding:18px 24px; 
-  font-weight:700; 
-  cursor:pointer; 
-  display:flex; 
-  justify-content:space-between; 
-  align-items: center;
-  transition: background 0.3s;
-}
-.faq-question:hover { background: #f0f4ff; }
+        .faq-item { background:#fff; margin-bottom:15px; border-radius:12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; border: 1px solid #e1e4e8; }
+        .faq-question { padding:20px 25px; font-weight:700; cursor:pointer; display:flex; justify-content:space-between; align-items: center; }
+        .faq-answer { max-height:0; overflow:hidden; padding:0 25px; color: #555; transition: all 0.4s ease; background: #fff; }
+        .faq-answer.show { max-height:1000px; padding: 10px 25px 25px 25px; border-top: 1px solid #eee; }
+        .faq-question span { font-size: 24px; color: #0a58ca; transition: 0.3s; font-family: monospace; }
+        .rotated { transform: rotate(45deg); }
 
-.faq-answer {
-  max-height:0;
-  overflow:hidden;
-  padding:0 24px;
-  color: #555;
-  transition: all 0.4s ease;
-  background: #fff;
-}
-.faq-answer.show { 
-  max-height:1500px; 
-  padding: 10px 24px 24px 24px; 
-  border-top: 1px solid #eee;
-}
+        /* Pricing Table */
+        .pricing-guide { background: #fff; padding: 30px; border-radius: 15px; margin-top: 40px; border: 1px solid #e1e4e8; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th { background: #0a58ca; color: #fff; padding: 12px; text-align: left; }
+        td { padding: 12px; border-bottom: 1px solid #eee; }
 
-.faq-question span {
-  font-size: 22px;
-  color: #0a58ca;
-  transition: transform 0.3s ease;
-}
-.rotated { transform: rotate(45deg); }
+        /* CTA Section */
+        .cta-section { text-align: center; margin-top: 50px; padding: 40px; background: rgba(255,255,255,0.9); border-radius: 20px; border: 1px solid #eee; }
+        .btn-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 25px; }
+        .btn-cta {
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 35px;
+            text-decoration: none; font-weight: 800; font-size: 17px; border-radius: 50px;
+            transition: 0.3s; color: #fff; min-width: 220px;
+        }
+        .btn-viber { background: #7360f2; }
+        .btn-whatsapp { background: #25D366; }
 
-/* Checklist Styling */
-.handover-list { list-style: none; margin-top: 15px; }
-.handover-list li { 
-  background: #f8f9fa; 
-  padding: 12px; 
-  margin-bottom: 8px; 
-  border-radius: 6px; 
-  border-left: 4px solid #0a58ca;
-  font-size: 14px;
-}
-.handover-list li strong { color: #0a58ca; }
-</style>
+        #backToTop {
+            display:none; position:fixed; bottom:20px; left:20px; z-index:99; 
+            background:#0a58ca; color:white; border:none; width:50px; height:50px; 
+            border-radius:50%; cursor:pointer;
+        }
+    </style>
 </head>
 <body>
 
 <nav>
   <div class="nav-inner">
-    <h1>JL LabWeb</h1>
+    <div class="logo-text">JL LabWeb Studio PH</div>
     <div class="menu-toggle" id="mobile-menu">&#9776;</div>
     <ul class="nav-links" id="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
-      <li class="dropdown">
-        <a href="#" id="package-link">Web Packages ▼</a>
+      <li class="dropdown" id="dropdown-wrapper">
+        <a href="javascript:void(0)" id="package-link">Web Packages ▼</a>
         <ul class="dropdown-menu" id="package-dropdown">
           <li><a href="essential-scroll.html">The Essential Pack</a></li>
           <li><a href="identity-pack.html">The Identity Pack</a></li>
@@ -128,91 +129,157 @@ nav h1{color:#fff;font-size:22px; font-weight: 800;}
   </div>
 </nav>
 
-<section class="faq">
-  <h3>Frequently Asked Questions</h3>
-
-  <div class="faq-item">
-    <div class="faq-question">What is included in the Handover Checklist? <span>+</span></div>
-    <div class="faq-answer">
-        Once the project is completed and the final balance is settled, we provide a structured handover to give you full control. This includes:
-        <ul class="handover-list">
-            <li><strong>Full GitHub Access:</strong> We transfer the repository to your account. You own 100% of the source code.</li>
-            <li><strong>Netlify Dashboard:</strong> Ownership of the hosting team and site settings is moved to you.</li>
-            <li><strong>Domain Management:</strong> Full login credentials for your professional .com or .ph name.</li>
-            <li><strong>Security Setup:</strong> We help you enable Two-Factor Authentication (2FA) for your new accounts.</li>
-            <li><strong>Deployment Config:</strong> Your site is set to update automatically whenever code changes are pushed.</li>
-        </ul>
+<div class="faq-container">
+    <div class="faq-header reveal">
+        <h2>Got Questions?</h2>
+        <p>Transparent answers about your future website.</p>
     </div>
-  </div>
 
-  <div class="faq-item">
-    <div class="faq-question">Will my website show up on Google? <span>+</span></div>
-    <div class="faq-answer">
-        Yes! We register your website on Google Search Console so it appears in search results. 
-        <br><br>
-        <strong>Note on Ads:</strong> While we ensure you are "on the map," paying for "Sponsored" or "Ad" spots is a separate marketing budget handled directly through Google Ads.
+    <input type="text" id="faqSearch" class="faq-search reveal" placeholder="Search (e.g. 'Google', 'Price', 'Domain')...">
+
+    <div id="faqList">
+        <div class="faq-item reveal">
+            <div class="faq-question">Will my website show up on Google? <span>+</span></div>
+            <div class="faq-answer">
+                <strong>Yes, it will show.</strong> We submit your sitemap to Google Search Console so your business appears in organic search results. 
+                <br><br>
+                <strong>Important Note:</strong> Registration for <em>Google Ads</em> (the "Sponsored" spots) is not included, as this requires a separate budget paid directly to Google.
+            </div>
+        </div>
+
+        <div class="faq-item reveal">
+            <div class="faq-question">Do I have to pay monthly fees? <span>+</span></div>
+            <div class="faq-answer">
+                <strong>It depends on your chosen package:</strong>
+                <ul style="list-style: none; margin-top: 10px;">
+                    <li style="margin-bottom:8px;">✅ <strong>The Identity Pack:</strong> Includes hosting and domain registration for the first year.</li>
+                    <li>✅ <strong>The Essential Pack:</strong> We help you set up <strong>Free Hosting</strong> via Netlify. You only pay the direct cost of your domain annually.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="faq-item reveal">
+            <div class="faq-question">Do I need to provide the photos and text? <span>+</span></div>
+            <div class="faq-answer">
+                <strong>Ideally, yes.</strong> You know your business best! However, we can use high-quality stock images for free if you don't have professional photos yet.
+            </div>
+        </div>
+
+        <div class="faq-item reveal">
+            <div class="faq-question">Do I own the website? <span>+</span></div>
+            <div class="faq-answer">
+                <strong>100% Yes.</strong> Unlike other agencies that "lock" you in, we provide full access to your GitHub repository and hosting accounts. You own the code.
+            </div>
+        </div>
     </div>
-  </div>
 
-  <div class="faq-item">
-    <div class="faq-question">How does the 50% down payment work? <span>+</span></div>
-    <div class="faq-answer">
-        To start, we require a 50% deposit. In return, we provide a <strong>Live Preview Link</strong>. You can watch the development progress daily and give feedback in real-time. The remaining 50% is only due once you are 100% satisfied with the final build.
+    <div class="pricing-guide reveal">
+        <h3 style="color: #0a58ca; text-align: center;">Domain Pricing Guide (Estimates)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Extension</th>
+                    <th>Annual Price (Est.)</th>
+                    <th>Best For...</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>.com</strong></td><td>₱650 - ₱950</td><td>Standard Business</td></tr>
+                <tr><td><strong>.ph / .com.ph</strong></td><td>₱1,500 - ₱1,900</td><td>Local PH Presence</td></tr>
+                <tr><td style="color: #28a745; font-weight: 800;">Hosting</td><td style="color: #28a745; font-weight: 800;">FREE</td><td>Secure & Fast (Netlify)</td></tr>
+            </tbody>
+        </table>
     </div>
-  </div>
 
-  <div class="faq-item">
-    <div class="faq-question">How long does it take? <span>+</span></div>
-    <div class="faq-answer">Typical builds take 7–14 days depending on the complexity and how quickly we receive your brand content.</div>
-  </div>
+    <section class="cta-section reveal">
+        <h2 style="color: #0a58ca; font-weight: 800;">Ready to Build?</h2>
+        <div class="btn-group">
+            <a href="viber://chat?number=%2B639944846149" class="btn-cta btn-viber"><i class="fa-brands fa-viber"></i> Viber</a>
+            <a href="https://wa.me/639310410733" class="btn-cta btn-whatsapp" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+        </div>
+    </section>
+</div>
 
-  <div class="faq-item">
-    <div class="faq-question">Do you provide hosting? <span>+</span></div>
-    <div class="faq-answer">
-      Yes! Our <strong>Identity Pack</strong> includes managed hosting. For the <strong>Essential Pack</strong>, we help you set up your own free Netlify account so you never have to pay a "middleman" fee for hosting.
+<footer style="background: #0a58ca; color: #fff; padding: 40px 20px; text-align: center; margin-top: 60px;">
+    <div style="max-width: 1200px; margin: auto;">
+        <h3 style="margin-bottom: 10px;">JL LabWeb Studio PH</h3>
+        <p style="font-size: 14px; opacity: 0.8; margin-bottom: 20px;">Providing High-Performance Web Solutions for Filipino Businesses.</p>
+        <div style="font-size: 20px; display: flex; justify-content: center; gap: 20px;">
+             <a href="#" style="color: #fff;"><i class="fa-brands fa-facebook"></i></a>
+             <a href="#" style="color: #fff;"><i class="fa-brands fa-instagram"></i></a>
+             <a href="#" style="color: #fff;"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 30px 0;">
+        <p style="font-size: 12px; opacity: 0.6;">&copy; 2026 JL LabWeb Studio. All Rights Reserved.</p>
     </div>
-  </div>
+</footer>
 
-  <div class="faq-item">
-    <div class="faq-question">Is it mobile-friendly? <span>+</span></div>
-    <div class="faq-answer">Absolutely. Every website we build is "Mobile-First," meaning it is designed to look perfect on smartphones, tablets, and desktops.</div>
-  </div>
-</section>
+<button id="backToTop"><i class="fa-solid fa-arrow-up"></i></button>
 
 <script>
-  // Unified Navigation Logic
-  const menuToggle = document.getElementById('mobile-menu');
-  const navLinks = document.getElementById('nav-links');
-  const packageLink = document.getElementById('package-link');
-  const packageDropdown = document.getElementById('package-dropdown');
+const menuToggle = document.getElementById('mobile-menu');
+const navLinks = document.getElementById('nav-links');
+const packageLink = document.getElementById('package-link');
+const packageDropdown = document.getElementById('package-dropdown');
 
-  menuToggle.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+// INDEX NAV LOGIC
+menuToggle.addEventListener('click', (e) => { 
+    e.stopPropagation();
+    navLinks.classList.toggle('active'); 
+});
 
-  packageLink.addEventListener('click', (e) => {
+packageLink.addEventListener('click', (e) => {
     if (window.innerWidth <= 768) {
-      e.preventDefault();
-      packageDropdown.classList.toggle('active');
+        e.preventDefault();
+        e.stopPropagation();
+        packageDropdown.classList.toggle('active');
     }
-  });
+});
 
-  // FAQ Accordion
-  document.querySelectorAll(".faq-question").forEach(q => {
-    q.addEventListener("click", () => {
-      const a = q.nextElementSibling;
-      const s = q.querySelector("span");
+document.addEventListener('click', (e) => {
+    if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+        navLinks.classList.remove('active');
+        packageDropdown.classList.remove('active');
+    }
+});
 
-      document.querySelectorAll(".faq-answer").forEach(other => {
-        if (other !== a && other.classList.contains("show")) {
-          other.classList.remove("show");
-          other.previousElementSibling.querySelector("span").classList.remove("rotated");
-        }
-      });
-
-      a.classList.toggle("show");
-      s.classList.toggle("rotated");
+window.addEventListener('scroll', () => {
+    if (navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        packageDropdown.classList.remove('active');
+    }
+    const btt = document.getElementById("backToTop");
+    btt.style.display = (window.scrollY > 300) ? "block" : "none";
+    
+    document.querySelectorAll('.reveal').forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
     });
-  });
-</script>
+});
 
+// FAQ LOGIC
+document.querySelectorAll(".faq-question").forEach(q => {
+    q.addEventListener("click", () => {
+        const a = q.nextElementSibling;
+        a.classList.toggle("show");
+        q.querySelector("span").classList.toggle("rotated");
+    });
+});
+
+// SEARCH LOGIC
+document.getElementById('faqSearch').addEventListener('input', (e) => {
+    const term = e.target.value.toLowerCase();
+    document.querySelectorAll('.faq-item').forEach(item => {
+        item.style.display = item.textContent.toLowerCase().includes(term) ? 'block' : 'none';
+    });
+});
+
+document.getElementById("backToTop").onclick = () => window.scrollTo({top: 0, behavior: 'smooth'});
+
+window.addEventListener('load', () => {
+    document.querySelectorAll('.reveal').forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('active');
+    });
+});
+</script>
 </body>
 </html>

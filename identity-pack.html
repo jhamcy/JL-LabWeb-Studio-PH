@@ -4,56 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Identity Pack - JL LabWeb Studio PH</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* --- GLOBAL STYLES --- */
-        *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI', Roboto, Helvetica, Arial, sans-serif;}
+        /* --- 1. RESET & BASE (SYNCED) --- */
+        *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI', sans-serif;}
         
         body {
-            background-image: url("background.jpg");
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-attachment: fixed;
+            background: #f4f6fb url("background.jpg") no-repeat fixed center;
             background-size: cover;
             color: #333;
             min-height: 100vh;
             line-height: 1.6;
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* --- NAVIGATION --- */
-        nav{position:sticky;top:0;z-index:999;background:#0a58ca;box-shadow: 0 2px 10px rgba(0,0,0,0.1);}
+        /* --- 2. NAVIGATION (SYNCED) --- */
+        nav{
+            position: sticky; top: 0; z-index: 1000;
+            background: #0a58ca; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
         .nav-inner{
             max-width:1200px; margin:auto; display:flex; 
             justify-content:space-between; align-items:center; padding:12px 24px;
         }
-        nav h1{color:#fff;font-size:22px; font-weight: 800;}
+        .logo-text{color:#fff; font-size:20px; font-weight: 800;}
         .menu-toggle{ display:none; font-size:30px; color:#fff; cursor:pointer; user-select: none; }
-        .nav-links{ list-style:none; display:flex; gap:10px; align-items: center; }
-        .nav-links li a{ color:#fff; text-decoration:none; font-weight:600; padding:10px 15px; display:block; transition: 0.3s; border-radius: 4px; }
+        
+        .nav-links{ list-style:none; display:flex; gap:10px; align-items: center;}
+        .nav-links li a{ color:#fff; text-decoration:none; font-weight:600; padding:10px 15px; display:block; border-radius: 4px; transition: 0.3s;}
         .nav-links li a:hover{ background:rgba(255,255,255,0.2); }
 
-        .dropdown{position:relative;}
+        .dropdown{ position: relative; }
         .dropdown-menu{
-            list-style:none; background:#fff; border-radius:4px; overflow:hidden;
-            display: none; flex-direction:column; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            position: absolute; top: 100%; right: 0; width: 220px;
+            display: none; position: absolute; top: 100%; right: 0; 
+            background: #fff; min-width: 200px; border-radius: 4px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;
         }
-        .dropdown-menu li a{ color: #333 !important; padding:12px 20px; font-size:14px; border-bottom: 1px solid #eee; }
+        .dropdown-menu li a{ color: #333 !important; padding: 12px 20px; font-size: 14px; border-bottom: 1px solid #eee; }
+        
+        @media(min-width: 769px) {
+            .dropdown:hover .dropdown-menu { display: block; }
+        }
 
         @media(max-width:768px){
             .menu-toggle{display:block;}
-            .nav-links{ display:none; flex-direction:column; background:#0a58ca; position:absolute; width:100%; left:0; top:100%; padding:10px 0; }
+            .nav-links{ 
+                display:none; flex-direction:column; background:#0a58ca; 
+                position:absolute; width:100%; left:0; top:100%; text-align: center; gap: 0;
+            }
             .nav-links.active{display:flex;}
-            .dropdown-menu { position:static; width:100%; background: rgba(0,0,0,0.1); }
-            .dropdown-menu.active { display:flex; }
+            .nav-links li { width: 100%; border-bottom: 1px solid rgba(255,255,255,0.1); }
+            .nav-links li a { padding: 15px; width: 100%; } 
+            
+            .dropdown-menu{ position: static; width: 100%; background: rgba(0,0,0,0.1); box-shadow: none; display: none; }
+            .dropdown-menu.active { display: flex; flex-direction: column; }
+            .dropdown-menu li a { color: #fff !important; border-bottom: 1px solid rgba(255,255,255,0.05); }
         }
 
-        /* --- ANIMATIONS --- */
+        /* --- 3. ANIMATIONS --- */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* --- PAGE CONTENT --- */
-        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+        /* --- 4. PAGE CONTENT --- */
+        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; flex: 1; }
         
         .package-hero {
             text-align: center; background: rgba(255, 255, 255, 0.9); 
@@ -79,7 +94,12 @@
 
         .explainer-box {
             background: #fff8e1; border: 1px solid #ffe082; padding: 25px;
-            border-radius: 12px; margin: 40px 0; display: flex; gap: 20px; align-items: center;
+            border-radius: 12px; margin: 40px 0; display: flex; gap: 20px; align-items: flex-start;
+        }
+
+        .clarity-box {
+            margin-top: 20px; padding: 15px; background: rgba(10, 88, 202, 0.05); 
+            border-radius: 8px; border: 1px dashed #0a58ca;
         }
 
         .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-bottom: 40px; }
@@ -93,15 +113,18 @@
         .portfolio-info { padding: 20px; text-align: center; }
         .btn-demo { display: inline-block; padding: 10px 25px; background: #0a58ca; color: #fff; text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 14px; }
 
+        /* CONTACT SECTION */
         .cta-section { text-align: center; margin: 60px 0; background: rgba(255, 255, 255, 0.9); padding: 40px; border-radius: 15px; }
         .btn-group { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 25px;}
+        
         .btn-cta {
-            display: flex; align-items: center; justify-content: center; padding: 16px 35px;
-            text-decoration: none; font-weight: 700; font-size: 17px; border-radius: 50px;
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 35px;
+            text-decoration: none; font-weight: 800; font-size: 17px; border-radius: 50px;
             transition: 0.3s; color: #fff; min-width: 240px;
         }
-        .btn-viber { background: #665CAC; }
+        .btn-viber { background: #7360f2; }
         .btn-whatsapp { background: #25D366; }
+        .btn-cta:hover { transform: translateY(-3px); filter: brightness(1.1); }
 
         @media(max-width: 768px) { .details-grid { grid-template-columns: 1fr; } .explainer-box { flex-direction: column; text-align: center; } .btn-cta { width: 100%; } }
     </style>
@@ -109,23 +132,23 @@
 <body>
 
 <nav>
-    <div class="nav-inner">
-        <h1>JL LabWeb</h1>
-        <div class="menu-toggle" id="mobile-menu">&#9776;</div>
-        <ul class="nav-links" id="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li class="dropdown">
-                <a href="#" id="package-link">Web Packages ▼</a>
-                <ul class="dropdown-menu" id="package-dropdown">
-                    <li><a href="essential-scroll.html">The Essential Pack</a></li>
-                    <li><a href="identity-pack.html">The Identity Pack</a></li>
-                </ul>
-            </li>
-            <li><a href="our-process.html">Process</a></li>
-            <li><a href="faq.html">FAQ</a></li>
+  <div class="nav-inner">
+    <div class="logo-text">JL LabWeb Studio PH</div>
+    <div class="menu-toggle" id="mobile-menu">&#9776;</div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li class="dropdown" id="dropdown-wrapper">
+        <a href="javascript:void(0)" id="package-link">Web Packages ▼</a>
+        <ul class="dropdown-menu" id="package-dropdown">
+          <li><a href="essential-scroll.html">The Essential Pack</a></li>
+          <li><a href="identity-pack.html">The Identity Pack</a></li>
         </ul>
-    </div>
+      </li>
+      <li><a href="our-process.html">Process</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+  </div>
 </nav>
 
 <div class="container">
@@ -133,11 +156,11 @@
         <div class="price-tag">Starts at ₱18,000</div>
         <span class="price-disclaimer">*Final price depends on domain registration fees and custom complexity.*</span>
         <h2>The Identity Pack</h2>
-        <p>A premium collaboration where your ideas meet professional craft. We manage the technical heavy lifting while building a custom digital identity.</p>
+        <p>A premium collaboration where your ideas meet professional craft. We manage the technical heavy lifting while building a custom digital identity for your brand.</p>
         <div class="tech-stack">
             <span class="tech-badge">Custom Architecture</span>
             <span class="tech-badge">Managed Domain</span>
-            <span class="tech-badge">Hosting Options</span>
+            <span class="tech-badge">Premium Hosting</span>
             <span class="tech-badge">Official Google Indexing</span>
         </div>
     </section>
@@ -147,17 +170,17 @@
         <section class="info-card reveal">
             <h3>Creative Partnership</h3>
             <ul>
-                <li><strong>Custom Concepts:</strong> We build a custom multi-page flow from scratch based on your business niche.</li>
-                <li><strong>Bespoke Branding:</strong> Full integration of your specific colors and logo into every pixel.</li>
-                <li><strong>Unique UX:</strong> User experiences designed to keep your Filipino customers engaged.</li>
+                <li><strong>Custom Concepts:</strong> A bespoke multi-page flow designed specifically for your industry.</li>
+                <li><strong>Bespoke Branding:</strong> Deep integration of your brand colors, logo, and voice.</li>
+                <li><strong>Unique UX:</strong> User experiences optimized for high conversion and engagement.</li>
             </ul>
         </section>
         <section class="info-card reveal">
             <h3>Managed Performance</h3>
             <ul>
-                <li><strong>Domain & DNS:</strong> We handle the technical setup of your professional .com or .ph name.</li>
-                <li><strong>Secure Hosting:</strong> Premium speed with high-performance SSL encryption available.</li>
-                <li><strong>Search Registration:</strong> Official submission to Google Search Console for visibility.</li>
+                <li><strong>Domain & DNS:</strong> We handle the full technical registration of your .com or .ph name.</li>
+                <li><strong>Managed Hosting:</strong> Secure, lightning-fast deployment with 24/7 uptime monitoring.</li>
+                <li><strong>Search Visibility:</strong> Comprehensive submission to Google Search Console for organic growth.</li>
             </ul>
         </section>
     </div>
@@ -165,25 +188,31 @@
     <div class="explainer-box reveal">
         <div style="font-size: 40px;">💡</div>
         <div class="explainer-text">
-            <h4>How Google Works for You</h4>
+            <h4>Indexing vs. Advertising</h4>
             <p>
-                This package ensures your website is officially registered on Google for organic search visibility. 
-                Our job is to build the professional "home" that makes your brand stand out from the competition.
+                This package focuses on <strong>Organic Visibility</strong>. We ensure Google recognizes and lists your business correctly in search results.
             </p>
+            
+            <div class="clarity-box">
+                <h5 style="color: #0a58ca; margin-bottom: 5px;">📍 Professional Clarity:</h5>
+                <p style="font-size: 14px; color: #555;">
+                    While we build the foundation for SEO, <strong>Google Ads (Paid Campaigns)</strong> and recurring PPC management are not included in the development fee.
+                </p>
+            </div>
         </div>
     </div>
 
     <h2 class="section-title reveal">Inspiration References</h2>
     <div class="portfolio-grid">
         <div class="portfolio-card reveal">
-            <div class="portfolio-thumb"><img src="coffee-demo.jpg" alt="Coffee Shop"></div>
+            <div class="portfolio-thumb"><img src="coffee-demo.jpg" alt="Coffee Shop Reference"></div>
             <div class="portfolio-info">
                 <h4>Coffee Shop Reference</h4>
                 <a href="https://jhamcy.github.io/Coffee-Shop-Demo/" target="_blank" class="btn-demo">View Reference</a>
             </div>
         </div>
         <div class="portfolio-card reveal">
-            <div class="portfolio-thumb"><img src="spa-demo.jpg" alt="Wellness Spa"></div>
+            <div class="portfolio-thumb"><img src="spa-demo.jpg" alt="Wellness Spa Reference"></div>
             <div class="portfolio-info">
                 <h4>Wellness & Spa Reference</h4>
                 <a href="https://jhamcy.github.io/Ataraxy-Wellness-Spa-Demo/" target="_blank" class="btn-demo">View Reference</a>
@@ -194,11 +223,29 @@
     <section class="cta-section reveal">
         <p class="section-title">Ready to build your digital identity?</p>
         <div class="btn-group">
-            <a href="viber://chat?number=%2B639944846149" class="btn-cta btn-viber">Discuss on Viber</a>
-            <a href="https://wa.me/639310410733?text=Hi!%20I'm%20interested%20in%20The%20Identity%20Package." class="btn-cta btn-whatsapp">Message on WhatsApp</a>
+            <a href="viber://chat?number=%2B639944846149" class="btn-cta btn-viber">
+                <i class="fa-brands fa-viber"></i> Discuss on Viber
+            </a>
+            <a href="https://wa.me/639310410733?text=Hi!%20I'm%20interested%20in%20The%20Identity%20Package." class="btn-cta btn-whatsapp" target="_blank">
+                <i class="fa-brands fa-whatsapp"></i> Message on WhatsApp
+            </a>
         </div>
     </section>
 </div>
+
+<footer style="background: #0a58ca; color: #fff; padding: 40px 20px; text-align: center; margin-top: 60px;">
+    <div style="max-width: 1200px; margin: auto;">
+        <h3 style="margin-bottom: 10px;">JL LabWeb Studio PH</h3>
+        <p style="font-size: 14px; opacity: 0.8; margin-bottom: 20px;">Providing High-Performance Web Solutions for Filipino Businesses.</p>
+        <div style="font-size: 20px; display: flex; justify-content: center; gap: 20px;">
+             <a href="#" style="color: #fff;"><i class="fa-brands fa-facebook"></i></a>
+             <a href="#" style="color: #fff;"><i class="fa-brands fa-instagram"></i></a>
+             <a href="#" style="color: #fff;"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 30px 0;">
+        <p style="font-size: 12px; opacity: 0.6;">&copy; 2026 JL LabWeb Studio. All Rights Reserved.</p>
+    </div>
+</footer>
 
 <script>
     const menuToggle = document.getElementById('mobile-menu');
@@ -206,15 +253,39 @@
     const packageLink = document.getElementById('package-link');
     const packageDropdown = document.getElementById('package-dropdown');
 
-    menuToggle.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+    // MOBILE TOGGLE
+    menuToggle.addEventListener('click', (e) => { 
+        e.stopPropagation();
+        navLinks.classList.toggle('active'); 
+    });
+
+    // PACKAGE DROPDOWN
     packageLink.addEventListener('click', (e) => {
         if (window.innerWidth <= 768) {
             e.preventDefault();
+            e.stopPropagation();
             packageDropdown.classList.toggle('active');
         }
     });
 
-    // Scroll Reveal
+    // CLOSE ON BACKGROUND CLICK
+    document.addEventListener('click', (e) => {
+        if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+            navLinks.classList.remove('active');
+            packageDropdown.classList.remove('active');
+        }
+    });
+
+    // HIDE ON SCROLL
+    window.addEventListener('scroll', () => {
+        if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            packageDropdown.classList.remove('active');
+        }
+        scrollReveal();
+    });
+
+    // REVEAL ANIMATION
     const scrollReveal = () => {
         const reveals = document.querySelectorAll('.reveal');
         reveals.forEach(el => {
@@ -225,7 +296,6 @@
             }
         });
     };
-    window.addEventListener('scroll', scrollReveal);
     window.addEventListener('load', scrollReveal);
 </script>
 </body>

@@ -4,203 +4,233 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Process - JL LabWeb Studio PH</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
-        /* --- GLOBAL STYLES --- */
-        *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI', Roboto, Helvetica, Arial, sans-serif;}
-        
+        /* --- 1. GLOBAL & NAV (SYNCED WITH INDEX) --- */
+        *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI', sans-serif;}
         body {
-            background-color: #f4f6fb;
-            background-image: url("background.jpg");
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-attachment: fixed;
-            background-size: cover;
-            color: #333;
-            line-height: 1.6;
-            overflow-x: hidden; /* Prevent horizontal scroll during animations */
+            background: #f4f6fb url("background.jpg") no-repeat fixed center;
+            background-size: cover; color: #333; line-height: 1.6; overflow-x: hidden;
+            display: flex; flex-direction: column; min-height: 100vh;
         }
 
         /* --- NAVIGATION --- */
-        nav{position:sticky;top:0;z-index:999;background:#0a58ca;box-shadow: 0 2px 10px rgba(0,0,0,0.1);}
+        nav{
+            position: sticky; top: 0; z-index: 1000;
+            background: #0a58ca; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
         .nav-inner{
             max-width:1200px; margin:auto; display:flex; 
             justify-content:space-between; align-items:center; padding:12px 24px;
         }
-        nav h1{color:#fff;font-size:22px; font-weight: 800;}
+        .logo-text{color:#fff; font-size:20px; font-weight: 800;}
         .menu-toggle{ display:none; font-size:30px; color:#fff; cursor:pointer; user-select: none; }
-        .nav-links{ list-style:none; display:flex; gap:10px; align-items: center; }
-        .nav-links li a{ color:#fff; text-decoration:none; font-weight:600; padding:10px 15px; display:block; transition: 0.3s; border-radius: 4px; }
+        
+        .nav-links{ list-style:none; display:flex; gap:10px; align-items: center;}
+        .nav-links li a{ color:#fff; text-decoration:none; font-weight:600; padding:10px 15px; display:block; border-radius: 4px; transition: 0.3s;}
         .nav-links li a:hover{ background:rgba(255,255,255,0.2); }
 
-        /* --- ANIMATION KEYFRAMES --- */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .dropdown{ position: relative; }
+        .dropdown-menu{
+            display: none; position: absolute; top: 100%; right: 0; 
+            background: #fff; min-width: 200px; border-radius: 4px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;
         }
-
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(10, 88, 202, 0.4); }
-            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(10, 88, 202, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(10, 88, 202, 0); }
-        }
-
-        /* --- PROCESS CONTENT --- */
-        .container { max-width: 900px; margin: 60px auto; padding: 0 20px; }
+        .dropdown-menu li a{ color: #333 !important; padding: 12px 20px; font-size: 14px; border-bottom: 1px solid #eee; }
         
-        .header-box { 
-            text-align: center; margin-bottom: 50px; background: rgba(255,255,255,0.9); 
-            padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            animation: fadeInUp 0.8s ease-out;
+        @media(min-width: 769px) {
+            .dropdown:hover .dropdown-menu { display: block; }
         }
-        .header-box h2 { color: #0a58ca; font-size: 32px; margin-bottom: 10px; }
-
-        .process-grid { display: grid; gap: 40px; }
-
-        /* Step Card Animation Class */
-        .step-card {
-            background: rgba(255,255,255,0.95);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            position: relative;
-            border-left: 6px solid #0a58ca;
-            transition: all 0.3s ease;
-            opacity: 0; /* Hidden initially for JS reveal */
-            transform: translateY(30px);
-        }
-
-        /* Reveal state triggered by JS */
-        .step-card.reveal {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .step-card:hover { transform: translateX(10px); border-left-width: 10px; }
-
-        .step-num {
-            position: absolute; top: -15px; left: -15px;
-            background: #0a58ca; color: #fff; width: 45px; height: 45px;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 50%; font-weight: 800; font-size: 20px;
-            animation: pulse 2s infinite;
-        }
-
-        .step-card h3 { color: #0a58ca; margin-bottom: 15px; font-size: 22px; }
-        
-        .feedback-highlight {
-            background: #eef4ff;
-            border: 1px dashed #0a58ca;
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 14px;
-            color: #0a58ca;
-            font-weight: 600;
-            margin-top: 15px;
-            transition: 0.3s;
-        }
-        .step-card:hover .feedback-highlight { background: #dce7ff; border-style: solid; }
-
-        .cta-footer { text-align: center; margin-top: 60px; animation: fadeInUp 1s ease-out; }
-        .btn-start {
-            display: inline-block; padding: 15px 40px; background: #0a58ca; color: #fff;
-            text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 18px;
-            transition: 0.3s; box-shadow: 0 4px 15px rgba(10, 88, 202, 0.3);
-        }
-        .btn-start:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(10, 88, 202, 0.5); }
 
         @media(max-width:768px){
-            .nav-links{ display:none; flex-direction:column; background:#0a58ca; position:absolute; width:100%; left:0; top:100%; padding:10px 0; }
-            .nav-links.active{display:flex;}
             .menu-toggle{display:block;}
+            .nav-links{ 
+                display:none; flex-direction:column; background:#0a58ca; 
+                position:absolute; width:100%; left:0; top:100%; text-align: center; gap: 0;
+            }
+            .nav-links.active{display:flex;}
+            .nav-links li { width: 100%; border-bottom: 1px solid rgba(255,255,255,0.1); }
+            .nav-links li a { padding: 15px; width: 100%; } 
+            
+            .dropdown-menu{ position: static; width: 100%; background: rgba(0,0,0,0.1); box-shadow: none; display: none; }
+            .dropdown-menu.active { display: flex; flex-direction: column; }
+            .dropdown-menu li a { color: #fff !important; border-bottom: 1px solid rgba(255,255,255,0.05); }
         }
+
+        /* --- 2. PROCESS CONTENT --- */
+        .container { max-width: 900px; margin: 40px auto; padding: 0 20px; flex: 1; }
+        .header-box { text-align: center; margin-bottom: 40px; background: rgba(255,255,255,0.9); padding: 40px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        
+        .process-grid { display: grid; gap: 30px; }
+        
+        .step-card {
+            background: rgba(255,255,255,0.95); padding: 35px; border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08); position: relative;
+            border-left: 6px solid #0a58ca; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0; transform: translateX(-30px);
+        }
+        
+        .step-card.active { opacity: 1; transform: translateX(0); }
+
+        .step-card:hover { transform: scale(1.02) translateX(10px); background: #fff; }
+
+        .step-num {
+            position: absolute; top: -15px; left: -15px; background: #0a58ca; color: #fff;
+            width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; font-weight: 800;
+        }
+
+        .handover-list { list-style: none; margin-top: 15px; border-top: 1px solid #eee; padding-top: 15px; }
+        .handover-list li { font-size: 14px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+
+        .prep-box {
+            background: #fff; padding: 40px; border-radius: 15px; margin-top: 50px;
+            border: 2px solid #0a58ca; text-align: center; opacity: 0; transition: 0.8s;
+        }
+        .prep-box.active { opacity: 1; }
+        .prep-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; margin-top: 25px; text-align: left; }
+        .prep-item { background: #f8faff; padding: 15px; border-radius: 8px; font-size: 14px; font-weight: 600; }
+
+        .cta-footer { text-align: center; margin: 50px 0; opacity: 0; transition: 0.8s; }
+        .cta-footer.active { opacity: 1; }
+        .btn-start {
+            display: inline-block; padding: 16px 45px; background: #0a58ca; color: #fff;
+            text-decoration: none; border-radius: 50px; font-weight: 700; transition: 0.3s;
+        }
+        .btn-start:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(10, 88, 202, 0.4); }
+
+        /* --- 3. FOOTER (SYNCED WITH INDEX) --- */
+        footer { background: #0a58ca; color: #fff; padding: 40px 20px; text-align: center; margin-top: 60px; }
+        .footer-inner { max-width: 1200px; margin: auto; }
+        .social-links { font-size: 20px; display: flex; justify-content: center; gap: 20px; margin: 20px 0; }
+        .social-links a { color: #fff; text-decoration: none; }
     </style>
 </head>
 <body>
 
 <nav>
-    <div class="nav-inner">
-        <h1>JL LabWeb</h1>
-        <div class="menu-toggle" id="mobile-menu">&#9776;</div>
-        <ul class="nav-links" id="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li class="dropdown">
-                <a href="#" id="package-link">Web Packages ▼</a>
-                <ul class="dropdown-menu" id="package-dropdown">
-                    <li><a href="essential-scroll.html">The Essential Pack</a></li>
-                    <li><a href="identity-pack.html">The Identity Pack</a></li>
-                </ul>
-            </li>
-            <li><a href="our-process.html">Process</a></li>
-            <li><a href="faq.html">FAQ</a></li>
+  <div class="nav-inner">
+    <div class="logo-text">JL LabWeb Studio PH</div>
+    <div class="menu-toggle" id="mobile-menu">&#9776;</div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li class="dropdown" id="dropdown-wrapper">
+        <a href="javascript:void(0)" id="package-link">Web Packages ▼</a>
+        <ul class="dropdown-menu" id="package-dropdown">
+          <li><a href="essential-scroll.html">The Essential Pack</a></li>
+          <li><a href="identity-pack.html">The Identity Pack</a></li>
         </ul>
-    </div>
+      </li>
+      <li><a href="our-process.html">Process</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+  </div>
 </nav>
 
 <div class="container">
     <div class="header-box">
-        <h2>Our Process</h2>
-        <p>Your journey from a simple idea to a high-performance live website.</p>
+        <h2>Our Strategic Process</h2>
+        <p>A transparent, high-ownership approach to web development.</p>
     </div>
-
-    
 
     <div class="process-grid">
-        <div class="step-card">
+        <div class="step-card reveal">
             <div class="step-num">1</div>
-            <h3>Discovery & Deposit</h3>
-            <p>We start with a consultation to capture your goals. A <strong>50% down payment</strong> officially kicks off the project and secures your slot.</p>
+            <h3>Discovery & Strategy</h3>
+            <p>We define your sitemap, features, and design direction. A <strong>50% deposit</strong> secures your project start date.</p>
         </div>
 
-        <div class="step-card">
+        <div class="step-card reveal">
             <div class="step-num">2</div>
-            <h3>Active Build & Daily Updates</h3>
-            <p>Transparency is key. We send you a <strong>Live Preview Link</strong> so you can watch our progress every single day.</p>
-            <div class="feedback-highlight">
-                ✦ Continuous Feedback: You see the updates on GitHub/Netlify daily and tell us what you think in real-time.
-            </div>
+            <h3>Development & Feedback</h3>
+            <p>Using a <strong>Live Preview Link</strong>, you watch the code come to life. This creates a continuous feedback loop where we refine as we build.</p>
         </div>
 
-        <div class="step-card">
+        <div class="step-card reveal">
             <div class="step-num">3</div>
-            <h3>Refinement</h3>
-            <p>We optimize for speed, mobile responsiveness, and SEO. We don't stop until every detail is exactly how you want it.</p>
+            <h3>Optimization & Testing</h3>
+            <p>We don't just build; we optimize. We test for mobile responsiveness, load speeds, and SEO readiness before the final reveal.</p>
         </div>
 
-        <div class="step-card">
+        <div class="step-card reveal">
             <div class="step-num">4</div>
-            <h3>Turnover</h3>
-            <p>Once you are 100% satisfied, the remaining balance is settled and we hand over all account credentials. You now own your brand's digital home!</p>
+            <h3>Final Turnover & Ownership</h3>
+            <p>After final approval and balance payment, we hand over the "Keys to the House." You get full access to everything.</p>
+            <ul class="handover-list">
+                <li>🔑 GitHub Repository (Source Code)</li>
+                <li>🔑 Netlify/Hosting Account Credentials</li>
+                <li>🔑 Professional Email & Domain Admin</li>
+            </ul>
         </div>
     </div>
 
-    <div class="cta-footer">
-        <a href="index.html#pricing" class="btn-start">Let's Build Your Vision</a>
+    <div class="prep-box reveal">
+        <h3 style="color: #0a58ca;">Client Preparation Checklist</h3>
+        <p>Help us hit the ground running by having these ready:</p>
+        <div class="prep-grid">
+            <div class="prep-item">📁 Branding (Logo & Colors)</div>
+            <div class="prep-item">📸 High-Res Images</div>
+            <div class="prep-item">✍️ Final Page Copy (Text)</div>
+            <div class="prep-item">🌐 Domain Name Choice</div>
+        </div>
+    </div>
+
+    <div class="cta-footer reveal">
+        <a href="index.html#pricing" class="btn-start">Start Your Project Today</a>
     </div>
 </div>
 
+<footer style="background: #0a58ca; color: #fff; padding: 40px 20px; text-align: center; margin-top: 60px;">
+    <div style="max-width: 1200px; margin: auto;">
+        <h3 style="margin-bottom: 10px;">JL LabWeb Studio PH</h3>
+        <p style="font-size: 14px; opacity: 0.8; margin-bottom: 20px;">Providing High-Performance Web Solutions for Filipino Businesses.</p>
+        <div class="social-links">
+             <a href="#"><i class="fa-brands fa-facebook"></i></a>
+             <a href="#"><i class="fa-brands fa-instagram"></i></a>
+             <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 30px 0;">
+        <p style="font-size: 12px; opacity: 0.6;">&copy; 2026 JL LabWeb Studio. All Rights Reserved.</p>
+    </div>
+</footer>
+
 <script>
-    // Navigation Logic
     const menuToggle = document.getElementById('mobile-menu');
     const navLinks = document.getElementById('nav-links');
-    menuToggle.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+    const packageLink = document.getElementById('package-link');
+    const packageDropdown = document.getElementById('package-dropdown');
 
-    // Scroll Reveal Animation Logic
-    const revealSteps = () => {
-        const steps = document.querySelectorAll('.step-card');
-        const triggerBottom = window.innerHeight / 5 * 4;
+    // SYNCED LOGIC
+    menuToggle.addEventListener('click', (e) => { e.stopPropagation(); navLinks.classList.toggle('active'); });
+    
+    packageLink.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) { e.preventDefault(); e.stopPropagation(); packageDropdown.classList.toggle('active'); }
+    });
+    
+    document.addEventListener('click', (e) => {
+        if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+            navLinks.classList.remove('active'); packageDropdown.classList.remove('active');
+        }
+    });
 
-        steps.forEach(step => {
-            const stepTop = step.getBoundingClientRect().top;
-            if (stepTop < triggerBottom) {
-                step.classList.add('reveal');
+    // Reveal Animation
+    const scrollReveal = () => {
+        document.querySelectorAll('.reveal').forEach((el, index) => {
+            if (el.getBoundingClientRect().top < window.innerHeight - 50) {
+                setTimeout(() => { el.classList.add('active'); }, index * 100);
             }
         });
+        // Hide menu on scroll
+        if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            packageDropdown.classList.remove('active');
+        }
     };
 
-    window.addEventListener('scroll', revealSteps);
-    // Trigger once on load to show top steps
-    window.addEventListener('load', revealSteps);
+    window.addEventListener('scroll', scrollReveal);
+    window.addEventListener('load', scrollReveal);
 </script>
 </body>
 </html>

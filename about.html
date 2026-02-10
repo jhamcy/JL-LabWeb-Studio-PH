@@ -4,45 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - JL LabWeb Studio PH</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* --- GLOBAL STYLES --- */
-        *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI', Roboto, Helvetica, Arial, sans-serif;}
+        /* --- 1. GLOBAL STYLES (SYNCED) --- */
+        *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI', sans-serif;}
         
         body {
-            background-color: #f4f6fb;
-            background-image: url("background.jpg");
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-attachment: fixed;
+            background: #f4f6fb url("background.jpg") no-repeat fixed center;
             background-size: cover;
             color: #333;
             line-height: 1.6;
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        /* --- NAVIGATION --- */
-        nav{position:sticky;top:0;z-index:999;background:#0a58ca;box-shadow: 0 2px 10px rgba(0,0,0,0.1);}
+        /* --- 2. NAVIGATION (SYNCED) --- */
+        nav{
+            position: sticky; top: 0; z-index: 1000;
+            background: #0a58ca; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
         .nav-inner{
             max-width:1200px; margin:auto; display:flex; 
             justify-content:space-between; align-items:center; padding:12px 24px;
         }
-        nav h1{color:#fff;font-size:22px; font-weight: 800;}
+        .logo-text{color:#fff; font-size:20px; font-weight: 800;}
         .menu-toggle{ display:none; font-size:30px; color:#fff; cursor:pointer; user-select: none; }
-        .nav-links{ list-style:none; display:flex; gap:10px; align-items: center; }
-        .nav-links li a{ color:#fff; text-decoration:none; font-weight:600; padding:10px 15px; display:block; transition: 0.3s; border-radius: 4px; }
+        
+        .nav-links{ list-style:none; display:flex; gap:10px; align-items: center;}
+        .nav-links li a{ color:#fff; text-decoration:none; font-weight:600; padding:10px 15px; display:block; border-radius: 4px; transition: 0.3s;}
         .nav-links li a:hover{ background:rgba(255,255,255,0.2); }
 
-        /* Dropdown */
-        .dropdown{position:relative;}
+        .dropdown{ position: relative; }
         .dropdown-menu{
-            list-style:none; background:#fff; border-radius:4px; overflow:hidden;
-            display: none; flex-direction:column; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            position: absolute; top: 100%; right: 0; width: 220px;
+            display: none; position: absolute; top: 100%; right: 0; 
+            background: #fff; min-width: 200px; border-radius: 4px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;
         }
-        .dropdown-menu li a{ color: #333 !important; padding:12px 20px; font-size:14px; border-bottom: 1px solid #eee; }
-        @media(min-width:769px){ .dropdown:hover .dropdown-menu{ display:flex; } }
+        .dropdown-menu li a{ color: #333 !important; padding: 12px 20px; font-size: 14px; border-bottom: 1px solid #eee; }
+        
+        @media(min-width: 769px) {
+            .dropdown:hover .dropdown-menu { display: flex; flex-direction: column; }
+        }
 
-        /* --- ANIMATIONS --- */
+        @media(max-width:768px){
+            .menu-toggle{display:block;}
+            .nav-links{ 
+                display:none; flex-direction:column; background:#0a58ca; 
+                position:absolute; width:100%; left:0; top:100%; text-align: center; gap: 0;
+            }
+            .nav-links.active{display:flex;}
+            .nav-links li { width: 100%; border-bottom: 1px solid rgba(255,255,255,0.1); }
+            .nav-links li a { padding: 15px; width: 100%; }
+            
+            .dropdown-menu{ position: static; width: 100%; background: rgba(0,0,0,0.1); box-shadow: none; display: none; }
+            .dropdown-menu.active { display: flex; flex-direction: column; }
+            .dropdown-menu li a { color: #fff !important; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        }
+
+        /* --- 3. ANIMATIONS --- */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
@@ -51,8 +72,8 @@
             100% { transform: scale(1); opacity: 1; }
         }
 
-        /* --- CONTENT STYLES --- */
-        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+        /* --- 4. CONTENT STYLES --- */
+        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; flex: 1; }
         
         .about-hero {
             text-align: center; background: rgba(255, 255, 255, 0.95);
@@ -67,7 +88,6 @@
 
         .about-hero h2 { color: #0a58ca; font-size: 36px; margin-bottom: 15px; font-weight: 800; }
 
-        /* MISSION & VISION SIDE-BY-SIDE */
         .mv-container { 
             display: grid; grid-template-columns: 1fr 1fr; gap: 25px; 
             margin-bottom: 40px; align-items: stretch;
@@ -82,7 +102,6 @@
         .vision { background: linear-gradient(135deg, #063d8d 0%, #04295e 100%); }
         .mv-icon { font-size: 40px; background: rgba(255,255,255,0.15); width: 70px; height: 70px; display: flex; align-items: center; justify-content: center; border-radius: 50%; margin: 0 auto 20px; }
 
-        /* THE SUPPORT PROMISE */
         .support-promise {
             background: #fff; padding: 50px; border-radius: 15px;
             border-right: 8px solid #0a58ca; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
@@ -90,7 +109,6 @@
         }
         .support-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; margin-top: 25px; }
 
-        /* TOOLBOX GRID */
         .tech-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin-bottom: 50px; }
         .tech-item { background: #fff; padding: 20px; border-radius: 10px; width: 130px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: 0.3s; }
         .tech-item:hover { transform: translateY(-5px); background: #0a58ca; color: #fff; }
@@ -98,44 +116,52 @@
         .tech-item:hover .tech-icon-label { color: #fff; }
         .tech-item p { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* VALUES */
         .values-section { background: #0a58ca; color: #fff; padding: 60px 40px; border-radius: 15px; text-align: center; margin-bottom: 50px; }
         .values-grid { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 30px; margin-top: 40px; }
         .value-item { flex: 1; min-width: 200px; opacity: 0; transform: scale(0.9); transition: 0.6s ease; }
         .value-item.active { opacity: 1; transform: scale(1); }
 
-        .tech-footer { text-align: center; padding: 40px; background: rgba(255,255,255,0.9); border-radius: 15px; border-bottom: 5px solid #0a58ca; }
+        .cta-bottom {
+            text-align: center; background: #fff; padding: 60px 20px;
+            border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-bottom: 50px;
+        }
+        .cta-btn {
+            display: inline-block; padding: 15px 40px; background: #0a58ca; color: #fff;
+            text-decoration: none; border-radius: 50px; font-weight: 700; margin-top: 20px; transition: 0.3s;
+        }
+        .cta-btn:hover { background: #063d8d; transform: scale(1.05); }
 
         @media(max-width:768px){
             .mv-container { grid-template-columns: 1fr; }
-            .menu-toggle{display:block;}
-            .nav-links{ display:none; flex-direction:column; background:#0a58ca; position:absolute; width:100%; left:0; top:100%; padding:10px 0; }
-            .nav-links.active{display:flex;}
-            .dropdown-menu { position:static; width:100%; background: rgba(0,0,0,0.1); }
-            .dropdown-menu.active { display:flex; }
         }
+
+        /* --- FOOTER (SYNCED) --- */
+        footer { background: #0a58ca; color: #fff; padding: 40px 20px; text-align: center; margin-top: 60px; }
+        .social-links { font-size: 20px; display: flex; justify-content: center; gap: 20px; margin: 20px 0; }
+        .social-links a { color: #fff; text-decoration: none; transition: 0.3s; }
+        .social-links a:hover { opacity: 0.7; }
     </style>
 </head>
 <body>
 
 <nav>
-    <div class="nav-inner">
-        <h1>JL LabWeb</h1>
-        <div class="menu-toggle" id="mobile-menu">&#9776;</div>
-        <ul class="nav-links" id="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li class="dropdown">
-                <a href="#" id="package-link">Web Packages ▼</a>
-                <ul class="dropdown-menu" id="package-dropdown">
-                    <li><a href="essential-scroll.html">The Essential Pack</a></li>
-                    <li><a href="identity-pack.html">The Identity Pack</a></li>
-                </ul>
-            </li>
-            <li><a href="our-process.html">Process</a></li>
-            <li><a href="faq.html">FAQ</a></li>
+  <div class="nav-inner">
+    <div class="logo-text">JL LabWeb Studio PH</div>
+    <div class="menu-toggle" id="mobile-menu">&#9776;</div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li class="dropdown" id="dropdown-wrapper">
+        <a href="javascript:void(0)" id="package-link">Web Packages ▼</a>
+        <ul class="dropdown-menu" id="package-dropdown">
+          <li><a href="essential-scroll.html">The Essential Pack</a></li>
+          <li><a href="identity-pack.html">The Identity Pack</a></li>
         </ul>
-    </div>
+      </li>
+      <li><a href="our-process.html">Process</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+  </div>
 </nav>
 
 <div class="container">
@@ -149,20 +175,18 @@
         <div class="mv-card mission">
             <div class="mv-icon">🎯</div>
             <h3>Our Mission</h3>
-            <p>To empower Filipino entrepreneurs by providing <strong>digital homes</strong> they truly own through transparent, contract-free development.</p>
+            <p>To empower Filipino entrepreneurs by providing <strong>digital homes</strong> they truly own through transparent development.</p>
         </div>
         <div class="mv-card vision">
             <div class="mv-icon">🚀</div>
             <h3>Our Vision</h3>
-            <p>To be the PH standard for transparent web development, ensuring every local brand has the <strong>foundation</strong> to compete globally.</p>
+            <p>To be the PH standard for transparent web development, ensuring every local brand has the foundation to compete globally.</p>
         </div>
     </section>
 
     <section class="support-promise reveal">
         <h2 style="color: #0a58ca;">We Don’t Just Build & Leave.</h2>
-        <p style="font-size: 17px; color: #555;">
-            Our relationship doesn’t end when the site goes live. We treat every project as a long-term partnership.
-        </p>
+        <p style="font-size: 17px; color: #555;">Our relationship doesn’t end when the site goes live. We treat every project as a long-term partnership.</p>
         <div class="support-grid">
             <div>
                 <h4 style="color: #0a58ca;">✅ 30-Day Health Check</h4>
@@ -170,11 +194,11 @@
             </div>
             <div>
                 <h4 style="color: #0a58ca;">✅ Ongoing Safety</h4>
-                <p style="font-size: 14px;">We provide support for hosting and domain management to keep you online.</p>
+                <p style="font-size: 14px;">Support for hosting and domain management to keep you online.</p>
             </div>
             <div>
                 <h4 style="color: #0a58ca;">✅ Future Growth</h4>
-                <p style="font-size: 14px;">As your business grows, we are ready to scale your site with new professional features.</p>
+                <p style="font-size: 14px;">Ready to scale your site with new professional features as you grow.</p>
             </div>
         </div>
     </section>
@@ -182,26 +206,11 @@
     <section class="reveal" style="margin-bottom: 50px;">
         <h3 style="text-align: center; color: #0a58ca; margin-bottom: 30px;">Our Technical Toolbox</h3>
         <div class="tech-grid">
-            <div class="tech-item">
-                <span class="tech-icon-label">HTML5</span>
-                <p>Structure</p>
-            </div>
-            <div class="tech-item">
-                <span class="tech-icon-label">CSS3</span>
-                <p>Styling</p>
-            </div>
-            <div class="tech-item">
-                <span class="tech-icon-label">JS</span>
-                <p>Interactivity</p>
-            </div>
-            <div class="tech-item">
-                <span class="tech-icon-label">GITHUB</span>
-                <p>Security</p>
-            </div>
-            <div class="tech-item">
-                <span class="tech-icon-label">NETLIFY</span>
-                <p>Deployment</p>
-            </div>
+            <div class="tech-item"><span class="tech-icon-label">HTML5</span><p>Structure</p></div>
+            <div class="tech-item"><span class="tech-icon-label">CSS3</span><p>Styling</p></div>
+            <div class="tech-item"><span class="tech-icon-label">JS</span><p>Interactivity</p></div>
+            <div class="tech-item"><span class="tech-icon-label">GITHUB</span><p>Security</p></div>
+            <div class="tech-item"><span class="tech-icon-label">NETLIFY</span><p>Deployment</p></div>
         </div>
     </section>
 
@@ -210,23 +219,39 @@
         <div class="values-grid">
             <div class="value-item">
                 <h4>No Lock-In</h4>
-                <p>100% Ownership. We provide a full technical handover upon completion.</p>
+                <p>100% Ownership. Full technical handover upon completion.</p>
             </div>
             <div class="value-item">
                 <h4>Daily Sync</h4>
-                <p>Live preview links ensure the final product perfectly matches your vision.</p>
+                <p>Live preview links ensure the final product matches your vision.</p>
             </div>
             <div class="value-item">
                 <h4>PH-Built</h4>
-                <p>Empowering local businesses with international development standards.</p>
+                <p>Empowering local businesses with international standards.</p>
             </div>
         </div>
     </section>
 
-    <div class="tech-footer reveal">
-        <p style="font-weight: 800; color: #0a58ca; letter-spacing: 2px;">JL LABWEB STUDIO PH</p>
-    </div>
+    <section class="cta-bottom reveal">
+        <h2>Ready to build your digital home?</h2>
+        <p>Explore our transparent web design packages and find the right fit for your business.</p>
+        <a href="index.html#pricing" class="cta-btn">View Web Packages</a>
+    </section>
 </div>
+
+<footer>
+    <div style="max-width: 1200px; margin: auto;">
+        <h3 style="margin-bottom: 10px;">JL LabWeb Studio PH</h3>
+        <p style="font-size: 14px; opacity: 0.8; margin-bottom: 20px;">Providing High-Performance Web Solutions for Filipino Businesses.</p>
+        <div class="social-links">
+             <a href="#"><i class="fa-brands fa-facebook"></i></a>
+             <a href="#"><i class="fa-brands fa-instagram"></i></a>
+             <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 30px 0;">
+        <p style="font-size: 12px; opacity: 0.6;">&copy; 2026 JL LabWeb Studio. All Rights Reserved.</p>
+    </div>
+</footer>
 
 <script>
     const menuToggle = document.getElementById('mobile-menu');
@@ -234,15 +259,30 @@
     const packageLink = document.getElementById('package-link');
     const packageDropdown = document.getElementById('package-dropdown');
 
-    menuToggle.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+    // MOBILE TOGGLE
+    menuToggle.addEventListener('click', (e) => { 
+        e.stopPropagation();
+        navLinks.classList.toggle('active'); 
+    });
     
+    // PACKAGE DROPDOWN
     packageLink.addEventListener('click', (e) => {
         if (window.innerWidth <= 768) {
             e.preventDefault();
+            e.stopPropagation();
             packageDropdown.classList.toggle('active');
         }
     });
 
+    // CLOSE ON BACKGROUND CLICK
+    document.addEventListener('click', (e) => {
+        if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+            navLinks.classList.remove('active');
+            packageDropdown.classList.remove('active');
+        }
+    });
+
+    // REVEAL ANIMATIONS
     const scrollReveal = () => {
         const reveals = document.querySelectorAll('.reveal');
         reveals.forEach(el => {
@@ -258,6 +298,12 @@
                 }
             }
         });
+        
+        // Hide menu on scroll
+        if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            packageDropdown.classList.remove('active');
+        }
     };
 
     window.addEventListener('scroll', scrollReveal);
