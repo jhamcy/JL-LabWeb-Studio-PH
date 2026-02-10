@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQ - JL LabWeb Studio PH</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
     <style>
-        /* --- 1. RESET & BASE (SYNCED WITH INDEX) --- */
-        *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI', sans-serif;}
-        body{
+        /* --- 1. GLOBAL STYLES --- */
+        *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI', Roboto, sans-serif;}
+        
+        body {
             background: #f4f6fb url("background.jpg") no-repeat fixed center;
             background-size: cover;
             color: #333;
@@ -20,7 +20,7 @@
             min-height: 100vh;
         }
 
-        /* --- 2. NAVIGATION (SYNCED WITH INDEX) --- */
+        /* --- 2. NAVIGATION --- */
         nav{
             position: sticky; top: 0; z-index: 1000;
             background: #0a58ca; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -30,7 +30,7 @@
             justify-content:space-between; align-items:center; padding:12px 24px;
         }
         .logo-text{color:#fff; font-size:20px; font-weight: 800;}
-        .menu-toggle{ display:none; font-size:30px; color:#fff; cursor:pointer; user-select: none; }
+        .menu-toggle{ display:block; font-size:30px; color:#fff; cursor:pointer; user-select: none; }
         
         .nav-links{ list-style:none; display:flex; gap:10px; align-items: center;}
         .nav-links li a{ color:#fff; text-decoration:none; font-weight:600; padding:10px 15px; display:block; border-radius: 4px; transition: 0.3s;}
@@ -45,241 +45,246 @@
         .dropdown-menu li a{ color: #333 !important; padding: 12px 20px; font-size: 14px; border-bottom: 1px solid #eee; }
         
         @media(min-width: 769px) {
-            .dropdown:hover .dropdown-menu { display: block; }
+            .dropdown:hover .dropdown-menu { display: flex; flex-direction: column; }
         }
 
         @media(max-width:768px){
-            .menu-toggle{display:block;}
             .nav-links{ 
                 display:none; flex-direction:column; background:#0a58ca; 
                 position:absolute; width:100%; left:0; top:100%; text-align: center; gap: 0;
             }
             .nav-links.active{display:flex;}
             .nav-links li { width: 100%; border-bottom: 1px solid rgba(255,255,255,0.1); }
-            .nav-links li a { padding: 15px; width: 100%; } /* Entire Row Clickable */
-            
-            .dropdown-menu{ position: static; width: 100%; background: rgba(0,0,0,0.1); box-shadow: none; display: none; }
+            .dropdown-menu{ position: static; width: 100%; background: rgba(0,0,0,0.1); display: none; }
             .dropdown-menu.active { display: flex; flex-direction: column; }
-            .dropdown-menu li a { color: #fff !important; border-bottom: 1px solid rgba(255,255,255,0.05); }
+            .dropdown-menu li a { color: #fff !important; }
         }
 
-        /* --- 3. FAQ STYLES --- */
-        .faq-container { max-width:850px; margin:60px auto; padding:0 20px; flex: 1; }
-        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        .faq-header { text-align:center; margin-bottom:40px; }
-        .faq-header h2 { font-size:36px; color: #0a58ca; font-weight: 800; }
-
-        .faq-search {
-            width: 100%; padding: 15px 25px; border-radius: 50px; border: 2px solid #0a58ca;
-            margin-bottom: 40px; font-size: 16px; outline: none; background: rgba(255,255,255,0.95);
+        /* --- 3. SEARCH & FAQ --- */
+        .container { max-width: 900px; margin: 40px auto; padding: 0 20px; flex: 1; }
+        
+        .faq-header { 
+            text-align: center; margin-bottom: 50px; background: rgba(255, 255, 255, 0.98); 
+            padding: 50px 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
 
-        .faq-item { background:#fff; margin-bottom:15px; border-radius:12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; border: 1px solid #e1e4e8; }
-        .faq-question { padding:20px 25px; font-weight:700; cursor:pointer; display:flex; justify-content:space-between; align-items: center; }
-        .faq-answer { max-height:0; overflow:hidden; padding:0 25px; color: #555; transition: all 0.4s ease; background: #fff; }
-        .faq-answer.show { max-height:1000px; padding: 10px 25px 25px 25px; border-top: 1px solid #eee; }
-        .faq-question span { font-size: 24px; color: #0a58ca; transition: 0.3s; font-family: monospace; }
-        .rotated { transform: rotate(45deg); }
-
-        /* Pricing Table */
-        .pricing-guide { background: #fff; padding: 30px; border-radius: 15px; margin-top: 40px; border: 1px solid #e1e4e8; }
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th { background: #0a58ca; color: #fff; padding: 12px; text-align: left; }
-        td { padding: 12px; border-bottom: 1px solid #eee; }
-
-        /* CTA Section */
-        .cta-section { text-align: center; margin-top: 50px; padding: 40px; background: rgba(255,255,255,0.9); border-radius: 20px; border: 1px solid #eee; }
-        .btn-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 25px; }
-        .btn-cta {
-            display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 35px;
-            text-decoration: none; font-weight: 800; font-size: 17px; border-radius: 50px;
-            transition: 0.3s; color: #fff; min-width: 220px;
+        .search-container { max-width: 600px; margin: -25px auto 40px; position: relative; z-index: 10; }
+        .search-box {
+            width: 100%; padding: 15px 25px 15px 50px; border-radius: 50px;
+            border: none; box-shadow: 0 10px 25px rgba(0,0,0,0.1); font-size: 16px; outline: none;
         }
-        .btn-viber { background: #7360f2; }
+        .search-icon { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: #0a58ca; }
+
+        .faq-item {
+            background: #fff; margin-bottom: 15px; border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03); border: 1px solid #e1e8f0;
+            overflow: hidden; opacity: 0; transform: translateY(30px); transition: 0.4s;
+        }
+        .faq-item.reveal { opacity: 1; transform: translateY(0); }
+        .faq-item.search-hidden { display: none; }
+
+        .faq-question {
+            padding: 22px 25px; cursor: pointer; display: flex; 
+            justify-content: space-between; align-items: center; 
+            font-weight: 700; color: #1a1a1a; transition: 0.3s;
+        }
+        .faq-question:hover { background: #f0f7ff; color: #0a58ca; }
+
+        .faq-answer {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #fcfdfe;
+        }
+        .answer-inner { padding: 0 25px 25px 25px; color: #4a4a4a; font-size: 16px; line-height: 1.8; }
+        .faq-item.active .faq-answer { max-height: 1000px; border-top: 1px solid #f0f0f0; padding-top: 20px; }
+        .faq-item.active .fa-chevron-down { transform: rotate(180deg); transition: 0.4s; }
+
+        #noResults { display: none; text-align: center; padding: 30px; color: #0a58ca; font-weight: 600; }
+        .package-label { font-weight: 800; color: #0a58ca; text-transform: uppercase; font-size: 11px; display: block; margin-bottom: 5px; }
+
+        /* --- 4. CONTACT SECTION --- */
+        .contact-section-mid { margin: 40px 0; text-align: center; }
+        .contact-grid { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 20px; }
+        .btn-contact {
+            display: flex; align-items: center; gap: 10px; padding: 14px 28px;
+            border-radius: 50px; text-decoration: none; color: #fff; font-weight: 700;
+            transition: 0.3s; font-size: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
         .btn-whatsapp { background: #25D366; }
+        .btn-viber { background: #7360f2; }
+        .btn-contact:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
 
-        #backToTop {
-            display:none; position:fixed; bottom:20px; left:20px; z-index:99; 
-            background:#0a58ca; color:white; border:none; width:50px; height:50px; 
-            border-radius:50%; cursor:pointer;
-        }
+        /* --- 5. FOOTER (Synchronized) --- */
+        footer { background: #0a58ca; color: #fff; padding: 50px 20px; text-align: center; }
+        .footer-content { max-width: 1200px; margin: auto; }
+        .footer-logo { font-size: 24px; font-weight: 800; margin-bottom: 10px; }
+        .footer-tagline { font-size: 14px; opacity: 0.8; margin-bottom: 25px; }
+        .social-links { font-size: 22px; display: flex; justify-content: center; gap: 25px; margin-bottom: 25px; }
+        .social-links a { color: #fff; text-decoration: none; transition: 0.3s; }
+        .copyright { font-size: 12px; opacity: 0.6; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
     </style>
 </head>
 <body>
 
 <nav>
-  <div class="nav-inner">
-    <div class="logo-text">JL LabWeb Studio PH</div>
-    <div class="menu-toggle" id="mobile-menu">&#9776;</div>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li class="dropdown" id="dropdown-wrapper">
-        <a href="javascript:void(0)" id="package-link">Web Packages ▼</a>
-        <ul class="dropdown-menu" id="package-dropdown">
-          <li><a href="essential-scroll.html">The Essential Pack</a></li>
-          <li><a href="identity-pack.html">The Identity Pack</a></li>
+    <div class="nav-inner">
+        <div class="logo-text">JL LabWeb Studio PH</div>
+        <div class="menu-toggle" id="mobile-menu">&#9776;</div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li class="dropdown">
+                <a href="javascript:void(0)" id="package-link">Web Packages ▼</a>
+                <ul class="dropdown-menu" id="package-dropdown">
+                    <li><a href="essential-scroll.html">The Essential Pack</a></li>
+                    <li><a href="identity-pack.html">The Identity Pack</a></li>
+                </ul>
+            </li>
+            <li><a href="our-process.html">Process</a></li>
+            <li><a href="faq.html">FAQ</a></li>
         </ul>
-      </li>
-      <li><a href="our-process.html">Process</a></li>
-      <li><a href="faq.html">FAQ</a></li>
-    </ul>
-  </div>
+    </div>
 </nav>
 
-<div class="faq-container">
-    <div class="faq-header reveal">
-        <h2>Got Questions?</h2>
-        <p>Transparent answers about your future website.</p>
+<div class="container">
+    <header class="faq-header">
+        <h1>Frequently Asked Questions</h1>
+        <p>Expert answers on development, payments, and website management.</p>
+    </header>
+
+    <div class="search-container">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" id="faqSearch" class="search-box" placeholder="Search keywords...">
     </div>
 
-    <input type="text" id="faqSearch" class="faq-search reveal" placeholder="Search (e.g. 'Google', 'Price', 'Domain')...">
+    <div id="noResults">No results found for that keyword.</div>
 
-    <div id="faqList">
-        <div class="faq-item reveal">
-            <div class="faq-question">Will my website show up on Google? <span>+</span></div>
-            <div class="faq-answer">
-                <strong>Yes, it will show.</strong> We submit your sitemap to Google Search Console so your business appears in organic search results. 
-                <br><br>
-                <strong>Important Note:</strong> Registration for <em>Google Ads</em> (the "Sponsored" spots) is not included, as this requires a separate budget paid directly to Google.
-            </div>
+    <div class="faq-list" id="faqList">
+        <div class="faq-item">
+            <div class="faq-question">Do I need to buy my own domain name? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer"><div class="answer-inner"><span class="package-label">Essential Pack:</span> Yes. You purchase it directly. <br><br> <span class="package-label">Identity Pack:</span> No. We facilitate it for you.</div></div>
         </div>
-
-        <div class="faq-item reveal">
-            <div class="faq-question">Do I have to pay monthly fees? <span>+</span></div>
-            <div class="faq-answer">
-                <strong>It depends on your chosen package:</strong>
-                <ul style="list-style: none; margin-top: 10px;">
-                    <li style="margin-bottom:8px;">✅ <strong>The Identity Pack:</strong> Includes hosting and domain registration for the first year.</li>
-                    <li>✅ <strong>The Essential Pack:</strong> We help you set up <strong>Free Hosting</strong> via Netlify. You only pay the direct cost of your domain annually.</li>
-                </ul>
-            </div>
+        <div class="faq-item">
+            <div class="faq-question">Will my website show up on Google search? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer"><div class="answer-inner">Every site we build is <strong>SEO-Ready</strong> and optimized for indexing.</div></div>
         </div>
-
-        <div class="faq-item reveal">
-            <div class="faq-question">Do I need to provide the photos and text? <span>+</span></div>
-            <div class="faq-answer">
-                <strong>Ideally, yes.</strong> You know your business best! However, we can use high-quality stock images for free if you don't have professional photos yet.
-            </div>
+        <div class="faq-item">
+            <div class="faq-question">Do you offer Google or Facebook Ad management? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer"><div class="answer-inner">We focus on <strong>Organic SEO</strong>. We do not manage paid ad campaigns.</div></div>
         </div>
-
-        <div class="faq-item reveal">
-            <div class="faq-question">Do I own the website? <span>+</span></div>
-            <div class="faq-answer">
-                <strong>100% Yes.</strong> Unlike other agencies that "lock" you in, we provide full access to your GitHub repository and hosting accounts. You own the code.
-            </div>
+        <div class="faq-item">
+            <div class="faq-question">Who owns the website code once it's done? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer"><div class="answer-inner"><strong>You do.</strong> We provide a full technical handover upon project completion.</div></div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">What is the payment structure? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer"><div class="answer-inner"><strong>50% downpayment</strong>. Final 50% via GCash, Bank, or COD.</div></div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">How fast can my website be ready? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer"><div class="answer-inner">Essential: 5–7 business days. Identity: 2–3 weeks.</div></div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Can I update the site myself? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer"><div class="answer-inner">Yes. We also provide 30 days of free technical support.</div></div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Are there any hidden monthly fees? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer"><div class="answer-inner">No. Only your annual domain/hosting fees paid to providers.</div></div>
         </div>
     </div>
 
-    <div class="pricing-guide reveal">
-        <h3 style="color: #0a58ca; text-align: center;">Domain Pricing Guide (Estimates)</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Extension</th>
-                    <th>Annual Price (Est.)</th>
-                    <th>Best For...</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td><strong>.com</strong></td><td>₱650 - ₱950</td><td>Standard Business</td></tr>
-                <tr><td><strong>.ph / .com.ph</strong></td><td>₱1,500 - ₱1,900</td><td>Local PH Presence</td></tr>
-                <tr><td style="color: #28a745; font-weight: 800;">Hosting</td><td style="color: #28a745; font-weight: 800;">FREE</td><td>Secure & Fast (Netlify)</td></tr>
-            </tbody>
-        </table>
-    </div>
-
-    <section class="cta-section reveal">
-        <h2 style="color: #0a58ca; font-weight: 800;">Ready to Build?</h2>
-        <div class="btn-group">
-            <a href="viber://chat?number=%2B639944846149" class="btn-cta btn-viber"><i class="fa-brands fa-viber"></i> Viber</a>
-            <a href="https://wa.me/639310410733" class="btn-cta btn-whatsapp" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+    <div class="contact-section-mid">
+        <h3>Still have questions? Chat with us!</h3>
+        <div class="contact-grid">
+            <a href="https://wa.me/639310410733" target="_blank" class="btn-contact btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> WhatsApp Me
+            </a>
+            <a href="viber://chat?number=639944846149" class="btn-contact btn-viber">
+                <i class="fab fa-viber"></i> Viber Me
+            </a>
         </div>
-    </section>
+    </div>
 </div>
 
-<footer style="background: #0a58ca; color: #fff; padding: 40px 20px; text-align: center; margin-top: 60px;">
-    <div style="max-width: 1200px; margin: auto;">
-        <h3 style="margin-bottom: 10px;">JL LabWeb Studio PH</h3>
-        <p style="font-size: 14px; opacity: 0.8; margin-bottom: 20px;">Providing High-Performance Web Solutions for Filipino Businesses.</p>
-        <div style="font-size: 20px; display: flex; justify-content: center; gap: 20px;">
-             <a href="#" style="color: #fff;"><i class="fa-brands fa-facebook"></i></a>
-             <a href="#" style="color: #fff;"><i class="fa-brands fa-instagram"></i></a>
-             <a href="#" style="color: #fff;"><i class="fa-brands fa-linkedin"></i></a>
+<footer>
+    <div class="footer-content">
+        <div class="footer-logo">JL LabWeb Studio PH</div>
+        <p class="footer-tagline">Providing High-Performance Web Solutions for Filipino Businesses.</p>
+        <div class="social-links">
+             <a href="#"><i class="fab fa-facebook"></i></a>
+             <a href="#"><i class="fab fa-instagram"></i></a>
+             <a href="#"><i class="fab fa-linkedin"></i></a>
         </div>
-        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 30px 0;">
-        <p style="font-size: 12px; opacity: 0.6;">&copy; 2026 JL LabWeb Studio. All Rights Reserved.</p>
+        <p class="copyright">&copy; 2026 JL LabWeb Studio. All Rights Reserved.</p>
     </div>
 </footer>
 
-<button id="backToTop"><i class="fa-solid fa-arrow-up"></i></button>
-
 <script>
-const menuToggle = document.getElementById('mobile-menu');
-const navLinks = document.getElementById('nav-links');
-const packageLink = document.getElementById('package-link');
-const packageDropdown = document.getElementById('package-dropdown');
+    const menuToggle = document.getElementById('mobile-menu');
+    const navLinks = document.getElementById('nav-links');
+    const packageLink = document.getElementById('package-link');
+    const packageDropdown = document.getElementById('package-dropdown');
 
-// INDEX NAV LOGIC
-menuToggle.addEventListener('click', (e) => { 
-    e.stopPropagation();
-    navLinks.classList.toggle('active'); 
-});
+    const closeMenus = () => {
+        navLinks.classList.remove('active');
+        packageDropdown.classList.remove('active');
+    };
 
-packageLink.addEventListener('click', (e) => {
-    if (window.innerWidth <= 768) {
-        e.preventDefault();
+    menuToggle.addEventListener('click', (e) => { 
         e.stopPropagation();
-        packageDropdown.classList.toggle('active');
-    }
-});
-
-document.addEventListener('click', (e) => {
-    if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
-        navLinks.classList.remove('active');
-        packageDropdown.classList.remove('active');
-    }
-});
-
-window.addEventListener('scroll', () => {
-    if (navLinks.classList.contains('active')) {
-        navLinks.classList.remove('active');
-        packageDropdown.classList.remove('active');
-    }
-    const btt = document.getElementById("backToTop");
-    btt.style.display = (window.scrollY > 300) ? "block" : "none";
+        navLinks.classList.toggle('active'); 
+    });
     
-    document.querySelectorAll('.reveal').forEach(el => {
-        if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
+    packageLink.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+            e.preventDefault();
+            e.stopPropagation();
+            packageDropdown.classList.toggle('active');
+        }
     });
-});
 
-// FAQ LOGIC
-document.querySelectorAll(".faq-question").forEach(q => {
-    q.addEventListener("click", () => {
-        const a = q.nextElementSibling;
-        a.classList.toggle("show");
-        q.querySelector("span").classList.toggle("rotated");
+    document.addEventListener('click', (e) => {
+        if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) closeMenus();
     });
-});
 
-// SEARCH LOGIC
-document.getElementById('faqSearch').addEventListener('input', (e) => {
-    const term = e.target.value.toLowerCase();
-    document.querySelectorAll('.faq-item').forEach(item => {
-        item.style.display = item.textContent.toLowerCase().includes(term) ? 'block' : 'none';
+    window.addEventListener('scroll', () => {
+        if (navLinks.classList.contains('active')) closeMenus();
     });
-});
 
-document.getElementById("backToTop").onclick = () => window.scrollTo({top: 0, behavior: 'smooth'});
-
-window.addEventListener('load', () => {
-    document.querySelectorAll('.reveal').forEach(el => {
-        if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('active');
+    const searchInput = document.getElementById('faqSearch');
+    const faqItems = document.querySelectorAll('.faq-item');
+    searchInput.addEventListener('input', (e) => {
+        const term = e.target.value.toLowerCase();
+        let found = false;
+        faqItems.forEach(item => {
+            if (item.innerText.toLowerCase().includes(term)) {
+                item.classList.remove('search-hidden');
+                found = true;
+            } else {
+                item.classList.add('search-hidden');
+            }
+        });
+        document.getElementById('noResults').style.display = found ? 'none' : 'block';
     });
-});
+
+    document.querySelectorAll('.faq-question').forEach(q => {
+        q.addEventListener('click', () => {
+            const item = q.parentElement;
+            document.querySelectorAll('.faq-item').forEach(i => i !== item && i.classList.remove('active'));
+            item.classList.toggle('active');
+        });
+    });
+
+    const reveal = () => {
+        faqItems.forEach((item, i) => {
+            if(item.getBoundingClientRect().top < window.innerHeight - 50) {
+                setTimeout(() => item.classList.add('reveal'), i * 100);
+            }
+        });
+    };
+    window.addEventListener('scroll', reveal);
+    window.addEventListener('load', reveal);
 </script>
 </body>
 </html>
